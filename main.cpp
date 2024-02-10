@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -30,5 +31,10 @@ int main()
         } 
         S[i].vid = double(paz) / S[i].n;
         S[i].galut = 0.4 * S[i].vid + 0.6 * S[i].egz;
+    }
+    cout << left << setw(15)<< "Pavarde" << setw(15) << "Vardas" << setw(20)<< "Galutinis (Vid.)" << endl;
+    cout << setfill('-') << setw(40) << "" << setfill(' ') << endl;
+    for (int i = 0; i < s_kiek; i++) {
+      cout << left<< setw(15)<< S[i].pavarde << setw(15) << S[i].vardas << setw(15)<<fixed<<setprecision(2)<< S[i].galut << endl;
     }
 }
