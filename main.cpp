@@ -9,3 +9,10 @@ struct Studentas {
     int egz;
     int nd[10];
 };
+
+const int s_kiek = 3;
+
+int main()
+{
+    Studentas S[s_kiek];
+}
