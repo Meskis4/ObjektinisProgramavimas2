@@ -34,50 +34,61 @@ const int s_kiek = 3;
 
 int main()
 {
-    Studentas S[s_kiek];
+    vector<Studentas> studentai;
 
-    for (int i = 0; i < s_kiek; i++) {
-        S[i].pasirinkimas = 0;
-        cout << "Iveskite savo varda: "; cin >> S[i].vardas;
-        cout << "Iveskite savo pavarde: "; cin >> S[i].pavarde;
-        cout << "Iveskite egzamino bala: "; cin >> S[i].egz;
-        while (S[i].pasirinkimas != 1 || S[i].pasirinkimas != 2) {
+    while(true) {
+        bool loop = false;
+        Studentas S;
+        S.pasirinkimas = 0;
+        cout << "Iveskite savo varda: "; cin >> S.vardas;
+        cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
+        cout << "Iveskite egzamino bala: "; cin >> S.egz;
+        while (S.pasirinkimas != 1 || S.pasirinkimas != 2) {
             cout << "----------------------------------" << endl;
             cout << "Pasirinktie galutinio balo skaiciavimo metoda: " << endl;
             cout << "1. Skaiciuoti naudojant vidurki" << endl;
             cout << "2. Skaiciuoti naudojant mediana" << endl;
-            cout << "Jusu pasirinkimas: "; cin >> S[i].pasirinkimas;
+            cout << "Jusu pasirinkimas: "; cin >> S.pasirinkimas;
             cout << "----------------------------------" << endl;
-            if (S[i].pasirinkimas != 1 && S[i].pasirinkimas != 2) {
+            if (S.pasirinkimas != 1 && S.pasirinkimas != 2) {
                 cout << "Netinkamas pasirinkimas!" << endl;
             }
             else break;
         }
-        cout << "Iveskite atliktu namu darbu skaiciu: "; cin >> S[i].n;
-        S[i].nd.resize(S[i].n);
+        cout << "Iveskite atliktu namu darbu skaiciu: "; cin >> S.n;
+        S.nd.resize(S.n);
         int paz = 0;
-        for (int j = 0; j < S[i].n; j++) {
-            cout << "Iveskite pazymi: "; cin >> S[i].nd[j];
-            paz += S[i].nd[j];
+        for (int j = 0; j < S.n; j++) {
+            cout << "Iveskite pazymi: "; cin >> S.nd[j];
+            paz += S.nd[j];
         }
-        if (S[i].pasirinkimas == 1) {
-            S[i].vid = double(paz) / S[i].n;
-            S[i].galut = 0.4 * S[i].vid + 0.6 * S[i].egz;
+        if (S.pasirinkimas == 1) {
+            S.vid = double(paz) / S.n;
+            S.galut = 0.4 * S.vid + 0.6 * S.egz;
         }
         else {
-            S[i].medi = Mediana(S[i].nd);
-            S[i].galut = 0.4 * S[i].medi + 0.6 * S[i].egz;
+            S.medi = Mediana(S.nd);
+            S.galut = 0.4 * S.medi + 0.6 * S.egz;
         }
         cout << "*******************************" << endl;
+        studentai.push_back(S);
+        int sk;
+        cout << "0. Baigti"<<endl; 
+        cout << "1. Testi"<<endl;
+        cin >> sk;
+        if (sk == 0) {
+            break;
+        }
+        else loop = true;
     }
     cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
-    for (int i = 0; i < s_kiek; i++) {
-        if (S[i].pasirinkimas == 1) {
-            cout << left << setw(15) << S[i].pavarde << setw(15) << S[i].vardas << setw(20) << fixed << setprecision(2) << S[i].galut << endl;
-        }
+    for (const auto& S : studentai) {
+       if (S.pasirinkimas == 1) {
+            cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
+       }
         else {
-            cout << left << setw(15) << S[i].pavarde << setw(15) << S[i].vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S[i].galut << endl;
+            cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
         }
     }
 }
