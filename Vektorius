@@ -33,23 +33,30 @@ double Mediana(vector<int>& mas) {
 
 int main()
 {
+
+    vector<string> Vardai_v = { "Petras", "Jonas", "Paulius", "Saulius", "Martynas", "Kornelijus", "Adomas", "Lukas", "Marius", "Kazimieras", "Dovydas", "Mantas", "Arnas", "Džiugas" };
+    vector<string> Vardai_m = { "Eva", "Paulina", "Sofija", "Gintare", "Skaiste", "Marija", "Lukrecija", "Kornelija", "Egle", "Kamile", "Auguste", "Meda", "Ruta" };
+    vector<string> Pavardes_v = { "Kazlauskas", "Vasiliauskas", "Petrauskas", "Paulauskas", "Urbonas", "Adomaitis", "Sadauskas", "Vaitkus", "Jankauskas", "Rimkus" };
+    vector<string> Pavardes_m = { "Kazlauskaite", "Vasiliauskiene", "Paulauskyte", "Vaitkute", "Jankauskaite", "Rimkute", "Adomaitiene", "Petrauskyte" };
     vector<Studentas> studentai;
 
+    cout << "******************************" << endl;
+    cout << "Duomenu uzpildymo budas" << endl;
+    cout << "1. Uzpildyti ranka" << endl;
+    cout << "2. Uzpildyti pazymius automatiskai" << endl;
+    cout << "3. Uzpildyti varda, pavarde bei pazymius automatiskai" << endl;
+    int budas;
+    cout << "------------------------------" << endl;
+    cout << "Jusu pasirinkimas: "; cin >> budas;
     
-    while(true) {
-        bool loop = false;
-        int pild;
-        Studentas S;
-        S.pasirinkimas = 0;
-        cout << "Iveskite savo varda: "; cin >> S.vardas;
-        cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
-        cout << "----------------------------------" << endl;
-        cout << "Kaip norite uzpildyti pazymius " << endl;
-        cout << "1. Uzpildyti ranka" << endl;
-        cout << "2. Uzpildyti automatiskai" << endl;
-        cout << "----------------------------------" << endl;
-        cin >> pild;
-        if (pild == 1) {
+    // Pildymas ranka
+    if (budas == 1) {
+        while (true) {
+            bool loop = false;
+            Studentas S;
+            S.pasirinkimas = 0;
+            cout << "Iveskite savo varda: "; cin >> S.vardas;
+            cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
             cout << "Iveskite egzamino bala: "; cin >> S.egz;
             while (S.pasirinkimas != 1 || S.pasirinkimas != 2) {
                 cout << "----------------------------------" << endl;
@@ -88,55 +95,128 @@ int main()
                 break;
             }
             else loop = true;
+            }
         }
-        else {   //Generuojami atsitiktiniai pazymiai
-            random_device rd;
-            mt19937 gen(rd());
-            uniform_int_distribution<int> distribution(1, 10);
-            S.egz = distribution(gen);
-            while (S.pasirinkimas != 1 || S.pasirinkimas != 2) {
-                cout << "----------------------------------" << endl;
-                cout << "Pasirinktie galutinio balo skaiciavimo metoda: " << endl;
-                cout << "1. Skaiciuoti naudojant vidurki" << endl;
-                cout << "2. Skaiciuoti naudojant mediana" << endl;
-                cout << "Jusu pasirinkimas: "; cin >> S.pasirinkimas;
-                cout << "----------------------------------" << endl;
-                if (S.pasirinkimas != 1 && S.pasirinkimas != 2) {
-                    cout << "Netinkamas pasirinkimas!" << endl;
+    
+    // *************************************
+    // Pazymiu automatinis pildymas
+
+        if (budas == 2) {
+            while (true) {
+                bool loop = false;
+                Studentas S;
+                cout << "Iveskite savo varda: "; cin >> S.vardas;
+                cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
+
+                random_device rd;
+                mt19937 gen(rd());
+                uniform_int_distribution<int> distribution(1, 10);
+                S.egz = distribution(gen);
+                while (S.pasirinkimas != 1 || S.pasirinkimas != 2) {
+                    cout << "----------------------------------" << endl;
+                    cout << "Pasirinktie galutinio balo skaiciavimo metoda: " << endl;
+                    cout << "1. Skaiciuoti naudojant vidurki" << endl;
+                    cout << "2. Skaiciuoti naudojant mediana" << endl;
+                    cout << "Jusu pasirinkimas: "; cin >> S.pasirinkimas;
+                    cout << "----------------------------------" << endl;
+                    if (S.pasirinkimas != 1 && S.pasirinkimas != 2) {
+                        cout << "Netinkamas pasirinkimas!" << endl;
+                    }
+                    else break;
                 }
-                else break;
-            }
-            cout << "Iveskite atliktu namu darbu skaiciu: "; cin >> S.n;
-            S.nd.resize(S.n);
-            int paz = 0;
-            for (int j = 0; j < S.n; j++) {
-                
-                S.nd[j] = distribution(gen);
-                paz += S.nd[j];
-            }
-            if (S.pasirinkimas == 1) {
-                S.vid = double(paz) / S.n;
-                S.galut = 0.4 * S.vid + 0.6 * S.egz;
-            }
-            else {
-                S.medi = Mediana(S.nd);
-                S.galut = 0.4 * S.medi + 0.6 * S.egz;
-            }
-            cout << "*******************************" << endl;
-            studentai.push_back(S);
-            int sk;
-            cout << "0. Baigti" << endl;
-            cout << "1. Testi" << endl;
-            cin >> sk;
-            if (sk == 0) {
-                break;
-            }
-            else loop = true;
+                cout << "Iveskite atliktu namu darbu skaiciu: "; cin >> S.n;
+                S.nd.resize(S.n);
+                int paz = 0;
+                for (int j = 0; j < S.n; j++) {
+
+                    S.nd[j] = distribution(gen);
+                    paz += S.nd[j];
+                }
+                if (S.pasirinkimas == 1) {
+                    S.vid = double(paz) / S.n;
+                    S.galut = 0.4 * S.vid + 0.6 * S.egz;
+                }
+                else {
+                    S.medi = Mediana(S.nd);
+                    S.galut = 0.4 * S.medi + 0.6 * S.egz;
+                }
+                cout << "*******************************" << endl;
+                studentai.push_back(S);
+                int sk;
+                cout << "0. Baigti" << endl;
+                cout << "1. Testi" << endl;
+                cin >> sk;
+                if (sk == 0) {
+                    break;
+                }
+                else loop = true; 
         }
         }
 
-        
-        
+        //***************************************
+        //Automatinis vardo bei pazymiu pildymas
+
+        if (budas == 3) {
+            while (true) {
+                bool loop = false;
+                Studentas S;
+
+                random_device rd;
+                mt19937 gen(rd());
+                uniform_int_distribution<int> distribution(1, 10);
+                uniform_int_distribution<int> lyties_num(0, 1); // 0 - vyras, 1 - moteris
+
+                int lytis = lyties_num(gen);
+
+                if (lytis == 0) {
+                    S.vardas = Vardai_v[uniform_int_distribution<int>(0, Vardai_v.size() - 1)(gen)];
+                    S.pavarde = Pavardes_v[uniform_int_distribution<int>(0, Pavardes_v.size() - 1)(gen)];
+                }
+                else {
+                    S.vardas = Vardai_m[uniform_int_distribution<int>(0, Vardai_m.size() - 1)(gen)];
+                    S.pavarde = Pavardes_m[uniform_int_distribution<int>(0, Pavardes_m.size() - 1)(gen)];
+                }
+                S.egz = distribution(gen);
+                while (S.pasirinkimas != 1 || S.pasirinkimas != 2) {
+                    cout << "----------------------------------" << endl;
+                    cout << "Pasirinktie galutinio balo skaiciavimo metoda: " << endl;
+                    cout << "1. Skaiciuoti naudojant vidurki" << endl;
+                    cout << "2. Skaiciuoti naudojant mediana" << endl;
+                    cout << "Jusu pasirinkimas: "; cin >> S.pasirinkimas;
+                    cout << "----------------------------------" << endl;
+                    if (S.pasirinkimas != 1 && S.pasirinkimas != 2) {
+                        cout << "Netinkamas pasirinkimas!" << endl;
+                    }
+                    else break;
+                }
+                cout << "Iveskite atliktu namu darbu skaiciu: "; cin >> S.n;
+                S.nd.resize(S.n);
+                int paz = 0;
+                for (int j = 0; j < S.n; j++) {
+
+                    S.nd[j] = distribution(gen);
+                    paz += S.nd[j];
+                }
+                if (S.pasirinkimas == 1) {
+                    S.vid = double(paz) / S.n;
+                    S.galut = 0.4 * S.vid + 0.6 * S.egz;
+                }
+                else {
+                    S.medi = Mediana(S.nd);
+                    S.galut = 0.4 * S.medi + 0.6 * S.egz;
+                }
+                cout << "*******************************" << endl;
+                studentai.push_back(S);
+                int sk;
+                cout << "0. Baigti" << endl;
+                cout << "1. Testi" << endl;
+                cin >> sk;
+                if (sk == 0) {
+                    break;
+                }
+                else loop = true;
+            }
+        }
     cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
     for (const auto& S : studentai) {
