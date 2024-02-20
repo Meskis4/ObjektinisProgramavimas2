@@ -5,6 +5,8 @@
 #include <random>
 #include <cctype>
 #include <string>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -55,12 +57,13 @@ int main()
     int budas = 0;
 
     //
-    while (budas != 1 || budas != 2 || budas != 3) {
+    while (budas != 1 || budas != 2 || budas != 3 || budas != 4) {
         cout << "******************************" << endl;
         cout << "Duomenu uzpildymo budas" << endl;
         cout << "1. Uzpildyti ranka" << endl;
         cout << "2. Uzpildyti pazymius automatiskai" << endl;
         cout << "3. Uzpildyti varda, pavarde bei pazymius automatiskai" << endl;
+        cout << "4. Nuskaityti duomenis is failo" << endl;
         cout << "******************************" << endl;
         cout << "Jusu pasirinkimas: "; 
         while (!(cin >> budas)) {
@@ -72,7 +75,7 @@ int main()
             cout << "Iveskite pazymi: ";
         }
         cout << "----------------------------------" << endl;
-        if (budas != 1 && budas != 2 && budas != 3) {
+        if (budas != 1 && budas != 2 && budas != 3 && budas != 4) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
         else break;
@@ -177,6 +180,7 @@ int main()
         }
     }
 
+    // *************************************
     // Pazymiu automatinis pildymas
 
     if (budas == 2) {
@@ -261,7 +265,8 @@ int main()
             else loop = true;
         }
     }
-   
+
+    //***************************************
     //Automatinis vardo bei pazymiu pildymas
 
     if (budas == 3) {
@@ -342,10 +347,59 @@ int main()
             else loop = true;
         }
     }
+
+    // Nuskaitymas is failo
+
+    if (budas == 4) {
+
+        ifstream df("Kursiokai.txt");
+
+        if (!df) {
+            cerr << "Failo nepavyko atidaryti!" << endl;
+            return 1;
+        }
+
+        string header;
+        getline(df, header);
+
+        while (true) {
+            Studentas S;
+            df >> S.pavarde >> S.vardas;
+
+            if (df.eof()) {
+                break;
+            }
+
+            S.nd.clear();
+            for (int i = 0; i < 5; i++) {
+                int tmp = 0;
+                df >> tmp;
+                S.nd.push_back(tmp);
+            }
+
+            df >> S.egz;
+
+            int paz = 0;
+            S.n = S.nd.size();
+
+            for (int j = 0; j < S.n; j++) {
+                paz += S.nd[j];
+            }
+
+            S.vid = double(paz) / S.n;
+            S.medi = Mediana(S.nd);
+            S.galut = 0.4 * S.vid + 0.6 * S.egz;
+
+            studentai.push_back(S);
+        }
+
+        df.close();
+    }
+
     cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
     for (const auto& S : studentai) {
-        if (S.pasirinkimas == 1) {
+       if (S.pasirinkimas == 1) {
             cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
         }
         else {
