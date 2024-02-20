@@ -381,6 +381,27 @@ int main()
             else break;
         }
 
+        while (S.pasirinkimas != 1 || S.pasirinkimas != 2) {
+            cout << "----------------------------------" << endl;
+            cout << "Pasirinktie galutinio balo skaiciavimo metoda: " << endl;
+            cout << "1. Skaiciuoti naudojant vidurki" << endl;
+            cout << "2. Skaiciuoti naudojant mediana" << endl;
+            cout << "Jusu pasirinkimas: " << endl;
+            while (!(cin >> S.pasirinkimas)) {
+                cout << "*************************************" << endl;
+                cout << "Iveskite skaiciu 1 arba 2" << endl;
+                cout << "*************************************" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Jusu pasirinkimas:  " << endl;
+            }
+            cout << "----------------------------------" << endl;
+            if (S.pasirinkimas != 1 && S.pasirinkimas != 2) {
+                cout << "Iveskite skaiciu 1 arba 2" << endl;
+            }
+            else break;
+        }
+
         ifstream df("Kursiokai.txt");
 
         if (!df) {
@@ -407,8 +428,6 @@ int main()
 
             df >> S.egz;
 
-            
-
             int paz = 0;
             S.n = S.nd.size();
 
@@ -417,8 +436,14 @@ int main()
             }
 
             S.vid = double(paz) / S.n;
-            S.medi = Mediana(S.nd);
-            S.galut = 0.4 * S.vid + 0.6 * S.egz;
+            if (S.pasirinkimas == 1) {
+                S.vid = double(paz) / S.n;
+                S.galut = 0.4 * S.vid + 0.6 * S.egz;
+            }
+            else {
+                S.medi = Mediana(S.nd);
+                S.galut = 0.4 * S.medi + 0.6 * S.egz;
+            }
 
             studentai.push_back(S);
         }
