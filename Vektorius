@@ -65,7 +65,7 @@ int main()
         cout << "3. Uzpildyti varda, pavarde bei pazymius automatiskai" << endl;
         cout << "4. Nuskaityti duomenis is failo" << endl;
         cout << "******************************" << endl;
-        cout << "Jusu pasirinkimas: "; 
+        cout << "Jusu pasirinkimas: ";
         while (!(cin >> budas)) {
             cout << "*************************************" << endl;
             cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
@@ -351,6 +351,35 @@ int main()
     // Nuskaitymas is failo
 
     if (budas == 4) {
+        Studentas S;
+        int rusiavimas = 0;
+
+        while (rusiavimas != 1 || rusiavimas != 2 || rusiavimas != 3 || rusiavimas != 4 || rusiavimas != 5 || rusiavimas != 6 || rusiavimas != 7) {
+            cout << "**************************************" << endl;
+            cout << "Kaip norite surusiuoti rezultatus?" << endl;
+            cout << "1. Pagal galutini pazymi (mazejanciai)" << endl;
+            cout << "2. Pagal galutini pazymi (didejanciai)" << endl;
+            cout << "3. Pagal varda (A -> Z)" << endl;
+            cout << "4. Pagal varda (Z -> A)" << endl;
+            cout << "5. Pagal pavarde (A -> Z)" << endl;
+            cout << "6. Pagal pavarde (Z -> A)" << endl;
+            cout << "7. Nerusiuoti" << endl;
+            cout << "Jusu pasirinkimas: "; 
+
+            while (!(cin >> rusiavimas)) {
+                cout << "*************************************" << endl;
+                cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
+                cout << "*************************************" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Jusu pasirinkimas: ";
+            }
+            cout << "----------------------------------" << endl;
+            if (rusiavimas != 1 && rusiavimas != 2 && rusiavimas != 3 && rusiavimas != 4 && rusiavimas != 5 && rusiavimas != 6 && rusiavimas != 7) {
+                cout << "Netinkamas pasirinkimas!" << endl;
+            }
+            else break;
+        }
 
         ifstream df("Kursiokai.txt");
 
@@ -363,7 +392,6 @@ int main()
         getline(df, header);
 
         while (true) {
-            Studentas S;
             df >> S.pavarde >> S.vardas;
 
             if (df.eof()) {
@@ -379,6 +407,8 @@ int main()
 
             df >> S.egz;
 
+            
+
             int paz = 0;
             S.n = S.nd.size();
 
@@ -392,14 +422,50 @@ int main()
 
             studentai.push_back(S);
         }
-
+        
         df.close();
-    }
+        if (rusiavimas == 1) {
+            sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+                return a.galut > b.galut;
+                });
+        }
+
+        if (rusiavimas == 2) {
+            sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+                return a.galut < b.galut;
+                });
+        }
+
+        if (rusiavimas == 3) {
+            sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+                return a.vardas < b.vardas;
+                });
+        }
+
+        if (rusiavimas == 4) {
+            sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+                return a.vardas > b.vardas;
+                });
+        }
+
+        if (rusiavimas == 5) {
+            sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+                return a.pavarde < b.pavarde;
+                });
+        }
+
+        if (rusiavimas == 6) {
+            sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+                return a.pavarde > b.pavarde;
+                });
+        }
+
+        }
 
     cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
     for (const auto& S : studentai) {
-       if (S.pasirinkimas == 1) {
+        if (S.pasirinkimas == 1) {
             cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
         }
         else {
