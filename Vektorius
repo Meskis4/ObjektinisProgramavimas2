@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <ctime>
 
 using namespace std;
 
@@ -56,6 +57,8 @@ int main()
     int budas = 0;
     int pasirinkimas = 0;
     int rusiavimas = 0;
+    clock_t skaitymas_start, skaitymas_end, spausdinimas_start, spausdinimas_end;
+    double skaitymo_laikas, spausdinimo_laikas;
     Studentas S;
     //
     while (budas != 1 || budas != 2 || budas != 3 || budas != 4) {
@@ -340,8 +343,9 @@ int main()
     // Nuskaitymas is failo
 
     if (budas == 4) {
-
+        
         ifstream df("Kursiokai.txt");
+        skaitymas_start = clock();
 
         if (!df) {
             cerr << "Failo nepavyko atidaryti!" << endl;
@@ -398,6 +402,8 @@ int main()
         }
 
         df.close();
+        skaitymas_end = clock();
+        skaitymo_laikas = 1.0 * (skaitymas_end - skaitymas_start) / CLOCKS_PER_SEC;
     }
 
     if (rusiavimas == 1) {
@@ -436,6 +442,7 @@ int main()
             });
     }
 
+    spausdinimas_start = clock();
     cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
     for (const auto& S : studentai) {
@@ -446,6 +453,12 @@ int main()
             cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
         }
     }
-    
-    
+    spausdinimas_end = clock();
+    spausdinimo_laikas = 1.0 * (spausdinimas_end - spausdinimas_start) / CLOCKS_PER_SEC;
+
+    cout << "Skaitymo laikas: " << skaitymo_laikas << " sekundziu." << endl;
+    cout << "Spausdinimo laikas: " << spausdinimo_laikas<<" sekundziu." << endl;
+    cout << "Bendras laikas: " << skaitymo_laikas + spausdinimo_laikas<<" sekundziu." << endl;
+
+
 }
