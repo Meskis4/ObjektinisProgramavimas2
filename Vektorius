@@ -351,6 +351,16 @@ int main()
         string header;
         getline(df, header);
 
+        stringstream headerStream(header);
+        string token;
+        int n = 0;
+
+        while (getline(headerStream, token, ' ')) {
+            if (token.find("ND") != string::npos) {
+                n++;
+            }
+        }
+
         while (true) {
             df >> S.pavarde >> S.vardas;
 
@@ -359,7 +369,7 @@ int main()
             }
 
             S.nd.clear();
-            for (int i = 0; i < 6; i++) {    // i - nurodo pazymiu kieki
+            for (int i = 0; i < n; i++) {
                 int tmp = 0;
                 df >> tmp;
                 S.nd.push_back(tmp);
@@ -436,4 +446,6 @@ int main()
             cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
         }
     }
+    
+    
 }
