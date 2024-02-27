@@ -8,3 +8,5 @@ double raides(const string& str);
 double Vidurkis(vector<int>& mas, int n);
 
 int IntInput();
+
+string StringInput();
