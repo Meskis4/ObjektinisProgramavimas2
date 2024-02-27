@@ -10,3 +10,5 @@ double Vidurkis(vector<int>& mas, int n);
 int IntInput();
 
 string StringInput();
+
+string FailoPatikrinimas();
