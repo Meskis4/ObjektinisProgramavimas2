@@ -11,15 +11,6 @@
 
 using namespace std;
 
-double raides(const string& str) {
-    for (char c : str) {
-        if (!isalpha(c)) {
-            return false;
-        }
-    }
-    return true;
-}
-
 int main()
 {
 
@@ -434,6 +425,5 @@ int main()
     cout << "Skaitymo laikas: " << skaitymo_laikas << " sekundziu." << endl;
     cout << "Spausdinimo laikas: " << spausdinimo_laikas << " sekundziu." << endl;
     cout << "Bendras laikas: " << skaitymo_laikas + spausdinimo_laikas << " sekundziu." << endl;
-
 
 }
