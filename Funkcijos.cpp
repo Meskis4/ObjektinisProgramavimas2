@@ -1,6 +1,7 @@
 #include "Funkcijos.h"
 #include "Studentai.h"
-#include "algorithm"
+#include <algorithm>
+#include <iostream>
 
 double Mediana(vector<int>& mas) {
     sort(mas.begin(), mas.end());
@@ -32,4 +33,23 @@ double Vidurkis(vector<int>& mas, int n) {
     }
 
     return static_cast<double>(suma) / n;
+}
+
+int IntInput() {
+    int value;
+    while (true) {
+        try {
+            cin >> value;
+            if (cin.fail() || cin.peek() != '\n') {
+                throw runtime_error("Netinkama ivestis! Iveskite sveikaji skaiciu.");
+            }
+            break;
+        }
+        catch (const runtime_error& e) {
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+    return value;
 }
