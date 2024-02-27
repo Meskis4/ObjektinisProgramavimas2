@@ -1,27 +1,14 @@
 #include <iostream>
 #include <iomanip>
-#include <algorithm>
-#include <vector>
 #include <random>
 #include <cctype>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <ctime>
+#include "Studentai.h"
 
 using namespace std;
-
-struct Studentas {
-    string vardas;
-    string pavarde;
-    int n;
-    int egz;
-    vector<int> nd;
-    double vid;
-    double galut;
-    double medi;
-    double pasirinkimas;
-};
 
 double Mediana(vector<int>& mas) {
     sort(mas.begin(), mas.end());
@@ -343,7 +330,7 @@ int main()
     // Nuskaitymas is failo
 
     if (budas == 4) {
-        
+
         ifstream df("Kursiokai.txt");
         skaitymas_start = clock();
 
@@ -457,8 +444,8 @@ int main()
     spausdinimo_laikas = 1.0 * (spausdinimas_end - spausdinimas_start) / CLOCKS_PER_SEC;
 
     cout << "Skaitymo laikas: " << skaitymo_laikas << " sekundziu." << endl;
-    cout << "Spausdinimo laikas: " << spausdinimo_laikas<<" sekundziu." << endl;
-    cout << "Bendras laikas: " << skaitymo_laikas + spausdinimo_laikas<<" sekundziu." << endl;
+    cout << "Spausdinimo laikas: " << spausdinimo_laikas << " sekundziu." << endl;
+    cout << "Bendras laikas: " << skaitymo_laikas + spausdinimo_laikas << " sekundziu." << endl;
 
 
 }
