@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <random>
 #include <cctype>
-#include <string>
 #include <fstream>
 #include <sstream>
 #include <ctime>
@@ -23,77 +22,56 @@ int main()
     int budas = 0;
     int pasirinkimas = 0;
     int rusiavimas = 0;
-    clock_t skaitymas_start, skaitymas_end, spausdinimas_start, spausdinimas_end;
-    double skaitymo_laikas, spausdinimo_laikas;
+    int sk;
     Studentas S;
     //
-    while (budas != 1 || budas != 2 || budas != 3 || budas != 4) {
-        cout << "*****************************************************" << endl;
-        cout << "Duomenu uzpildymo budas" << endl;
-        cout << "1. Uzpildyti ranka" << endl;
-        cout << "2. Uzpildyti pazymius automatiskai" << endl;
-        cout << "3. Uzpildyti varda, pavarde bei pazymius automatiskai" << endl;
-        cout << "4. Nuskaityti duomenis is failo" << endl;
-        cout << "*****************************************************" << endl;
-        cout << "Jusu pasirinkimas: ";
 
-        while (!(cin >> budas)) {
-            cout << "*************************************" << endl;
-            cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
-            cout << "*************************************" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Iveskite pazymi: ";
-        }
-        cout << "----------------------------------" << endl;
+    cout << "*****************************************************" << endl;
+    cout << "Duomenu uzpildymo budas" << endl;
+    cout << "1. Uzpildyti ranka" << endl;
+    cout << "2. Uzpildyti pazymius automatiskai" << endl;
+    cout << "3. Uzpildyti varda, pavarde bei pazymius automatiskai" << endl;
+    cout << "4. Nuskaityti duomenis is failo" << endl;
+    cout << "*****************************************************" << endl;
+
+    while (true) {
+        cout << "Jusu pasirinkimas: ";
+        budas = IntInput();
+
         if (budas != 1 && budas != 2 && budas != 3 && budas != 4) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
         else break;
     }
 
-    while (rusiavimas != 1 || rusiavimas != 2 || rusiavimas != 3 || rusiavimas != 4 || rusiavimas != 5 || rusiavimas != 6 || rusiavimas != 7) {
-        cout << "**************************************" << endl;
-        cout << "Kaip norite surusiuoti rezultatus?" << endl;
-        cout << "1. Pagal galutini pazymi (mazejanciai)" << endl;
-        cout << "2. Pagal galutini pazymi (didejanciai)" << endl;
-        cout << "3. Pagal varda (A -> Z)" << endl;
-        cout << "4. Pagal varda (Z -> A)" << endl;
-        cout << "5. Pagal pavarde (A -> Z)" << endl;
-        cout << "6. Pagal pavarde (Z -> A)" << endl;
-        cout << "7. Nerusiuoti" << endl;
-        cout << "Jusu pasirinkimas: ";
 
-        while (!(cin >> rusiavimas)) {
-            cout << "*************************************" << endl;
-            cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
-            cout << "*************************************" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Jusu pasirinkimas: ";
-        }
-        cout << "----------------------------------" << endl;
-        if (rusiavimas != 1 && rusiavimas != 2 && rusiavimas != 3 && rusiavimas != 4 && rusiavimas != 5 && rusiavimas != 6 && rusiavimas != 7) {
+    cout << "**************************************" << endl;
+    cout << "Kaip norite surusiuoti rezultatus?" << endl;
+    cout << "1. Pagal galutini pazymi (mazejanciai)" << endl;
+    cout << "2. Pagal galutini pazymi (didejanciai)" << endl;
+    cout << "3. Pagal varda (A -> Z)" << endl;
+    cout << "4. Pagal varda (Z -> A)" << endl;
+    cout << "5. Pagal pavarde (A -> Z)" << endl;
+    cout << "6. Pagal pavarde (Z -> A)" << endl;
+    cout << "7. Nerusiuoti" << endl;
+    while (true) {
+
+        rusiavimas = IntInput();
+        if (rusiavimas < 1 || rusiavimas > 7) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
         else break;
     }
 
-    while (S.pasirinkimas != 1 || S.pasirinkimas != 2) {
-        cout << "----------------------------------" << endl;
-        cout << "Pasirinktie galutinio balo skaiciavimo metoda: " << endl;
-        cout << "1. Skaiciuoti naudojant vidurki" << endl;
-        cout << "2. Skaiciuoti naudojant mediana" << endl;
+    cout << "----------------------------------" << endl;
+    cout << "Pasirinktie galutinio balo skaiciavimo metoda: " << endl;
+    cout << "1. Skaiciuoti naudojant vidurki" << endl;
+    cout << "2. Skaiciuoti naudojant mediana" << endl;
+    while (true) {
+
         cout << "Jusu pasirinkimas: ";
-        while (!(cin >> S.pasirinkimas)) {
-            cout << "*************************************" << endl;
-            cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
-            cout << "*************************************" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Jusu pasirinkimas:  ";
-        }
-        cout << "----------------------------------" << endl;
+        S.pasirinkimas = IntInput();
+
         if (S.pasirinkimas != 1 && S.pasirinkimas != 2) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
@@ -123,36 +101,37 @@ int main()
                 cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
             }
 
-            cout << "Iveskite egzamino bala: ";
-            while (!(cin >> S.egz) || S.egz < 1 || S.egz > 10) {
-                cout << "*************************************" << endl;
-                cout << "Iveskite skaiciu nuo 1 iki 10." << endl;
-                cout << "*************************************" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Iveskite egzamino bala: ";
+            cout << "Iveskite egzamino bala [1 - 10]: " << endl;
+            while (true) {
+                cout << "Pazymys: ";
+                S.egz = IntInput();
+
+                if (S.egz < 1 || S.egz>10) {
+                    cout << "Iveskite pazymi nuo 1 iki 10" << endl;
+                }
+                else break;
             }
 
+
             cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
-            while (!(cin >> S.n)) {
-                cout << "*************************************" << endl;
-                cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
-                cout << "*************************************" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
+            while (true) {
+                S.n = IntInput();
+                if (S.n) break;
             }
+
+            cout << "----------------------------------" << endl;
             S.nd.resize(S.n);
-            int paz = 0;
+            cout << "Iveskite pazymi nuo [1 - 10] " << endl;
             for (int j = 0; j < S.n; j++) {
-                cout << "Iveskite pazymi: ";
-                while (!(cin >> S.nd[j]) || S.nd[j] < 1 || S.nd[j] > 10) {
-                    cout << "*************************************" << endl;
-                    cout << "Iveskite skaiciu nuo 1 iki 10!" << endl;
-                    cout << "*************************************" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Iveskite pazymi: ";
+                while (true) {
+                    cout << "Pazymys: ";
+                    S.nd[j] = IntInput();
+
+                    if (S.nd[j] < 1 || S.nd[j] > 10) {
+                        cout << "Iveskite skaiciu nuo 1 iki 10" << endl;
+                    }
+                    else break;
+
                 }
             }
             if (S.pasirinkimas == 1) {
@@ -165,10 +144,17 @@ int main()
             }
             cout << "*******************************" << endl;
             studentai.push_back(S);
-            int sk;
+
             cout << "0. Baigti" << endl;
             cout << "1. Testi" << endl;
-            cin >> sk;
+            while (true) {
+                sk = IntInput();
+                if (sk < 0 || sk > 1) {
+                    cout << "Iveskite skaiciu 0 arba 1" << endl;
+                }
+                else break;
+            }
+
             if (sk == 0) {
                 break;
             }
@@ -206,21 +192,15 @@ int main()
             uniform_int_distribution<int> distribution(1, 10);
             S.egz = distribution(gen);
 
-            cout << "Iveskite atliktu namu darbu skaiciu: ";
-            while (!(cin >> S.n)) {
-                cout << "*************************************" << endl;
-                cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
-                cout << "*************************************" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
+            cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
+            while (true) {
+                S.n = IntInput();
+                if (S.n) break;
             }
             S.nd.resize(S.n);
-            int paz = 0;
             for (int j = 0; j < S.n; j++) {
 
                 S.nd[j] = distribution(gen);
-                paz += S.nd[j];
             }
             if (S.pasirinkimas == 1) {
                 S.vid = Vidurkis(S.nd, S.n);
@@ -232,10 +212,17 @@ int main()
             }
             cout << "*******************************" << endl;
             studentai.push_back(S);
-            int sk;
+
             cout << "0. Baigti" << endl;
             cout << "1. Testi" << endl;
-            cin >> sk;
+            while (true) {
+                sk = IntInput();
+                if (sk < 0 || sk > 1) {
+                    cout << "Iveskite skaiciu 0 arba 1" << endl;
+                }
+                else break;
+            }
+
             if (sk == 0) {
                 break;
             }
@@ -267,18 +254,12 @@ int main()
             }
             S.egz = distribution(gen);
 
-            cout << "Iveskite atliktu namu darbu skaiciu: ";
-            while (!(cin >> S.n)) {
-                cout << "*************************************" << endl;
-                cout << "Netinkamas formatas! Iveskite skaiciu." << endl;
-                cout << "*************************************" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Jusu pasirinkimas:  ";
-
+            cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
+            while (true) {
+                S.n = IntInput();
+                if (S.n) break;
             }
             S.nd.resize(S.n);
-            int paz = 0;
             for (int j = 0; j < S.n; j++) {
 
                 S.nd[j] = distribution(gen);
@@ -293,10 +274,17 @@ int main()
             }
             cout << "*******************************" << endl;
             studentai.push_back(S);
-            int sk;
+
             cout << "0. Baigti" << endl;
             cout << "1. Testi" << endl;
-            cin >> sk;
+            while (true) {
+                sk = IntInput();
+                if (sk < 0 || sk > 1) {
+                    cout << "Iveskite skaiciu 0 arba 1" << endl;
+                }
+                else break;
+            }
+
             if (sk == 0) {
                 break;
             }
@@ -309,7 +297,6 @@ int main()
     if (budas == 4) {
 
         ifstream df("Kursiokai.txt");
-        skaitymas_start = clock();
 
         if (!df) {
             cerr << "Failo nepavyko atidaryti!" << endl;
@@ -360,8 +347,7 @@ int main()
         }
 
         df.close();
-        skaitymas_end = clock();
-        skaitymo_laikas = 1.0 * (skaitymas_end - skaitymas_start) / CLOCKS_PER_SEC;
+
     }
 
     if (rusiavimas == 1) {
@@ -400,7 +386,7 @@ int main()
             });
     }
 
-    spausdinimas_start = clock();
+
     cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
     for (const auto& S : studentai) {
@@ -411,11 +397,5 @@ int main()
             cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
         }
     }
-    spausdinimas_end = clock();
-    spausdinimo_laikas = 1.0 * (spausdinimas_end - spausdinimas_start) / CLOCKS_PER_SEC;
-
-    cout << "Skaitymo laikas: " << skaitymo_laikas << " sekundziu." << endl;
-    cout << "Spausdinimo laikas: " << spausdinimo_laikas << " sekundziu." << endl;
-    cout << "Bendras laikas: " << skaitymo_laikas + spausdinimo_laikas << " sekundziu." << endl;
 
 }
