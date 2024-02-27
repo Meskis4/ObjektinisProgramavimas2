@@ -83,23 +83,13 @@ int main()
     if (budas == 1) {
         while (true) {
             bool loop = false;
-            cout << "Iveskite savo varda: "; cin >> S.vardas;
+            cout << "Iveskite savo varda: ";
 
-            while (!raides(S.vardas)) {
-                cout << "*****************************" << endl;
-                cout << "Prasome ivesti tik raides!" << endl;
-                cout << "*****************************" << endl;
-                cout << "Iveskite savo varda: "; cin >> S.vardas;
-            }
+            S.vardas = StringInput();
 
-            cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
+            cout << "Iveskite savo pavarde: ";
 
-            while (!raides(S.pavarde)) {
-                cout << "*****************************" << endl;
-                cout << "Prasome ivesti tik raides!" << endl;
-                cout << "*****************************" << endl;
-                cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
-            }
+            S.pavarde = StringInput();
 
             cout << "Iveskite egzamino bala [1 - 10]: " << endl;
             while (true) {
@@ -169,23 +159,13 @@ int main()
         while (true) {
             bool loop = false;
 
-            cout << "Iveskite savo varda: "; cin >> S.vardas;
+            cout << "Iveskite savo varda: "; 
 
-            while (!raides(S.vardas)) {
-                cout << "*****************************" << endl;
-                cout << "Prasome ivesti tik raides!" << endl;
-                cout << "*****************************" << endl;
-                cout << "Iveskite savo varda: "; cin >> S.vardas;
-            }
+            S.vardas = StringInput();
 
-            cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
+            cout << "Iveskite savo pavarde: "; 
 
-            while (!raides(S.pavarde)) {
-                cout << "*****************************" << endl;
-                cout << "Prasome ivesti tik raides!" << endl;
-                cout << "*****************************" << endl;
-                cout << "Iveskite savo pavarde: "; cin >> S.pavarde;
-            }
+            S.pavarde = StringInput();
 
             random_device rd;
             mt19937 gen(rd());
