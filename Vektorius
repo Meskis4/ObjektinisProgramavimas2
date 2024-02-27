@@ -154,10 +154,9 @@ int main()
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Iveskite pazymi: ";
                 }
-                paz += S.nd[j];
             }
             if (S.pasirinkimas == 1) {
-                S.vid = double(paz) / S.n;
+                S.vid = Vidurkis(S.nd, S.n);
                 S.galut = 0.4 * S.vid + 0.6 * S.egz;
             }
             else {
@@ -224,7 +223,7 @@ int main()
                 paz += S.nd[j];
             }
             if (S.pasirinkimas == 1) {
-                S.vid = double(paz) / S.n;
+                S.vid = Vidurkis(S.nd, S.n);
                 S.galut = 0.4 * S.vid + 0.6 * S.egz;
             }
             else {
@@ -283,10 +282,9 @@ int main()
             for (int j = 0; j < S.n; j++) {
 
                 S.nd[j] = distribution(gen);
-                paz += S.nd[j];
             }
             if (S.pasirinkimas == 1) {
-                S.vid = double(paz) / S.n;
+                S.vid = Vidurkis(S.nd, S.n);
                 S.galut = 0.4 * S.vid + 0.6 * S.egz;
             }
             else {
@@ -347,16 +345,10 @@ int main()
 
             df >> S.egz;
 
-            int paz = 0;
             S.n = S.nd.size();
 
-            for (int j = 0; j < S.n; j++) {
-                paz += S.nd[j];
-            }
-
-            S.vid = double(paz) / S.n;
             if (S.pasirinkimas == 1) {
-                S.vid = double(paz) / S.n;
+                S.vid = Vidurkis(S.nd, S.n);
                 S.galut = 0.4 * S.vid + 0.6 * S.egz;
             }
             else {
