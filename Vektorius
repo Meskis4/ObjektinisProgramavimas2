@@ -275,13 +275,8 @@ int main()
     // Nuskaitymas is failo
 
     if (budas == 4) {
-
-        ifstream df("Kursiokai.txt");
-
-        if (!df) {
-            cerr << "Failo nepavyko atidaryti!" << endl;
-            return 1;
-        }
+        string filename = FailoPatikrinimas();
+        ifstream df(filename);
 
         string header;
         getline(df, header);
