@@ -53,3 +53,22 @@ int IntInput() {
     }
     return value;
 }
+
+string StringInput() {
+    string value;
+    while (true) {
+        try {
+            cin >> value;
+            if (!raides(value)) {
+                throw runtime_error("Ivesties klaida! Iveskite tik raides. ");
+            }
+            break;
+        }
+        catch (const runtime_error& e) {
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+    return value;
+}
