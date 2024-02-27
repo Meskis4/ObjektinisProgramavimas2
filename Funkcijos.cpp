@@ -23,3 +23,13 @@ double raides(const string& str) {
     }
     return true;
 }
+
+double Vidurkis(vector<int>& mas, int n) {
+    
+    int suma = 0;
+    for (int i : mas) {
+        suma += i;
+    }
+
+    return static_cast<double>(suma) / n;
+}
