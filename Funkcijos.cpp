@@ -14,3 +14,12 @@ double Mediana(vector<int>& mas) {
         return double(mas[mas.size() / 2]);
     }
 }
+
+double raides(const string& str) {
+    for (char c : str) {
+        if (!isalpha(c)) {
+            return false;
+        }
+    }
+    return true;
+}
