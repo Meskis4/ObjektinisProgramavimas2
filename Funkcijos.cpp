@@ -2,6 +2,7 @@
 #include "Studentai.h"
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 
 double Mediana(vector<int>& mas) {
     sort(mas.begin(), mas.end());
@@ -71,4 +72,26 @@ string StringInput() {
         }
     }
     return value;
+}
+
+string FailoPatikrinimas() {
+    string filename;
+    while (true) {
+        try {
+            cout << "Iveskite failo pavadinima: ";
+            cin >> filename;
+            ifstream file(filename);
+            if (!file) {
+                throw runtime_error("Failas nerastas!");
+            }
+            file.close(); 
+            break;
+        }
+        catch (const runtime_error& e) {
+            cerr << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+    return filename;
 }
