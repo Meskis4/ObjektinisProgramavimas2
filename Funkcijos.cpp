@@ -1,6 +1,6 @@
 #include "Funkcijos.h"
 #include "Studentai.h"
-#include <algorithm>
+
 
 double Mediana(vector<int>& mas) {
     sort(mas.begin(), mas.end());
@@ -134,3 +134,99 @@ void generateFile(const string& fileName, int studentAmount) {
 
     file.close();
 }
+
+void readFile(const string& fileName, vector<Studentas>& studentai) {
+    ifstream df(fileName);
+
+    if (!df.is_open()) {
+        cerr << "Nepavyko atidaryti failo!" << endl;
+        return;
+    }
+
+    string header;
+    getline(df, header);
+
+    stringstream headerStream(header);
+    string token;
+    int n = 0;
+
+    while (getline(headerStream, token, ' ')) {
+        if (token.find("ND") != string::npos) {
+            n++;
+        }
+    }
+
+    Studentas S;
+    while (true) {
+        df >> S.pavarde >> S.vardas;
+
+        if (df.eof()) {
+            break;
+        }
+
+        S.nd.clear();
+        for (int i = 0; i < n; i++) {
+            int tmp = 0;
+            df >> tmp;
+            S.nd.push_back(tmp);
+        }
+
+        df >> S.egz;
+
+        S.n = S.nd.size();
+
+        if (S.pasirinkimas == 1) {
+           
+            S.vid = Vidurkis(S.nd, S.n);
+            S.galut = 0.4 * S.vid + 0.6 * S.egz;
+        }
+        else {
+            
+            S.medi = Mediana(S.nd);
+            S.galut = 0.4 * S.medi + 0.6 * S.egz;
+        }
+
+        studentai.push_back(S);
+    }
+
+    df.close();
+}
+
+void sortStudents(vector<Studentas>& students, int rusiavimas) {
+    if (rusiavimas == 1) {
+        sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
+            return a.galut > b.galut;
+            });
+    }
+
+    if (rusiavimas == 2) {
+        sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
+            return a.galut < b.galut;
+            });
+    }
+
+    if (rusiavimas == 3) {
+        sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
+            return a.vardas < b.vardas;
+            });
+    }
+
+    if (rusiavimas == 4) {
+        sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
+            return a.vardas > b.vardas;
+            });
+    }
+
+    if (rusiavimas == 5) {
+        sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
+            return a.pavarde < b.pavarde;
+            });
+    }
+
+    if (rusiavimas == 6) {
+        sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
+            return a.pavarde > b.pavarde;
+            });
+    }
+}
+
