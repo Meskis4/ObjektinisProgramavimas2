@@ -12,3 +12,9 @@ int IntInput();
 string StringInput();
 
 string FailoPatikrinimas();
+
+int generateGrade(mt19937& rng);
+
+int generateND(mt19937& rng);
+
+void generateFile(const string& fileName, int studentAmount);
