@@ -26,3 +26,5 @@ void sortStudents(vector<Studentas>& students, int rusiavimas);
 void separateStudents(const vector<Studentas>& studentai, vector<Studentas>& Geri, vector<Studentas>& Blogi);
 
 void generateSeperateFile(const vector<Studentas>& studentai, const string& fileName);
+
+void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Geri, vector<Studentas>& Blogi);
