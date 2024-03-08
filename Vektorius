@@ -270,105 +270,40 @@ int main()
 
     if (budas == 4) {
         string filename = FailoPatikrinimas();
-        ifstream df(filename);
-
-        string header;
-        getline(df, header);
-
-        stringstream headerStream(header);
-        string token;
-        int n = 0;
-
-        while (getline(headerStream, token, ' ')) {
-            if (token.find("ND") != string::npos) {
-                n++;
-            }
-        }
-
-        while (true) {
-            df >> S.pavarde >> S.vardas;
-
-            if (df.eof()) {
-                break;
-            }
-
-            S.nd.clear();
-            for (int i = 0; i < n; i++) {
-                int tmp = 0;
-                df >> tmp;
-                S.nd.push_back(tmp);
-            }
-
-            df >> S.egz;
-
-            S.n = S.nd.size();
-
-            if (S.pasirinkimas == 1) {
-                S.vid = Vidurkis(S.nd, S.n);
-                S.galut = 0.4 * S.vid + 0.6 * S.egz;
-            }
-            else {
-                S.medi = Mediana(S.nd);
-                S.galut = 0.4 * S.medi + 0.6 * S.egz;
-            }
-
-            studentai.push_back(S);
-        }
-
-        df.close();
-
+        readFile(filename, studentai);
     }
 
     // Failu generavimas
 
     if (budas == 5) {
+        vector<Studentas> geri;
+        vector<Studentas> blogi;
+
         generateFile("1000.txt", 1000);
+        readFile("1000.txt", studentai);
+
+        separateStudents(studentai, geri, blogi);
+
+        sortStudents(geri, rusiavimas);
+        sortStudents(blogi, rusiavimas);
+
+        generateSeperateFile(geri, "geri1000.txt");
+        generateSeperateFile(blogi, "blogi1000.txt");
     }
 
-    if (rusiavimas == 1) {
-        sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-            return a.galut > b.galut;
-            });
-    }
+    if (budas != 5) {
 
-    if (rusiavimas == 2) {
-        sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-            return a.galut < b.galut;
-            });
-    }
+        sortStudents(studentai, rusiavimas);
 
-    if (rusiavimas == 3) {
-        sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-            return a.vardas < b.vardas;
-            });
-    }
-
-    if (rusiavimas == 4) {
-        sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-            return a.vardas > b.vardas;
-            });
-    }
-
-    if (rusiavimas == 5) {
-        sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-            return a.pavarde < b.pavarde;
-            });
-    }
-
-    if (rusiavimas == 6) {
-        sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-            return a.pavarde > b.pavarde;
-            });
-    }
-
-    cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
-    cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
-    for (const auto& S : studentai) {
-        if (S.pasirinkimas == 1) {
-            cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
-        }
-        else {
-            cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
+        cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
+        cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
+        for (const auto& S : studentai) {
+            if (S.pasirinkimas == 1) {
+                cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
+            }
+            else {
+                cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
+            }
         }
     }
 
