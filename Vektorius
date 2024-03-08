@@ -279,6 +279,7 @@ int main()
         vector<Studentas> geri;
         vector<Studentas> blogi;
 
+        // 1000 studentu
         generateFile("1000.txt", 1000);
         readFile("1000.txt", studentai);
 
@@ -289,6 +290,69 @@ int main()
 
         generateSeperateFile(geri, "geri1000.txt");
         generateSeperateFile(blogi, "blogi1000.txt");
+
+        clearVectors(studentai, geri, blogi);
+
+        //10000 studentu
+
+        generateFile("10000.txt", 10000);
+        readFile("10000.txt", studentai);
+
+        separateStudents(studentai, geri, blogi);
+
+        sortStudents(geri, rusiavimas);
+        sortStudents(blogi, rusiavimas);
+
+        generateSeperateFile(geri, "geri10000.txt");
+        generateSeperateFile(blogi, "blogi10000.txt");
+
+        clearVectors(studentai, geri, blogi);
+
+        //100000 studentu
+
+        generateFile("100000.txt", 100000);
+        readFile("100000.txt", studentai);
+
+        separateStudents(studentai, geri, blogi);
+
+        sortStudents(geri, rusiavimas);
+        sortStudents(blogi, rusiavimas);
+
+        generateSeperateFile(geri, "geri100000.txt");
+        generateSeperateFile(blogi, "blogi100000.txt");
+
+        clearVectors(studentai, geri, blogi);
+
+        //1000000 studentu
+
+        generateFile("1000000.txt", 1000000);
+        readFile("1000000.txt", studentai);
+
+        separateStudents(studentai, geri, blogi);
+
+        sortStudents(geri, rusiavimas);
+        sortStudents(blogi, rusiavimas);
+
+        generateSeperateFile(geri, "geri1000000.txt");
+        generateSeperateFile(blogi, "blogi1000000.txt");
+
+        clearVectors(studentai, geri, blogi);
+
+        //10000000 studentu
+
+        generateFile("10000000.txt", 10000000);
+        readFile("10000000.txt", studentai);
+
+        separateStudents(studentai, geri, blogi);
+
+        sortStudents(geri, rusiavimas);
+        sortStudents(blogi, rusiavimas);
+
+        generateSeperateFile(geri, "geri10000000.txt");
+        generateSeperateFile(blogi, "blogi10000000.txt");
+
+        clearVectors(studentai, geri, blogi);
+
     }
 
     if (budas != 5) {
