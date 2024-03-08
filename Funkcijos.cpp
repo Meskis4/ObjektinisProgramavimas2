@@ -257,3 +257,10 @@ void generateSeperateFile(const vector<Studentas>& studentai, const string& file
         outFile.close();
     }
 }
+
+void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Geri, vector<Studentas>& Blogi) {
+    studentai.clear();
+    Geri.clear();
+    Blogi.clear();
+}
+
