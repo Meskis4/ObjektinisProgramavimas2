@@ -25,13 +25,14 @@ int main()
     cout << "2. Uzpildyti pazymius automatiskai" << endl;
     cout << "3. Uzpildyti varda, pavarde bei pazymius automatiskai" << endl;
     cout << "4. Nuskaityti duomenis is failo" << endl;
+    cout << "5. Generuoti failus" << endl;
     cout << "*****************************************************" << endl;
 
     while (true) {
         cout << "Jusu pasirinkimas: ";
         budas = IntInput();
 
-        if (budas != 1 && budas != 2 && budas != 3 && budas != 4) {
+        if (budas < 1 || budas > 5) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
         else break;
@@ -318,6 +319,12 @@ int main()
 
     }
 
+    // Failu generavimas
+
+    if (budas == 5) {
+        generateFile("1000.txt", 1000);
+    }
+
     if (rusiavimas == 1) {
         sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
             return a.galut > b.galut;
@@ -353,7 +360,6 @@ int main()
             return a.pavarde > b.pavarde;
             });
     }
-
 
     cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
     cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
