@@ -1,10 +1,3 @@
-#include <iostream>
-#include <iomanip>
-#include <random>
-#include <cctype>
-#include <fstream>
-#include <sstream>
-#include <ctime>
 #include "Studentai.h"
 #include "Funkcijos.h"
 
@@ -159,11 +152,11 @@ int main()
         while (true) {
             bool loop = false;
 
-            cout << "Iveskite savo varda: "; 
+            cout << "Iveskite savo varda: ";
 
             S.vardas = StringInput();
 
-            cout << "Iveskite savo pavarde: "; 
+            cout << "Iveskite savo pavarde: ";
 
             S.pavarde = StringInput();
 
