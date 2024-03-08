@@ -1,5 +1,6 @@
 #include "Studentai.h"
 #include "Funkcijos.h"
+#include <chrono>
 
 using namespace std;
 
@@ -280,7 +281,12 @@ int main()
         vector<Studentas> blogi;
 
         // 1000 studentu
+
+        auto start1000 = chrono::high_resolution_clock::now();
         generateFile("1000.txt", 1000);
+        auto end1000 = chrono::high_resolution_clock::now();
+        auto duration1000 = chrono::duration_cast<chrono::milliseconds>(end1000 - start1000);
+        cout << "Laikas 1000 studentu: " << duration1000.count() * 0.001 << " sekundziu" << endl;
         readFile("1000.txt", studentai);
 
         separateStudents(studentai, geri, blogi);
@@ -294,8 +300,11 @@ int main()
         clearVectors(studentai, geri, blogi);
 
         //10000 studentu
-
+        auto start10000 = chrono::high_resolution_clock::now();
         generateFile("10000.txt", 10000);
+        auto end10000 = chrono::high_resolution_clock::now();
+        auto duration10000 = chrono::duration_cast<chrono::milliseconds>(end10000 - start10000);
+        cout << "Laikas 10000 studentu: " << duration10000.count() * 0.001 << " sekundziu" << endl;
         readFile("10000.txt", studentai);
 
         separateStudents(studentai, geri, blogi);
@@ -310,7 +319,11 @@ int main()
 
         //100000 studentu
 
+        auto start100000 = chrono::high_resolution_clock::now();
         generateFile("100000.txt", 100000);
+        auto end100000 = chrono::high_resolution_clock::now();
+        auto duration100000 = chrono::duration_cast<chrono::milliseconds>(end100000 - start100000);
+        cout << "Laikas 100000 studentu: " << duration100000.count() * 0.001 << " sekundziu" << endl;
         readFile("100000.txt", studentai);
 
         separateStudents(studentai, geri, blogi);
@@ -324,8 +337,11 @@ int main()
         clearVectors(studentai, geri, blogi);
 
         //1000000 studentu
-
+        auto start1000000 = chrono::high_resolution_clock::now();
         generateFile("1000000.txt", 1000000);
+        auto end1000000 = chrono::high_resolution_clock::now();
+        auto duration1000000 = chrono::duration_cast<chrono::milliseconds>(end1000000 - start1000000);
+        cout << "Laikas 1000000 studentu: " << duration1000000.count() * 0.001 << " sekundziu" << endl;
         readFile("1000000.txt", studentai);
 
         separateStudents(studentai, geri, blogi);
@@ -340,7 +356,11 @@ int main()
 
         //10000000 studentu
 
+        auto start10000000 = chrono::high_resolution_clock::now();
         generateFile("10000000.txt", 10000000);
+        auto end10000000 = chrono::high_resolution_clock::now();
+        auto duration10000000 = chrono::duration_cast<chrono::milliseconds>(end10000000 - start10000000);
+        cout << "Laikas 10000000 studentu: " << duration10000000.count()*0.001 << " sekundziu" << endl;
         readFile("10000000.txt", studentai);
 
         separateStudents(studentai, geri, blogi);
