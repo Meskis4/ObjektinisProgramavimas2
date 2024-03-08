@@ -22,3 +22,7 @@ void generateFile(const string& fileName, int studentAmount);
 void readFile(const string& fileName, vector<Studentas>& studentai);
 
 void sortStudents(vector<Studentas>& students, int rusiavimas);
+
+void separateStudents(const vector<Studentas>& studentai, vector<Studentas>& Geri, vector<Studentas>& Blogi);
+
+void generateSeperateFile(const vector<Studentas>& studentai, const string& fileName);
