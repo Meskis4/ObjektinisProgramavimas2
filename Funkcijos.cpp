@@ -1,8 +1,6 @@
 #include "Funkcijos.h"
 #include "Studentai.h"
 #include <algorithm>
-#include <iostream>
-#include <fstream>
 
 double Mediana(vector<int>& mas) {
     sort(mas.begin(), mas.end());
@@ -27,7 +25,7 @@ double raides(const string& str) {
 }
 
 double Vidurkis(vector<int>& mas, int n) {
-    
+
     int suma = 0;
     for (int i : mas) {
         suma += i;
@@ -84,7 +82,7 @@ string FailoPatikrinimas() {
             if (!file) {
                 throw runtime_error("Failas nerastas!");
             }
-            file.close(); 
+            file.close();
             break;
         }
         catch (const runtime_error& e) {
@@ -94,4 +92,45 @@ string FailoPatikrinimas() {
         }
     }
     return filename;
+}
+
+string intToString(int value) {
+    return to_string(value);
+}
+
+int generateGrade(mt19937& rng) {
+    uniform_int_distribution<int> distribution(1, 10);
+    return distribution(rng);
+}
+
+int generateND(mt19937& rng) {
+    uniform_int_distribution<int> distribution(5, 10);
+    return distribution(rng);
+}
+
+void generateFile(const string& fileName, int studentAmount) {
+    ofstream file(fileName);
+    random_device rd;
+    mt19937 rng(rd());
+
+    int ndCount = generateND(rng);
+    if (!file.is_open()) { cerr << "Nepavyko atidaryti failo!" << endl; return; }
+
+    file << setw(20) << "Vardas" << setw(20) << "Pavarde";
+    for (int i = 1; i <= ndCount; ++i) {
+        file << setw(10) << "ND" + intToString(i);
+    }
+    file << setw(10) << "Egz." << endl;
+
+    for (int entry = 1; entry <= studentAmount; ++entry) {
+        file << setw(20) << "Vardas" + intToString(entry) << setw(20) << "Pavarde" + intToString(entry);
+
+        for (int i = 0; i < ndCount; ++i) {
+            file << setw(10) << intToString(generateGrade(rng));
+        }
+
+        file << setw(10) << intToString(generateGrade(rng)) << endl;
+    }
+
+    file.close();
 }
