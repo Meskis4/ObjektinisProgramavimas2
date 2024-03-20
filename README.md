@@ -27,3 +27,11 @@
 
 ![Screenshot 2024-03-20 144559](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/c9df7161-381b-405e-b01e-c39f012c2948)
 
+**1 strategija (Deque)**
+
+![Screenshot 2024-03-20 150809](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/63dc06e3-b9e8-4f57-b821-85bef05a3392)
+
+Atlikus tyrimą su pirmąja strategija, pastebėjau, kad naudojant std::vector konteinerius, rezultatai buvo beveik dvigubai greitesni. 
+
+
+
