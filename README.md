@@ -22,3 +22,8 @@
 **1 strategija (Vector)**
 
 ![Screenshot 2024-03-20 141750](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/bcb5800a-ebad-4099-b465-33518363a459)
+
+**1 strategija (List)**
+
+![Screenshot 2024-03-20 144559](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/c9df7161-381b-405e-b01e-c39f012c2948)
+
