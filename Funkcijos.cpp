@@ -104,7 +104,7 @@ int generateGrade(mt19937& rng) {
 }
 
 int generateND(mt19937& rng) {
-    uniform_int_distribution<int> distribution(5, 10);
+    uniform_int_distribution<int> distribution(5, 5);
     return distribution(rng);
 }
 
