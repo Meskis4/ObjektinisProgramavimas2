@@ -104,7 +104,7 @@ int generateGrade(mt19937& rng) {
 }
 
 int generateND(mt19937& rng) {
-    uniform_int_distribution<int> distribution(5, 5);
+    uniform_int_distribution<int> distribution(5, 10);
     return distribution(rng);
 }
 
@@ -176,12 +176,12 @@ void readFile(const string& fileName, vector<Studentas>& studentai) {
         S.n = S.nd.size();
 
         if (S.pasirinkimas == 1) {
-           
+
             S.vid = Vidurkis(S.nd, S.n);
             S.galut = 0.4 * S.vid + 0.6 * S.egz;
         }
         else {
-            
+
             S.medi = Mediana(S.nd);
             S.galut = 0.4 * S.medi + 0.6 * S.egz;
         }
@@ -230,13 +230,14 @@ void sortStudents(vector<Studentas>& students, int rusiavimas) {
     }
 }
 
-void separateStudents(const vector<Studentas>& studentai, vector<Studentas>& Geri, vector<Studentas>& Blogi) {
-    for (const auto& S : studentai) {
-        if (S.galut >= 5) {
-            Geri.push_back(S);
+void separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
+    for (int i = 0; i < studentai.size(); ) {
+        if (studentai[i].galut < 5) {
+            Blogi.push_back(studentai[i]);
+            studentai.erase(studentai.begin() + i);
         }
         else {
-            Blogi.push_back(S);
+            ++i;
         }
     }
 }
@@ -263,4 +264,3 @@ void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Geri, vector<
     Geri.clear();
     Blogi.clear();
 }
-
