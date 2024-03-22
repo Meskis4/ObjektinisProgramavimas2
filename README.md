@@ -1,4 +1,4 @@
-# ObjektinisProgramavimas 
+![33](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/56a20c52-6a91-48ea-ae9a-482b52ad5ed6)# ObjektinisProgramavimas 
 
 # v0.4
 
@@ -53,6 +53,22 @@ Atlikus tyrimą su pirmąja strategija, pastebėjau, kad naudojant std::vector k
 ![Screenshot 2024-03-22 151823](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/f3c8bebc-4237-4134-9f2b-65cfdb501879)
 
 Išvada: naudojant 2 strategiją su std::vector konteineriais nepavyko gauti tyrimų rezultų, todėl manau, kad ši strategija yra netinkama naudoti su std::vector konteineriais be tam tikrų algoritmų, kurie padeda optimizuoti elementų trynimą iš std::vector konteinerių. O naudojant std::list ir std::deque konteinerius, rezultatai yra panašūs į 1 strategijos rezultatus. Tačiau 2 strategijos paskirstymas į grupes yra spartesnis. 
+
+
+  **3 strategija (Vector)**
+
+    
+  Panaudojus std::find_if algoritmą pavyko paspartinti programą.
+  
+  ![3333](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/0dc17d2c-39a3-4b51-917a-1c6f8b988ade)
+
+
+  ![3](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/fc6e254b-9fee-493b-8990-9cf3d9cc92c3)
+
+**Visų tyrimų rezultatai**
+
+![333333](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/98f2574f-27e4-4a6b-87cc-e89add38f129)
+
 
 
   
