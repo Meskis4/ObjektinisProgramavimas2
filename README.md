@@ -1,11 +1,49 @@
-![33](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/56a20c52-6a91-48ea-ae9a-482b52ad5ed6)# ObjektinisProgramavimas 
+# ObjektinisProgramavimas 
+
+ # v.pradinė
+ 
+ Tai pradinė programos versija
+1. Programa suskaičiuoja galutinį studento balą naudojant egzamino įvertinimą bei pažymių vidurkį / medianą. 
+2. Naudojamos **iostream**, **iomanip** ir **algorithm** bibliotekos.
+
+# v0.1
+Tai patobulinta v.pradinė versija.
+1. Programa leidžia vartotojui pasirinkti, kokiu būdu užpildyti duomenis apie studentą (Rankiniu / Pažymiu generavimas / Vardo, pavardės bei pažymių generavimas)
+2. Vietoj masyvų naudojami vektoriai, todėl vartotojas pats gali nuspręsti, kelių studentų informaciją įrašys.
+3. Pridėti apribojimai, kurie neleidžia įvesti klaidingų duomenų.
+4. Pridėtos **vector**, **random**, **cctype** ir **string** bibliotekos.
+
+# v0.2
+
+Tai patobulinta v0.1 versija.
+
+1. Programa suteikia galimybę nuskaityti duomenis apie studentą iš failo.
+2. Pridėta galimybė surūšiuoti rezultatus, pagal vardą, pavardę, galutinį balą.
+3. Pasirinkus duomenų skaitymą iš failo, programos pabaigoje yra atspausdinamas skaitymo laikas, spausdinimo laikas.
+4. Pridėtos **fstream**, **sstream**, **ctime** bibliotekos.
+
+   # v0.3
+
+Tai patobulinta v0.2 versija.
+
+1. Programa yra padalinta į atskirus failus: *Vektorius.cpp*, *Studentai.h*, *Funkcijos.h*, *Funkcijos.cpp*.
+2. Programoje pridėtos funkcijos, kurios patikrina ar įvesti tik sveikieji skaičiai kur jų reikia. Taip pat patikrina ar vedant vardą bei pavardę yra įvedamos tik raidės. 
+3. Dabar failo pavadinimą iš kurio nori nuskaityti duomenis įveda vartotojas. Yra aprašyta funckija, kuri patikrina ar failas egzistuoja, jei ne - prašoma įvesti failo pavadinimą iš naujo.
 
 # v0.4
+Tai patobulinta v0.3 versija.
 
-# 1 Tyrimas 
+1. Pridėtas failų generatorius, kuris sugeneruoja 5, įvairių dydžių failus.
+2. Kiekvienas failas pagal studentų galutinį balą yra paskirstomas į gerus bei blogus studentus.
+3. Yra fiksuojamas failo generavimo, skaitymo, paskirstymo į grupes, rūšiavimo, paskirstytų grupių surašymas į failus bei bendras laikas.
+4. Pridėta **chrono** biblioteka.
+
+Buvo atlikti tyrimai, norint nustatyti failo generavimo, skaitymo, paskirstymo į grupes, rūšiavimo bei paskirstytų grupių surašymo į failus bendras laikas.
+
+# 1 Tyrimas (Failo generavimas)
 ![Screenshot 2024-03-08 181802](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/b10fee62-70a7-448a-b8b2-e9b07fc53108)
 
-# 2 Tyrimas
+# 2 Tyrimas (Failo apdorojimas)
 
 ![Screenshot 2024-03-08 192520](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/771d97bb-6104-438f-95cd-15fbc39244c0)
 
@@ -13,6 +51,12 @@
 
 
 # v1.0
+
+Tai patobulinta v0.4 versija.
+
+1) Programa realizuota ne tik naudojant std::vector, tačiau sukurti ir 2 nauji failai, kuriuose naudojami std::list bei std::deque konteineriai.
+2) Yra atliekami tyrimai norint nustatyti programos spartą su skirtingais konteineriais.
+3) Naudojamos 3 skirtingos strategijos: 1 -> Studentų skaidymas į du naujus konteinerius. 2 -> Skaidymas sukuriant naują konteineri, o perkelti studentai ištrinami iš bendro konteinerio. 3 -> Optimizuota 2 strategija naudojnat std::vector konteinerius bei panaudojus std::find_if algoritmą.
 
 **Sistemos parametrai:** 
 * CPU: AMD Ryzen 7 5800H, 3201 Mhz, 8 Cores
@@ -31,7 +75,7 @@
 
 ![Screenshot 2024-03-20 150809](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/63dc06e3-b9e8-4f57-b821-85bef05a3392)
 
-Atlikus tyrimą su pirmąja strategija, pastebėjau, kad naudojant std::vector konteinerius, rezultatai buvo beveik dvigubai greitesni. 
+Atlikus tyrimą su pirmąja strategija, pastebėjau, kad naudojant std::vector konteinerius, rezultatai buvo greitesni. 
 
 **2 strategija (Vector)**
 
