@@ -45,6 +45,16 @@ Atlikus tyrimą su pirmąja strategija, pastebėjau, kad naudojant std::vector k
 
 ![list2 1](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/7b7f5450-1d71-4f83-b8a0-be9ba7e95fc1)
 ![List2](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/a2b49b95-df86-4a3d-a4cb-f891827d72cf)
+
+**2 strategija (Deque)**
+
+![Screenshot 2024-03-22 151758](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/9c8ca290-5418-4ed7-a9d5-309cfbbe2fa6)
+
+![Screenshot 2024-03-22 151823](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/f3c8bebc-4237-4134-9f2b-65cfdb501879)
+
+Išvada: naudojant 2 strategiją su std::vector konteineriais nepavyko gauti tyrimų rezultų, todėl manau, kad ši strategija yra netinkama naudoti su std::vector konteineriais be tam tikrų algoritmų, kurie padeda optimizuoti elementų trynimą iš std::vector konteinerių. O naudojant std::list ir std::deque konteinerius, rezultatai yra panašūs į 1 strategijos rezultatus. Tačiau 2 strategijos paskirstymas į grupes yra spartesnis. 
+
+
   
 
 
