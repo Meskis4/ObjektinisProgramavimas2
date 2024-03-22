@@ -37,8 +37,17 @@ Atlikus tyrimą su pirmąja strategija, pastebėjau, kad naudojant std::vector k
 
 2 Strategijos nepavyko pilnai įgyvendinti naudojant std::vector konteinerius, kadangi bandant padalinti 1000000 studentų į 2 grupes nepavyko sulaukti rezultato, net laukiant virš 30 min.
 
+     
 ![vector2,1](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/ecb889cd-9bde-4f51-843b-c11175ce5ece)
 ![vector2](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/49ee24cb-51c6-4293-8ece-3775227b436e)
+
+**2 strategija (List)**
+
+![list2 1](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/7b7f5450-1d71-4f83-b8a0-be9ba7e95fc1)
+![List2](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/a2b49b95-df86-4a3d-a4cb-f891827d72cf)
+  
+
+
 
 
 
