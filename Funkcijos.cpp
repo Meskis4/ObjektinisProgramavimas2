@@ -231,15 +231,14 @@ void sortStudents(vector<Studentas>& students, int rusiavimas) {
 }
 
 void separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
-    for (int i = 0; i < studentai.size(); ) {
-        if (studentai[i].galut < 5) {
-            Blogi.push_back(studentai[i]);
-            studentai.erase(studentai.begin() + i);
-        }
-        else {
-            ++i;
-        }
-    }
+
+    auto it = find_if(studentai.begin(), studentai.end(), [](const Studentas& s) {
+        return s.galut >= 5;
+        });
+
+    copy(studentai.begin(), it, inserter(Blogi, Blogi.end()));
+
+    studentai.erase(studentai.begin(), it);
 }
 
 void generateSeperateFile(const vector<Studentas>& studentai, const string& fileName) {
