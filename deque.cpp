@@ -304,7 +304,7 @@ int main()
 
 
             auto startSeparate = chrono::high_resolution_clock::now();
-            separateStudents(studentai, geri, blogi);
+            separateStudents(studentai, blogi);
             auto endSeparate = chrono::high_resolution_clock::now();
             auto durationSeparate = chrono::duration_cast<chrono::milliseconds>(endSeparate - startSeparate);
             cout << size << " paskirstymas i 2 grupes: " << durationSeparate.count() * 0.001 << " sekundziu" << std::endl;
