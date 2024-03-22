@@ -69,8 +69,12 @@ Išvada: naudojant 2 strategiją su std::vector konteineriais nepavyko gauti tyr
 
 ![333333](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/98f2574f-27e4-4a6b-87cc-e89add38f129)
 
-
-
+# Naudojimosi instrukcija
+1) Paleidus programą būsite paprašyti pasirinkti duomenų užpildymo būdą.
+2) Pasirenkate kaip norite surūšiuoti rezultatus.
+3) Pasirenkate galutinio balo skaičiavimo metodą.
+4) Įvesite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
+5) Gausite rezultatus (priklauso nuo pasirinkto duomenų užpildymo būdo)
   
 
 
