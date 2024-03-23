@@ -131,11 +131,14 @@ Nepavyko pasiekti spartesnių rezultatų už 2 strategijos rezultatus.
 
 
 # Naudojimo instrukcija
-1) Paleidus programą būsite paprašyti pasirinkti duomenų užpildymo būdą.
-2) Pasirenkate kaip norite surūšiuoti rezultatus.
-3) Pasirenkate galutinio balo skaičiavimo metodą.
-4) Įvesite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
-5) Gausite rezultatus (priklauso nuo pasirinkto duomenų užpildymo būdo)
+1) Atsisiųskite .zip failą.
+2) Atsidarykite norimos versijos: std::vector, std::list, std::deque aplanką.
+3) Paleiskite run.bat failą (turite turėti savo sistemoje instaliuotą CMAKE).
+4) Paleidus programą būsite paprašyti pasirinkti duomenų užpildymo būdą.
+5) Pasirinkite kaip norite surūšiuoti rezultatus.
+6) Pasirinkite galutinio balo skaičiavimo metodą.
+7) Įveskite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
+8) Gausite rezultatus ( jei pasirinkote generuoti failus, jie bus sugeneruoti "Debug" aplanke )
   
 
 
