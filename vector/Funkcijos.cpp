@@ -241,6 +241,7 @@ void separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
     studentai.erase(studentai.begin(), it);
 }
 
+
 void generateSeperateFile(const vector<Studentas>& studentai, const string& fileName) {
     ofstream outFile(fileName);
     if (outFile.is_open()) {
@@ -248,7 +249,7 @@ void generateSeperateFile(const vector<Studentas>& studentai, const string& file
         outFile << setfill('-') << setw(68) << "" << setfill(' ') << endl;
         for (const auto& S : studentai) {
             if (S.pasirinkimas == 1) {
-                outFile << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
+                outFile << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << setw(20) << " " << endl;
             }
             else {
                 outFile << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
@@ -258,8 +259,7 @@ void generateSeperateFile(const vector<Studentas>& studentai, const string& file
     }
 }
 
-void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Geri, vector<Studentas>& Blogi) {
+void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
     studentai.clear();
-    Geri.clear();
     Blogi.clear();
 }
