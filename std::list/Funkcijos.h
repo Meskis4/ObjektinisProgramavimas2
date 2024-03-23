@@ -1,11 +1,11 @@
 #pragma once
 #include "Studentai.h"
 
-double Mediana(std::list<int>& mas);
+double Mediana(list<int>& mas);
 
-double Vidurkis(std::list<int>& mas, int n);
+double Vidurkis(list<int>& mas, int n);
 
-bool raides(const std::string& str);
+bool raides(const string& str);
 
 int IntInput();
 
@@ -13,18 +13,18 @@ string StringInput();
 
 string FailoPatikrinimas();
 
-int generateGrade(std::mt19937& rng);
+int generateGrade(mt19937& rng);
 
-int generateND(std::mt19937& rng);
+int generateND(mt19937& rng);
 
-void generateFile(const std::string& fileName, int studentAmount);
+void generateFile(const string& fileName, int studentAmount);
 
-void readFile(const std::string& fileName, std::list<Studentas>& studentai);
+void readFile(const string& fileName, list<Studentas>& studentai);
 
-void sortStudents(std::list<Studentas>& students, int rusiavimas);
+void sortStudents(list<Studentas>& students, int rusiavimas);
 
 void separateStudents(list<Studentas>& studentai, list<Studentas>& Blogi);
 
-void generateSeperateFile(const std::list<Studentas>& studentai, const std::string& fileName);
+void generateSeperateFile(const list<Studentas>& studentai, const string& fileName);
 
-void clearList(std::list<Studentas>& studentai, std::list<Studentas>& Geri, std::list<Studentas>& Blogi);
+void clearList(list<Studentas>& studentai, list<Studentas>& Blogi);
