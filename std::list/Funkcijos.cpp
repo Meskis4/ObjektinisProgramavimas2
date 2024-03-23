@@ -266,8 +266,7 @@ void generateSeperateFile(const list<Studentas>& studentai, const string& fileNa
     }
 }
 
-void clearList(list<Studentas>& studentai, list<Studentas>& Geri, list<Studentas>& Blogi) {
+void clearList(list<Studentas>& studentai, list<Studentas>& Blogi) {
     studentai.clear();
-    Geri.clear();
     Blogi.clear();
 }
