@@ -109,6 +109,15 @@ Išvada: naudojant 2 strategiją su std::vector konteineriais nepavyko gauti tyr
 
   ![3](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/fc6e254b-9fee-493b-8990-9cf3d9cc92c3)
 
+   **3 strategija (List)**
+
+![list33](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/b4a1f48d-b375-4113-a6b1-9c214ebaa679)
+
+![list3](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/d3b71f05-07f0-4d90-9ca9-bcdce07d27a0)
+
+
+
+
 **Visų tyrimų rezultatai**
 
 ![333333](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/98f2574f-27e4-4a6b-87cc-e89add38f129)
