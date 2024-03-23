@@ -115,12 +115,20 @@ Išvada: naudojant 2 strategiją su std::vector konteineriais nepavyko gauti tyr
 
 ![list3](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/d3b71f05-07f0-4d90-9ca9-bcdce07d27a0)
 
+**3 strategija (Deque)**
+
+Nepavyko pasiekti spartesnių rezultatų už 2 strategijos rezultatus.
+
 
 
 
 **Visų tyrimų rezultatai**
 
-![333333](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/98f2574f-27e4-4a6b-87cc-e89add38f129)
+![Strategijos](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/e4ef8f5f-8657-4b7a-865f-2706edc53db5)
+
+
+
+
 
 # Naudojimo instrukcija
 1) Paleidus programą būsite paprašyti pasirinkti duomenų užpildymo būdą.
