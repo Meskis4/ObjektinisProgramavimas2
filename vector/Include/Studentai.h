@@ -44,4 +44,12 @@ public:
     void setGalutinis(double galutinis) { galutinis_ = galutinis; }
     void setMediana(double mediana) { mediana_ = mediana; }
 
+//Metodai
+int IntInput();
+void sortStudents(vector<Studentas>& students, int rusiavimas);
+string allLetters();
+string StringInput();
+double Mediana() const;
+double Vidurkis() const;
+
 };
