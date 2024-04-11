@@ -51,5 +51,5 @@ string allLetters();
 string StringInput();
 double Mediana() const;
 double Vidurkis() const;
-
+void ManualDataInput(int pasirinkimas);
 };
