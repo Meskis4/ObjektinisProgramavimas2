@@ -76,76 +76,23 @@ int main()
     // Pildymas ranka
 
     if (budas == 1) {
-        while (true) {
-            bool loop = false;
-            cout << "Iveskite savo varda: ";
+    while(true){
+    S.ManualDataInput(pasirinkimas);
+    studentai.push_back(S);
 
-            S.vardas = StringInput();
-
-            cout << "Iveskite savo pavarde: ";
-
-            S.pavarde = StringInput();
-
-            cout << "Iveskite egzamino bala [1 - 10]: " << endl;
-            while (true) {
-                cout << "Pazymys: ";
-                S.egz = IntInput();
-
-                if (S.egz < 1 || S.egz>10) {
-                    cout << "Iveskite pazymi nuo 1 iki 10" << endl;
-                }
-                else break;
-            }
-
-
-            cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
-            while (true) {
-                S.n = IntInput();
-                if (S.n) break;
-            }
-
-            cout << "----------------------------------" << endl;
-            S.nd.resize(S.n);
-            cout << "Iveskite pazymi nuo [1 - 10] " << endl;
-            for (int j = 0; j < S.n; j++) {
-                while (true) {
-                    cout << "Pazymys: ";
-                    S.nd[j] = IntInput();
-
-                    if (S.nd[j] < 1 || S.nd[j] > 10) {
-                        cout << "Iveskite skaiciu nuo 1 iki 10" << endl;
-                    }
-                    else break;
-
-                }
-            }
-            if (S.pasirinkimas == 1) {
-                S.vid = Vidurkis(S.nd, S.n);
-                S.galut = 0.4 * S.vid + 0.6 * S.egz;
-            }
-            else {
-                S.medi = Mediana(S.nd);
-                S.galut = 0.4 * S.medi + 0.6 * S.egz;
-            }
-            cout << "*******************************" << endl;
-            studentai.push_back(S);
-
-            cout << "0. Baigti" << endl;
-            cout << "1. Testi" << endl;
-            while (true) {
-                sk = IntInput();
-                if (sk < 0 || sk > 1) {
-                    cout << "Iveskite skaiciu 0 arba 1" << endl;
-                }
-                else break;
-            }
-
-            if (sk == 0) {
-                break;
-            }
-            else loop = true;
+    cout << "Baigti: 0 " << endl;
+    cout << "Testi: 1" << endl;
+    while (true) {
+        sk = S.IntInput();
+        if (sk < 0 || sk > 1) {
+            cout << "Iveskite skaiciu 0 arba 1" << endl;
         }
+        else break;
     }
+    if (sk == 0)break;
+
+    }
+}
 
     // *************************************
     // Pazymiu automatinis pildymas
