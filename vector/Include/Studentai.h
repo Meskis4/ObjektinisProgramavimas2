@@ -45,11 +45,13 @@ public:
     void setMediana(double mediana) { mediana_ = mediana; }
 
 //Metodai
-int IntInput();
-void sortStudents(vector<Studentas>& students, int rusiavimas);
-string allLetters();
-string StringInput();
-double Mediana() const;
-double Vidurkis() const;
-void ManualDataInput(int pasirinkimas);
+    int IntInput();
+    void sortStudents(vector<Studentas>& students, int rusiavimas);
+    string allLetters();
+    string StringInput();
+    double Mediana() const;
+    double Vidurkis() const;
+    void ManualDataInput(int pasirinkimas);
+    int generateGrade();
+    void ManualNameInput(int pasirinkimas);
 };
