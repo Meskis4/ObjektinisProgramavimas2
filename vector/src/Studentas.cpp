@@ -237,3 +237,80 @@ void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, con
     }
 }
 
+string Studentas::FailoPatikrinimas() {
+    string filename;
+    while (true) {
+        try {
+            cout << "Iveskite failo pavadinima: ";
+            cin >> filename;
+            ifstream file(filename);
+            if (!file) {
+                throw runtime_error("Failas nerastas!");
+            }
+            file.close();
+            break;
+        }
+        catch (const runtime_error& e) {
+            cerr << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+    return filename;
+}
+
+void Studentas::readFile(const string& fileName, vector<Studentas>& studentai, int pasirinkimas) {
+    ifstream df(fileName);
+
+    if (!df.is_open()) {
+        cerr << "Nepavyko atidaryti failo!" << endl;
+        return;
+    }
+
+    string header;
+    getline(df, header);
+
+    stringstream headerStream(header);
+    string token;
+    int n = 0;
+
+    while (getline(headerStream, token, ' ')) {
+        if (token.find("ND") != string::npos) {
+            n++;
+        }
+    }
+
+    while (true) {
+        df >> pavarde_ >> vardas_;
+
+        if (df.eof()) {
+            break;
+        }
+
+        nd_.clear();
+        for (int i = 0; i < n; i++) {
+            int tmp = 0;
+            df >> tmp;
+            nd_.push_back(tmp);
+        }
+
+        df >> egz_;
+
+        setN(nd_.size());
+
+        if (pasirinkimas == 1) {
+
+            setVidurkis(Vidurkis());
+            setGalutinis( 0.4 * getVidurkis() + 0.6 * getEgz());
+        }
+        else {
+
+            setMediana(Mediana());
+            setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
+        }
+        studentai.push_back(*this);
+    }
+
+    df.close();
+}
+
