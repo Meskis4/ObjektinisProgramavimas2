@@ -76,44 +76,132 @@ int main()
     // Pildymas ranka
 
     if (budas == 1) {
-    while(true){
-    S.ManualDataInput(pasirinkimas);
-    studentai.push_back(S);
-
-    cout << "Baigti: 0 " << endl;
-    cout << "Testi: 1" << endl;
-    while (true) {
-        sk = S.IntInput();
-        if (sk < 0 || sk > 1) {
-            cout << "Iveskite skaiciu 0 arba 1" << endl;
-        }
-        else break;
-    }
-    if (sk == 0)break;
-
-    }
-}
-
-    // *************************************
-    // Pazymiu automatinis pildymas
-
-    
-    if (budas == 2) {
         while (true) {
-            S.ManualNameInput(pasirinkimas);
+            bool loop = false;
+            cout << "Iveskite savo varda: ";
+
+            S.vardas = StringInput();
+
+            cout << "Iveskite savo pavarde: ";
+
+            S.pavarde = StringInput();
+
+            cout << "Iveskite egzamino bala [1 - 10]: " << endl;
+            while (true) {
+                cout << "Pazymys: ";
+                S.egz = IntInput();
+
+                if (S.egz < 1 || S.egz>10) {
+                    cout << "Iveskite pazymi nuo 1 iki 10" << endl;
+                }
+                else break;
+            }
+
+
+            cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
+            while (true) {
+                S.n = IntInput();
+                if (S.n) break;
+            }
+
+            cout << "----------------------------------" << endl;
+            S.nd.resize(S.n);
+            cout << "Iveskite pazymi nuo [1 - 10] " << endl;
+            for (int j = 0; j < S.n; j++) {
+                while (true) {
+                    cout << "Pazymys: ";
+                    S.nd[j] = IntInput();
+
+                    if (S.nd[j] < 1 || S.nd[j] > 10) {
+                        cout << "Iveskite skaiciu nuo 1 iki 10" << endl;
+                    }
+                    else break;
+
+                }
+            }
+            if (S.pasirinkimas == 1) {
+                S.vid = Vidurkis(S.nd, S.n);
+                S.galut = 0.4 * S.vid + 0.6 * S.egz;
+            }
+            else {
+                S.medi = Mediana(S.nd);
+                S.galut = 0.4 * S.medi + 0.6 * S.egz;
+            }
+            cout << "*******************************" << endl;
             studentai.push_back(S);
 
-            cout << "Baigti: 0 " << endl;
-            cout << "Testi: 1" << endl;
+            cout << "0. Baigti" << endl;
+            cout << "1. Testi" << endl;
             while (true) {
-                sk = S.IntInput();
+                sk = IntInput();
                 if (sk < 0 || sk > 1) {
                     cout << "Iveskite skaiciu 0 arba 1" << endl;
                 }
                 else break;
             }
-            if (sk == 0)break;
-           
+
+            if (sk == 0) {
+                break;
+            }
+            else loop = true;
+        }
+    }
+
+    // *************************************
+    // Pazymiu automatinis pildymas
+
+    if (budas == 2) {
+        while (true) {
+            bool loop = false;
+
+            cout << "Iveskite savo varda: ";
+
+            S.vardas = StringInput();
+
+            cout << "Iveskite savo pavarde: ";
+
+            S.pavarde = StringInput();
+
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> distribution(1, 10);
+            S.egz = distribution(gen);
+
+            cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
+            while (true) {
+                S.n = IntInput();
+                if (S.n) break;
+            }
+            S.nd.resize(S.n);
+            for (int j = 0; j < S.n; j++) {
+
+                S.nd[j] = distribution(gen);
+            }
+            if (S.pasirinkimas == 1) {
+                S.vid = Vidurkis(S.nd, S.n);
+                S.galut = 0.4 * S.vid + 0.6 * S.egz;
+            }
+            else {
+                S.medi = Mediana(S.nd);
+                S.galut = 0.4 * S.medi + 0.6 * S.egz;
+            }
+            cout << "*******************************" << endl;
+            studentai.push_back(S);
+
+            cout << "0. Baigti" << endl;
+            cout << "1. Testi" << endl;
+            while (true) {
+                sk = IntInput();
+                if (sk < 0 || sk > 1) {
+                    cout << "Iveskite skaiciu 0 arba 1" << endl;
+                }
+                else break;
+            }
+
+            if (sk == 0) {
+                break;
+            }
+            else loop = true;
         }
     }
 
@@ -192,15 +280,15 @@ int main()
         vector<Studentas> geri;
         vector<Studentas> blogi;
 
-        vector<string> fileSizes = { "1000", "10000", "100000", "1000000", "10000000" };
+        vector<string> fileSizes = {"100000", "1000000",};
 
         for (const string& size : fileSizes) {
 
-            auto startGenerate = chrono::high_resolution_clock::now();
+            /*auto startGenerate = chrono::high_resolution_clock::now();
             generateFile(size + ".txt", stoi(size));
             auto endGenerate = chrono::high_resolution_clock::now();
             auto durationGenerate = chrono::duration_cast<chrono::milliseconds>(endGenerate - startGenerate);
-            cout << size << " sugeneravimas: " << durationGenerate.count() * 0.001 << " sekundziu" << endl;
+            cout << size << " sugeneravimas: " << durationGenerate.count() * 0.001 << " sekundziu" << endl;*/
 
             auto startRead = chrono::high_resolution_clock::now();
             readFile(size + ".txt", studentai);
@@ -233,7 +321,7 @@ int main()
             auto durationGenerateBlogi = chrono::duration_cast<std::chrono::milliseconds>(endGenerateBlogi - startGenerateBlogi);
             cout << size << " blogu studentu irasymas i faila:  " << durationGenerateBlogi.count() * 0.001 << " sekundziu" << std::endl;
             cout << endl;
-            cout << size << " bendras testo laikas: " << durationRead.count() * 0.001 + durationSeparate.count() * 0.001 + durationSort.count() * 0.001 << " sekundziu" << endl;
+            cout << size << " bendras testo laikas: " << durationRead.count() * 0.001 + durationSeparate.count() * 0.001 + durationSort.count() * 0.001 + durationGenerateGeri.count() * 0.001 + durationGenerateBlogi.count() * 0.001 << " sekundziu" << endl;
             clearVectors(studentai, blogi);
             cout << "---------------------------------------------------------------------------------------" << endl;
             cout << "---------------------------------------------------------------------------------------" << endl;
