@@ -156,3 +156,40 @@ void Studentas::ManualDataInput(int pasirinkimas) {
             setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
         }
 }
+
+int Studentas::generateGrade() {
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::uniform_int_distribution<int> distribution(1, 10);
+    return distribution(rng);
+}
+
+void Studentas::ManualNameInput(int pasirinkimas)  {
+
+        std::cout << "Iveskite savo varda: ";
+        setVardas(StringInput());
+
+        std::cout << "Iveskite savo pavarde: ";
+        setPavarde(StringInput());
+
+
+        std::cout << "Iveskite atliktu namu darbu skaiciu: ";
+        setN(IntInput());
+
+        setEgz(generateGrade());
+        
+        for (int i = 0; i < n_; i++) {
+            int nd = generateGrade();
+            nd_.push_back(nd);
+        }
+
+        if (pasirinkimas == 1) {
+            setVidurkis(Vidurkis());
+            setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
+        }
+        if (pasirinkimas == 2) {
+            setMediana(Mediana());
+            setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
+        }
+}
+
