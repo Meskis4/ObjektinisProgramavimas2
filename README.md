@@ -127,6 +127,13 @@ Nepavyko pasiekti spartesnių rezultatų už 2 strategijos rezultatus.
 ![Strategijos](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/e4ef8f5f-8657-4b7a-865f-2706edc53db5)
 
 
+# v1.1
+
+Šioje versijoje struktūra "Studentas" yra pakeičiama į klasę.
+Ištestuota programų sparta (naudojant struktūrą bei klasę), naudojant skirtingus optimizavimo flag'us. Nuskaitomi failai buvo vienodi, juose buvo 100000 bei 1000000 studentų duomenys. Gauti rezultatai yra pateikti lentelėje.
+
+
+![Screenshot 2024-04-12 103951](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/31d6c363-f40d-40d6-ad44-dd254a3b7d79)
 
 
 
