@@ -314,3 +314,66 @@ void Studentas::readFile(const string& fileName, vector<Studentas>& studentai, i
     df.close();
 }
 
+string Studentas::intToString(int value) {
+    return to_string(value);
+}
+
+void Studentas::generateFile(const string& fileName, int studentAmount) {
+    ofstream file(fileName);
+    random_device rd;
+    mt19937 rng(rd());
+
+    int ndCount = generateND();
+    if (!file.is_open()) { cerr << "Nepavyko atidaryti failo!" << endl; return; }
+
+    file << setw(20) << "Vardas" << setw(20) << "Pavarde";
+    for (int i = 1; i <= ndCount; ++i) {
+        file << setw(10) << "ND" + intToString(i);
+    }
+    file << setw(10) << "Egz." << endl;
+
+    for (int entry = 1; entry <= studentAmount; ++entry) {
+        file << setw(20) << "Vardas" + intToString(entry) << setw(20) << "Pavarde" + intToString(entry);
+
+        for (int i = 0; i < ndCount; ++i) {
+            file << setw(10) << intToString(generateGrade());
+        }
+
+        file << setw(10) << intToString(generateGrade()) << endl;
+    }
+
+    file.close();
+}
+
+void Studentas::separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
+
+    auto it = find_if(studentai.begin(), studentai.end(), [](const Studentas& s) {
+        return s.getGalutinis() >= 5;
+        });
+
+    copy(studentai.begin(), it, inserter(Blogi, Blogi.end()));
+
+    studentai.erase(studentai.begin(), it);
+}
+
+void Studentas::generateSeperateFile(const vector<Studentas>& studentai, const string& fileName, int pasirinkimas) {
+    ofstream outFile(fileName);
+    if (outFile.is_open()) {
+        outFile << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
+        outFile << setfill('-') << setw(68) << "" << setfill(' ') << endl;
+        for (const auto& S : studentai) {
+            if (pasirinkimas == 1) {
+                outFile << left << setw(15) << S.getPavarde() << setw(15) << S.getVardas() << setw(20) << fixed << setprecision(2) << S.getGalutinis() << setw(20) << " " << endl;
+            }
+            else {
+                outFile << left << setw(15) << S.getPavarde() << setw(15) << S.getVardas() << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.getGalutinis() << endl;
+            }
+        }
+        outFile.close();
+    }
+}
+
+void Studentas::clearVectors(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
+    studentai.clear();
+    Blogi.clear();
+}
