@@ -193,3 +193,47 @@ void Studentas::ManualNameInput(int pasirinkimas)  {
         }
 }
 
+int Studentas::generateND() {
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::uniform_int_distribution<int> distribution(6, 6);
+    return distribution(rng);
+}
+
+void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, const std::vector<std::string>& Vardai_m, const std::vector<std::string>& Pavardes_v, const std::vector<std::string>& Pavardes_m, int pasirinkimas) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> distribution(1, 10);
+    std::uniform_int_distribution<int> lyties_num(0, 1); // 0 - vyras, 1 - moteris
+
+    int lytis = lyties_num(gen);
+
+    if (lytis == 0) {
+        setVardas(Vardai_v[std::uniform_int_distribution<int>(0, Vardai_v.size() - 1)(gen)]);
+        setPavarde(Pavardes_v[std::uniform_int_distribution<int>(0, Pavardes_v.size() - 1)(gen)]);
+    }
+    else {
+        setVardas(Vardai_m[std::uniform_int_distribution<int>(0, Vardai_m.size() - 1)(gen)]);
+        setPavarde(Pavardes_m[std::uniform_int_distribution<int>(0, Pavardes_m.size() - 1)(gen)]);
+    }
+    setEgz(distribution(gen));
+
+    setN(generateND());
+    
+    int sum = 0;
+    for (int i = 0; i < getN(); i++) {
+        int nd = generateGrade();
+        sum += nd;
+        nd_.push_back(nd);
+    }
+
+    if (pasirinkimas == 1) {
+        setVidurkis(Vidurkis()); 
+        setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
+    }
+    else {
+        setMediana(Mediana()); 
+        setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
+    }
+}
+
