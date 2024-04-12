@@ -25,6 +25,7 @@ private:
 
 public:
     Studentas(); 
+    ~Studentas();
 
 //Get'eriai
     std::string getVardas()const { return vardas_; }
