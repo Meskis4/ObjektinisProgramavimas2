@@ -60,5 +60,10 @@ public:
     int generateND();
     void GenerateRandomData(const std::vector<std::string>& Vardai_v, const std::vector<std::string>& Vardai_m, const std::vector<std::string>& Pavardes_v, const std::vector<std::string>& Pavardes_m, int pasirinkimas);
     string FailoPatikrinimas();
-    void readFile(const std::string& fileName);
+    void readFile(const string& fileName, vector<Studentas>& studentai, int pasirinkimas);
+    string intToString(int value);
+    void generateFile(const std::string& fileName, int studentAmount);
+    void separateStudents(std::vector<Studentas>& Blogi);
+    void generateSeperateFile(const std::vector<Studentas>& studentai, const std::string& fileName);
+    void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Blogi);
 };
