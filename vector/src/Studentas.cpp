@@ -4,6 +4,18 @@ using namespace std;
 
 Studentas::Studentas() : n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
 
+Studentas::~Studentas() {
+    
+    vardas_ = "";
+    pavarde_ = "";
+    n_ = 0;
+    egz_ = 0;
+    nd_.clear();
+    vidurkis_ = 0.0;
+    galutinis_ = 0.0;
+    mediana_
+}
+
 int Studentas::IntInput() {
     int value;
     while (true) {
