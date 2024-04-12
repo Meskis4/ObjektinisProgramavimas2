@@ -59,4 +59,6 @@ public:
     void ManualNameInput(int pasirinkimas);
     int generateND();
     void GenerateRandomData(const std::vector<std::string>& Vardai_v, const std::vector<std::string>& Vardai_m, const std::vector<std::string>& Pavardes_v, const std::vector<std::string>& Pavardes_m, int pasirinkimas);
+    string FailoPatikrinimas();
+    void readFile(const std::string& fileName);
 };
