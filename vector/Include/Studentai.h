@@ -36,4 +36,13 @@ public:
     double getGalutinis() const { return galutinis_; }
     double getMediana() const { return mediana_; }
 
+//Set'eriai
+    void setVardas(const string& vardas) { vardas_ = vardas; }
+    void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
+    void setN(int n) { n_ = n; }
+    void setEgz(int egz) { egz_ = egz; }
+    void setND(const vector<int>& nd) { nd_ = nd; }
+    void setVidurkis(double vidurkis) { vidurkis_ = vidurkis; }
+    void setGalutinis(double galutinis) { galutinis_ = galutinis; }
+    void setMediana(double mediana) { mediana_ = mediana; }
 };
