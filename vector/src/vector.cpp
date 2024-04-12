@@ -96,60 +96,23 @@ int main()
     // *************************************
     // Pazymiu automatinis pildymas
 
-    if (budas == 2) {
+   if (budas == 2) {
+    while (true) {
+        S.ManualNameInput(pasirinkimas);
+        studentai.push_back(S);
+
+        cout << "Baigti: 0 " << endl;
+        cout << "Testi: 1" << endl;
         while (true) {
-            bool loop = false;
-
-            cout << "Iveskite savo varda: ";
-
-            S.vardas = StringInput();
-
-            cout << "Iveskite savo pavarde: ";
-
-            S.pavarde = StringInput();
-
-            random_device rd;
-            mt19937 gen(rd());
-            uniform_int_distribution<int> distribution(1, 10);
-            S.egz = distribution(gen);
-
-            cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
-            while (true) {
-                S.n = IntInput();
-                if (S.n) break;
+            sk = S.IntInput();
+            if (sk < 0 || sk > 1) {
+                cout << "Iveskite skaiciu 0 arba 1" << endl;
             }
-            S.nd.resize(S.n);
-            for (int j = 0; j < S.n; j++) {
-
-                S.nd[j] = distribution(gen);
-            }
-            if (S.pasirinkimas == 1) {
-                S.vid = Vidurkis(S.nd, S.n);
-                S.galut = 0.4 * S.vid + 0.6 * S.egz;
-            }
-            else {
-                S.medi = Mediana(S.nd);
-                S.galut = 0.4 * S.medi + 0.6 * S.egz;
-            }
-            cout << "*******************************" << endl;
-            studentai.push_back(S);
-
-            cout << "0. Baigti" << endl;
-            cout << "1. Testi" << endl;
-            while (true) {
-                sk = IntInput();
-                if (sk < 0 || sk > 1) {
-                    cout << "Iveskite skaiciu 0 arba 1" << endl;
-                }
-                else break;
-            }
-
-            if (sk == 0) {
-                break;
-            }
-            else loop = true;
+            else break;
         }
+        if (sk == 0)break;
     }
+}
 
     //***************************************
     //Automatinis vardo bei pazymiu pildymas
