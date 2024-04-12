@@ -117,64 +117,24 @@ int main()
     //***************************************
     //Automatinis vardo bei pazymiu pildymas
 
-    if (budas == 3) {
-        while (true) {
-            bool loop = false;
+      if (budas == 3) {
+      while (true) {
+          S.GenerateRandomData(Vardai_v, Vardai_m, Pavardes_v, Pavardes_m, pasirinkimas);
+          studentai.push_back(S);
 
-            random_device rd;
-            mt19937 gen(rd());
-            uniform_int_distribution<int> distribution(1, 10);
-            uniform_int_distribution<int> lyties_num(0, 1); // 0 - vyras, 1 - moteris
+          cout << "Baigti: 0 " << endl;
+          cout << "Testi: 1" << endl;
+          while (true) {
+              sk = S.IntInput();
+              if (sk < 0 || sk > 1) {
+                  cout << "Iveskite skaiciu 0 arba 1" << endl;
+              }
+              else break;
+          }
+          if (sk == 0)break;
 
-            int lytis = lyties_num(gen);
-
-            if (lytis == 0) {
-                S.vardas = Vardai_v[uniform_int_distribution<int>(0, Vardai_v.size() - 1)(gen)];
-                S.pavarde = Pavardes_v[uniform_int_distribution<int>(0, Pavardes_v.size() - 1)(gen)];
-            }
-            else {
-                S.vardas = Vardai_m[uniform_int_distribution<int>(0, Vardai_m.size() - 1)(gen)];
-                S.pavarde = Pavardes_m[uniform_int_distribution<int>(0, Pavardes_m.size() - 1)(gen)];
-            }
-            S.egz = distribution(gen);
-
-            cout << "Iveskite atliktu namu darbu skaiciu: " << endl;
-            while (true) {
-                S.n = IntInput();
-                if (S.n) break;
-            }
-            S.nd.resize(S.n);
-            for (int j = 0; j < S.n; j++) {
-
-                S.nd[j] = distribution(gen);
-            }
-            if (S.pasirinkimas == 1) {
-                S.vid = Vidurkis(S.nd, S.n);
-                S.galut = 0.4 * S.vid + 0.6 * S.egz;
-            }
-            else {
-                S.medi = Mediana(S.nd);
-                S.galut = 0.4 * S.medi + 0.6 * S.egz;
-            }
-            cout << "*******************************" << endl;
-            studentai.push_back(S);
-
-            cout << "0. Baigti" << endl;
-            cout << "1. Testi" << endl;
-            while (true) {
-                sk = IntInput();
-                if (sk < 0 || sk > 1) {
-                    cout << "Iveskite skaiciu 0 arba 1" << endl;
-                }
-                else break;
-            }
-
-            if (sk == 0) {
-                break;
-            }
-            else loop = true;
-        }
-    }
+      }
+  }
 
     // Nuskaitymas is failo
 
