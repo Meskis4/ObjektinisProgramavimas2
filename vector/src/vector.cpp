@@ -146,56 +146,56 @@ int main()
     // Failu generavimas
 
     if (budas == 5) {
-        vector<Studentas> geri;
-        vector<Studentas> blogi;
+     vector<Studentas> geri;
+     vector<Studentas> blogi;
 
-        vector<string> fileSizes = {"100000", "1000000",};
+     vector<string> fileSizes = { "100000", "1000000" };
 
-        for (const string& size : fileSizes) {
+     for (const string& size : fileSizes) {
 
-            /*auto startGenerate = chrono::high_resolution_clock::now();
-            generateFile(size + ".txt", stoi(size));
-            auto endGenerate = chrono::high_resolution_clock::now();
-            auto durationGenerate = chrono::duration_cast<chrono::milliseconds>(endGenerate - startGenerate);
-            cout << size << " sugeneravimas: " << durationGenerate.count() * 0.001 << " sekundziu" << endl;*/
+         auto startGenerate = chrono::high_resolution_clock::now();
+         S.generateFile(size + ".txt", stoi(size));
+         auto endGenerate = chrono::high_resolution_clock::now();
+         auto durationGenerate = chrono::duration_cast<chrono::milliseconds>(endGenerate - startGenerate);
+         cout << size << " sugeneravimas: " << durationGenerate.count() * 0.001 << " sekundziu" << endl;
 
-            auto startRead = chrono::high_resolution_clock::now();
-            readFile(size + ".txt", studentai);
-            auto endRead = chrono::high_resolution_clock::now();
-            auto durationRead = chrono::duration_cast<chrono::milliseconds>(endRead - startRead);
-            cout << size << " nuskaitymas: " << durationRead.count() * 0.001 << " sekundziu" << endl;
+         auto startRead = chrono::high_resolution_clock::now();
+         S.readFile(size + ".txt", studentai, pasirinkimas);
+         auto endRead = chrono::high_resolution_clock::now();
+         auto durationRead = chrono::duration_cast<chrono::milliseconds>(endRead - startRead);
+         cout << size << " nuskaitymas: " << durationRead.count() * 0.001 << " sekundziu" << endl;
 
-            auto startSort = chrono::high_resolution_clock::now();
-            sortStudents(studentai, rusiavimas);
-            auto endSort = chrono::high_resolution_clock::now();
-            auto durationSort = chrono::duration_cast<chrono::milliseconds>(endSort - startSort);
-            cout << size << " rusiavimas: " << durationSort.count() * 0.001 << " sekundziu" << endl;
+         auto startSort = chrono::high_resolution_clock::now();
+         S.sortStudents(studentai, rusiavimas);
+         auto endSort = chrono::high_resolution_clock::now();
+         auto durationSort = chrono::duration_cast<chrono::milliseconds>(endSort - startSort);
+         cout << size << " rusiavimas: " << durationSort.count() * 0.001 << " sekundziu" << endl;
 
 
-            auto startSeparate = chrono::high_resolution_clock::now();
-            separateStudents(studentai, blogi);
-            auto endSeparate = chrono::high_resolution_clock::now();
-            auto durationSeparate = chrono::duration_cast<chrono::milliseconds>(endSeparate - startSeparate);
-            cout << size << " paskirstymas i 2 grupes: " << durationSeparate.count() * 0.001 << " sekundziu" << std::endl;
+         auto startSeparate = chrono::high_resolution_clock::now();
+         S.separateStudents(studentai, blogi);
+         auto endSeparate = chrono::high_resolution_clock::now();
+         auto durationSeparate = chrono::duration_cast<chrono::milliseconds>(endSeparate - startSeparate);
+         cout << size << " paskirstymas i 2 grupes: " << durationSeparate.count() * 0.001 << " sekundziu" << std::endl;
 
-            auto startGenerateGeri = chrono::high_resolution_clock::now();
-            generateSeperateFile(studentai, "geri" + size + ".txt");
-            auto endGenerateGeri = chrono::high_resolution_clock::now();
-            auto durationGenerateGeri = chrono::duration_cast<std::chrono::milliseconds>(endGenerateGeri - startGenerateGeri);
-            cout << size << " geru studentu irasymas i faila:  " << durationGenerateGeri.count() * 0.001 << " sekundziu" << std::endl;
+         auto startGenerateGeri = chrono::high_resolution_clock::now();
+         S.generateSeperateFile(studentai, "geri" + size + ".txt", pasirinkimas);
+         auto endGenerateGeri = chrono::high_resolution_clock::now();
+         auto durationGenerateGeri = chrono::duration_cast<std::chrono::milliseconds>(endGenerateGeri - startGenerateGeri);
+         cout << size << " geru studentu irasymas i faila:  " << durationGenerateGeri.count() * 0.001 << " sekundziu" << std::endl;
 
-            auto startGenerateBlogi = chrono::high_resolution_clock::now();
-            generateSeperateFile(blogi, "blogi" + size + ".txt");
-            auto endGenerateBlogi = chrono::high_resolution_clock::now();
-            auto durationGenerateBlogi = chrono::duration_cast<std::chrono::milliseconds>(endGenerateBlogi - startGenerateBlogi);
-            cout << size << " blogu studentu irasymas i faila:  " << durationGenerateBlogi.count() * 0.001 << " sekundziu" << std::endl;
-            cout << endl;
-            cout << size << " bendras testo laikas: " << durationRead.count() * 0.001 + durationSeparate.count() * 0.001 + durationSort.count() * 0.001 + durationGenerateGeri.count() * 0.001 + durationGenerateBlogi.count() * 0.001 << " sekundziu" << endl;
-            clearVectors(studentai, blogi);
-            cout << "---------------------------------------------------------------------------------------" << endl;
-            cout << "---------------------------------------------------------------------------------------" << endl;
-        }
-    }
+         auto startGenerateBlogi = chrono::high_resolution_clock::now();
+         S.generateSeperateFile(blogi, "blogi" + size + ".txt", pasirinkimas);
+         auto endGenerateBlogi = chrono::high_resolution_clock::now();
+         auto durationGenerateBlogi = chrono::duration_cast<std::chrono::milliseconds>(endGenerateBlogi - startGenerateBlogi);
+         cout << size << " blogu studentu irasymas i faila:  " << durationGenerateBlogi.count() * 0.001 << " sekundziu" << std::endl;
+         cout << endl;
+         cout << size << " bendras testo laikas: " << durationRead.count() * 0.001 + durationSeparate.count() * 0.001 + durationSort.count() * 0.001 + durationGenerateGeri.count() * 0.001 + durationGenerateBlogi.count() * 0.001 << " sekundziu" << endl;
+         S.clearVectors(studentai, blogi);
+         cout << "---------------------------------------------------------------------------------------" << endl;
+         cout << "---------------------------------------------------------------------------------------" << endl;
+     }
+ }
 
     if (budas != 5) {
 
