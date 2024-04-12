@@ -139,9 +139,9 @@ int main()
     // Nuskaitymas is failo
 
     if (budas == 4) {
-        string filename = FailoPatikrinimas();
-        readFile(filename, studentai);
-    }
+    string filename = S.FailoPatikrinimas();
+    S.readFile(filename, studentai, pasirinkimas);
+}
 
     // Failu generavimas
 
