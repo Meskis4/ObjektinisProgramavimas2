@@ -29,14 +29,14 @@ Studentas::Studentas(const Studentas& s) //copy konstruktorius
 
 Studentas& Studentas::operator=(const Studentas& s) { //Copy priskyrimo operatorius
     if (this != &s) {
-        vardas_ = s.vardas_;
-        pavarde_ = s.pavarde_;
+        Zmogus::operator=(s);
         n_ = s.n_;
         egz_ = s.egz_;
         nd_ = s.nd_;
         vidurkis_ = s.vidurkis_;
         galutinis_ = s.galutinis_;
-        mediana_ = s.mediana_; }
+        mediana_ = s.mediana_;
+    }
     return *this;
 }
 
