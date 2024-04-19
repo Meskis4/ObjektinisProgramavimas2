@@ -28,6 +28,8 @@ public:
     ~Studentas();
     Studentas(const Studentas& other);             //copy konstruktorius
     Studentas& operator=(const Studentas& s);     // copy priskyrimo operatorius
+    Studentas(Studentas&& s);                     // move konstruktorius 
+    Studentas& operator=(Studentas&& s);          // move priskyrimo operatorius
 
 
 //Get'eriai
