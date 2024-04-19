@@ -143,6 +143,17 @@ Ištestuota programų sparta (naudojant struktūrą bei klasę), naudojant skirt
 
 ![move_const](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/9e889d92-25f7-4181-944f-9f0c9d65d172)
 
+# v1.5
+
+Šioje versijoje pridėta bazinė klasė Žmogus. Naudojant ją nėra galimybės sukurti naujo objekto: 
+
+![Zmogus](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/00c5e7e0-3868-49eb-80c3-040a7d54aca5)
+
+Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridėjus bazinę klasę "Zmogus": 
+
+![Screenshot 2024-04-19 222840](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/10af124d-6b2c-44be-a825-2468091623cb)
+
+
 
 
 
