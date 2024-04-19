@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Studentas::Studentas() : n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
+Studentas::Studentas() : Zmogus("", ""), n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {
+    cout << "Konstruktorius suveike" << endl;
+}
 
 Studentas::~Studentas() { //Destruktorius
     
