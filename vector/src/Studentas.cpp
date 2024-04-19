@@ -41,14 +41,13 @@ Studentas& Studentas::operator=(const Studentas& s) { //Copy priskyrimo operator
 }
 
 Studentas::Studentas(Studentas&& s) //move konstruktorius
-    : vardas_(std::move(s.vardas_)),
-    pavarde_(std::move(s.pavarde_)),
+    : Zmogus(std::move(s.getVardas()), std::move(s.getPavarde())), 
     n_(std::move(s.n_)),
     egz_(std::move(s.egz_)),
     nd_(std::move(s.nd_)),
     vidurkis_(std::move(s.vidurkis_)),
     galutinis_(std::move(s.galutinis_)),
-    mediana_(std::move(s.mediana_)) { 
+    mediana_(std::move(s.mediana_)) {
 
     cout << "Move konstruktorius suveike" << endl;
 }
