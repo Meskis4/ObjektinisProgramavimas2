@@ -135,6 +135,16 @@ Ištestuota programų sparta (naudojant struktūrą bei klasę), naudojant skirt
 
 ![Screenshot 2024-04-12 103951](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/31d6c363-f40d-40d6-ad44-dd254a3b7d79)
 
+# v1.2
+
+Šioje versijoje pridėjau copy bei move konstruktorius, taip pat jų priskyrimo operatorius. 
+
+![Copy_Const](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/42b88d0f-0a18-4dd0-bc18-4bbb69e7e3f2)
+
+![move_const](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/9e889d92-25f7-4181-944f-9f0c9d65d172)
+
+
+
 
 
 # Naudojimo instrukcija
