@@ -1,5 +1,6 @@
 #include "Studentai.h"
-#include <chrono>
+
+
 
 using namespace std;
 
@@ -17,7 +18,7 @@ int main()
     int rusiavimas = 0;
     int sk;
     Studentas S;
-    //
+    
 
     cout << "*****************************************************" << endl;
     cout << "Duomenu uzpildymo budas" << endl;
@@ -30,7 +31,7 @@ int main()
 
     while (true) {
         cout << "Jusu pasirinkimas: ";
-        budas = IntInput();
+        budas = S.IntInput();
 
         if (budas < 1 || budas > 5) {
             cout << "Netinkamas pasirinkimas!" << endl;
@@ -50,7 +51,7 @@ int main()
     cout << "7. Nerusiuoti" << endl;
     while (true) {
 
-        rusiavimas = IntInput();
+        rusiavimas = S.IntInput();
         if (rusiavimas < 1 || rusiavimas > 7) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
@@ -64,9 +65,9 @@ int main()
     while (true) {
 
         cout << "Jusu pasirinkimas: ";
-        S.pasirinkimas = IntInput();
+        pasirinkimas = S.IntInput();
 
-        if (S.pasirinkimas != 1 && S.pasirinkimas != 2) {
+        if (pasirinkimas != 1 && pasirinkimas != 2) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
         else break;
@@ -74,31 +75,9 @@ int main()
 
     // Pildymas ranka
 
-   if (budas == 1) {
-    while(true){
-    S.ManualDataInput(pasirinkimas);
-    studentai.push_back(S);
-
-    cout << "Baigti: 0 " << endl;
-    cout << "Testi: 1" << endl;
-    while (true) {
-        sk = S.IntInput();
-        if (sk < 0 || sk > 1) {
-            cout << "Iveskite skaiciu 0 arba 1" << endl;
-        }
-        else break;
-    }
-    if (sk == 0)break;
-    }
-}
-
-
-    // *************************************
-    // Pazymiu automatinis pildymas
-
-   if (budas == 2) {
-    while (true) {
-        S.ManualNameInput(pasirinkimas);
+    if (budas == 1) {
+        while(true){
+        S.ManualDataInput(pasirinkimas);
         studentai.push_back(S);
 
         cout << "Baigti: 0 " << endl;
@@ -111,106 +90,127 @@ int main()
             else break;
         }
         if (sk == 0)break;
+
+        }
     }
-}
-
-    //***************************************
-    //Automatinis vardo bei pazymiu pildymas
-
-      if (budas == 3) {
-      while (true) {
-          S.GenerateRandomData(Vardai_v, Vardai_m, Pavardes_v, Pavardes_m, pasirinkimas);
-          studentai.push_back(S);
-
-          cout << "Baigti: 0 " << endl;
-          cout << "Testi: 1" << endl;
-          while (true) {
-              sk = S.IntInput();
-              if (sk < 0 || sk > 1) {
-                  cout << "Iveskite skaiciu 0 arba 1" << endl;
-              }
-              else break;
-          }
-          if (sk == 0)break;
-
-      }
-  }
-
-    // Nuskaitymas is failo
-
-    if (budas == 4) {
-    string filename = S.FailoPatikrinimas();
-    S.readFile(filename, studentai, pasirinkimas);
-}
-
-    // Failu generavimas
-
-    if (budas == 5) {
-     vector<Studentas> geri;
-     vector<Studentas> blogi;
-
-     vector<string> fileSizes = { "100000", "1000000" };
-
-     for (const string& size : fileSizes) {
-
-         auto startGenerate = chrono::high_resolution_clock::now();
-         S.generateFile(size + ".txt", stoi(size));
-         auto endGenerate = chrono::high_resolution_clock::now();
-         auto durationGenerate = chrono::duration_cast<chrono::milliseconds>(endGenerate - startGenerate);
-         cout << size << " sugeneravimas: " << durationGenerate.count() * 0.001 << " sekundziu" << endl;
-
-         auto startRead = chrono::high_resolution_clock::now();
-         S.readFile(size + ".txt", studentai, pasirinkimas);
-         auto endRead = chrono::high_resolution_clock::now();
-         auto durationRead = chrono::duration_cast<chrono::milliseconds>(endRead - startRead);
-         cout << size << " nuskaitymas: " << durationRead.count() * 0.001 << " sekundziu" << endl;
-
-         auto startSort = chrono::high_resolution_clock::now();
-         S.sortStudents(studentai, rusiavimas);
-         auto endSort = chrono::high_resolution_clock::now();
-         auto durationSort = chrono::duration_cast<chrono::milliseconds>(endSort - startSort);
-         cout << size << " rusiavimas: " << durationSort.count() * 0.001 << " sekundziu" << endl;
 
 
-         auto startSeparate = chrono::high_resolution_clock::now();
-         S.separateStudents(studentai, blogi);
-         auto endSeparate = chrono::high_resolution_clock::now();
-         auto durationSeparate = chrono::duration_cast<chrono::milliseconds>(endSeparate - startSeparate);
-         cout << size << " paskirstymas i 2 grupes: " << durationSeparate.count() * 0.001 << " sekundziu" << std::endl;
+    // *************************************
+    // Pazymiu automatinis pildymas
 
-         auto startGenerateGeri = chrono::high_resolution_clock::now();
-         S.generateSeperateFile(studentai, "geri" + size + ".txt", pasirinkimas);
-         auto endGenerateGeri = chrono::high_resolution_clock::now();
-         auto durationGenerateGeri = chrono::duration_cast<std::chrono::milliseconds>(endGenerateGeri - startGenerateGeri);
-         cout << size << " geru studentu irasymas i faila:  " << durationGenerateGeri.count() * 0.001 << " sekundziu" << std::endl;
+    if (budas == 2) {
+        while (true) {
+            S.ManualNameInput(pasirinkimas);
+            studentai.push_back(S);
 
-         auto startGenerateBlogi = chrono::high_resolution_clock::now();
-         S.generateSeperateFile(blogi, "blogi" + size + ".txt", pasirinkimas);
-         auto endGenerateBlogi = chrono::high_resolution_clock::now();
-         auto durationGenerateBlogi = chrono::duration_cast<std::chrono::milliseconds>(endGenerateBlogi - startGenerateBlogi);
-         cout << size << " blogu studentu irasymas i faila:  " << durationGenerateBlogi.count() * 0.001 << " sekundziu" << std::endl;
-         cout << endl;
-         cout << size << " bendras testo laikas: " << durationRead.count() * 0.001 + durationSeparate.count() * 0.001 + durationSort.count() * 0.001 + durationGenerateGeri.count() * 0.001 + durationGenerateBlogi.count() * 0.001 << " sekundziu" << endl;
-         S.clearVectors(studentai, blogi);
-         cout << "---------------------------------------------------------------------------------------" << endl;
-         cout << "---------------------------------------------------------------------------------------" << endl;
-     }
- }
+            cout << "Baigti: 0 " << endl;
+            cout << "Testi: 1" << endl;
+            while (true) {
+                sk = S.IntInput();
+                if (sk < 0 || sk > 1) {
+                    cout << "Iveskite skaiciu 0 arba 1" << endl;
+                }
+                else break;
+            }
+            if (sk == 0)break;
+           
+        }
+    }
+    
+        if (budas == 3) {
+            while (true) {
+                S.GenerateRandomData(Vardai_v, Vardai_m, Pavardes_v, Pavardes_m, pasirinkimas);
+                studentai.push_back(S);
+
+                cout << "Baigti: 0 " << endl;
+                cout << "Testi: 1" << endl;
+                while (true) {
+                    sk = S.IntInput();
+                    if (sk < 0 || sk > 1) {
+                        cout << "Iveskite skaiciu 0 arba 1" << endl;
+                    }
+                    else break;
+                }
+                if (sk == 0)break;
+
+            }
+        }
+
+        if (budas == 4) {
+            string filename = S.FailoPatikrinimas();
+            S.readFile(filename, studentai, pasirinkimas);
+        }
+
+   //  failu generavimas
+
+        if (budas == 5) {
+
+            vector<Studentas> blogi;
+
+            vector<string> fileSizes = { "100000", "1000000" };
+
+            for (const string& size : fileSizes) {
+
+                auto startGenerate = chrono::high_resolution_clock::now();
+                S.generateFile(size + ".txt", stoi(size));
+                auto endGenerate = chrono::high_resolution_clock::now();
+                auto durationGenerate = chrono::duration_cast<chrono::milliseconds>(endGenerate - startGenerate);
+                cout << size << " sugeneravimas: " << durationGenerate.count() * 0.001 << " sekundziu" << endl;
+
+                auto startRead = chrono::high_resolution_clock::now();
+                S.readFile(size + ".txt", studentai, pasirinkimas);
+                auto endRead = chrono::high_resolution_clock::now();
+                auto durationRead = chrono::duration_cast<chrono::milliseconds>(endRead - startRead);
+                cout << size << " nuskaitymas: " << durationRead.count() * 0.001 << " sekundziu" << endl;
+
+                auto startSort = chrono::high_resolution_clock::now();
+                S.sortStudents(studentai, rusiavimas);
+                auto endSort = chrono::high_resolution_clock::now();
+                auto durationSort = chrono::duration_cast<chrono::milliseconds>(endSort - startSort);
+                cout << size << " rusiavimas: " << durationSort.count() * 0.001 << " sekundziu" << endl;
+
+
+                auto startSeparate = chrono::high_resolution_clock::now();
+                S.separateStudents(studentai, blogi);
+                auto endSeparate = chrono::high_resolution_clock::now();
+                auto durationSeparate = chrono::duration_cast<chrono::milliseconds>(endSeparate - startSeparate);
+                cout << size << " paskirstymas i 2 grupes: " << durationSeparate.count() * 0.001 << " sekundziu" << std::endl;
+
+                auto startGenerateGeri = chrono::high_resolution_clock::now();
+                S.generateSeperateFile(studentai, "geri" + size + ".txt", pasirinkimas);
+                auto endGenerateGeri = chrono::high_resolution_clock::now();
+                auto durationGenerateGeri = chrono::duration_cast<std::chrono::milliseconds>(endGenerateGeri - startGenerateGeri);
+                cout << size << " geru studentu irasymas i faila:  " << durationGenerateGeri.count() * 0.001 << " sekundziu" << std::endl;
+
+                auto startGenerateBlogi = chrono::high_resolution_clock::now();
+                S.generateSeperateFile(blogi, "blogi" + size + ".txt", pasirinkimas);
+                auto endGenerateBlogi = chrono::high_resolution_clock::now();
+                auto durationGenerateBlogi = chrono::duration_cast<std::chrono::milliseconds>(endGenerateBlogi - startGenerateBlogi);
+                cout << size << " blogu studentu irasymas i faila:  " << durationGenerateBlogi.count() * 0.001 << " sekundziu" << std::endl;
+                cout << endl;
+                cout << size << " bendras testo laikas: " << durationGenerate.count() * 0.001 + durationRead.count() * 0.001 + durationSeparate.count() * 0.001 + durationSort.count() * 0.001 + durationGenerateGeri.count() * 0.001 + durationGenerateBlogi.count() * 0.001 << " sekundziu" << endl;
+                S.clearVectors(studentai, blogi);
+                cout << "---------------------------------------------------------------------------------------" << endl;
+                cout << "---------------------------------------------------------------------------------------" << endl;
+            }
+        }
+    
 
     if (budas != 5) {
 
-        sortStudents(studentai, rusiavimas);
+         S.sortStudents(studentai, rusiavimas);
 
         cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
         cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
         for (const auto& S : studentai) {
-            if (S.pasirinkimas == 1) {
-                cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
+            if (pasirinkimas == 1) {
+                cout << left << setw(15) << S.getPavarde() << setw(15) << S.getVardas() << setw(20) << fixed << setprecision(2) << S.getGalutinis() << endl;
             }
             else {
-                cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
+                cout << left << setw(15) << S.getPavarde() << setw(15) << S.getVardas() << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.getGalutinis() << endl;
             }
         }
     }
 
 }
+
