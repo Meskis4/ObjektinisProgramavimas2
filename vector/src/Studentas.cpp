@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 Studentas::Studentas() : Zmogus("", ""), n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {
     cout << "Konstruktorius suveike" << endl;
 }
@@ -14,11 +15,12 @@ Studentas::~Studentas() { //Destruktorius
     vidurkis_ = 0.0;
     galutinis_ = 0.0;
     mediana_ = 0.0;
+
     cout << "Destruktorius suveike" << endl;
 }
 
 Studentas::Studentas(const Studentas& s) //copy konstruktorius
-    : Zmogus(s.getVardas(), s.getPavarde()),
+    : Zmogus(s.getVardas(), s.getPavarde()), // Initialize base class
     n_(s.n_),
     egz_(s.egz_),
     nd_(s.nd_),
@@ -27,6 +29,18 @@ Studentas::Studentas(const Studentas& s) //copy konstruktorius
     mediana_(s.mediana_) {
 
     cout << "Copy konstruktorius suveike" << endl;
+}
+
+Studentas::Studentas(Studentas&& s) //move konstruktorius
+    : Zmogus(std::move(s.getVardas()), std::move(s.getPavarde())), // Initialize base class
+    n_(std::move(s.n_)),
+    egz_(std::move(s.egz_)),
+    nd_(std::move(s.nd_)),
+    vidurkis_(std::move(s.vidurkis_)),
+    galutinis_(std::move(s.galutinis_)),
+    mediana_(std::move(s.mediana_)) {
+
+    cout << "Move konstruktorius suveike" << endl;
 }
 
 Studentas& Studentas::operator=(const Studentas& s) { //Copy priskyrimo operatorius
@@ -42,21 +56,9 @@ Studentas& Studentas::operator=(const Studentas& s) { //Copy priskyrimo operator
     return *this;
 }
 
-Studentas::Studentas(Studentas&& s) //move konstruktorius
-    : Zmogus(std::move(s.getVardas()), std::move(s.getPavarde())), 
-    n_(std::move(s.n_)),
-    egz_(std::move(s.egz_)),
-    nd_(std::move(s.nd_)),
-    vidurkis_(std::move(s.vidurkis_)),
-    galutinis_(std::move(s.galutinis_)),
-    mediana_(std::move(s.mediana_)) {
-
-    cout << "Move konstruktorius suveike" << endl;
-}
-
 Studentas& Studentas::operator=(Studentas&& s) { //Move priskyrimo operatorius
     if (this != &s) {
-        Zmogus::operator=(std::move(s)); 
+        Zmogus::operator=(std::move(s)); // Move assign base class members
         n_ = std::move(s.n_);
         egz_ = std::move(s.egz_);
         nd_ = std::move(s.nd_);
@@ -66,6 +68,7 @@ Studentas& Studentas::operator=(Studentas&& s) { //Move priskyrimo operatorius
     }
     return *this;
 }
+    
 
 int Studentas::IntInput() {
     int value;
@@ -173,6 +176,20 @@ double Studentas::Vidurkis() const {
     return static_cast<double>(suma) / n_;
 }
 
+int Studentas::generateGrade() {
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::uniform_int_distribution<int> distribution(1, 10);
+    return distribution(rng);
+}
+
+int Studentas::generateND() {
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::uniform_int_distribution<int> distribution(6, 6);
+    return distribution(rng);
+}
+
 void Studentas::ManualDataInput(int pasirinkimas) {
     
         std::cout << "Iveskite savo varda: ";
@@ -220,13 +237,6 @@ void Studentas::ManualDataInput(int pasirinkimas) {
         }
 }
 
-int Studentas::generateGrade() {
-    std::random_device rd;
-    std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> distribution(1, 10);
-    return distribution(rng);
-}
-
 void Studentas::ManualNameInput(int pasirinkimas)  {
 
         std::cout << "Iveskite savo varda: ";
@@ -254,13 +264,6 @@ void Studentas::ManualNameInput(int pasirinkimas)  {
             setMediana(Mediana());
             setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
         }
-}
-
-int Studentas::generateND() {
-    std::random_device rd;
-    std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> distribution(6, 6);
-    return distribution(rng);
 }
 
 void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, const std::vector<std::string>& Vardai_m, const std::vector<std::string>& Pavardes_v, const std::vector<std::string>& Pavardes_m, int pasirinkimas) {
