@@ -54,14 +54,14 @@ Studentas::Studentas(Studentas&& s) //move konstruktorius
 
 Studentas& Studentas::operator=(Studentas&& s) { //Move priskyrimo operatorius
     if (this != &s) {
-        vardas_ = std::move(s.vardas_);
-        pavarde_ = std::move(s.pavarde_);
-        n_ = s.n_;
-        egz_ = s.egz_;
+        Zmogus::operator=(std::move(s)); 
+        n_ = std::move(s.n_);
+        egz_ = std::move(s.egz_);
         nd_ = std::move(s.nd_);
-        vidurkis_ = s.vidurkis_;
-        galutinis_ = s.galutinis_;
-        mediana_ = s.mediana_;  }
+        vidurkis_ = std::move(s.vidurkis_);
+        galutinis_ = std::move(s.galutinis_);
+        mediana_ = std::move(s.mediana_);
+    }
     return *this;
 }
 
