@@ -15,15 +15,14 @@ Studentas::~Studentas() { //Destruktorius
     cout << "Destruktorius suveike" << endl;
 }
 
-Studentas::Studentas(const Studentas& other) //copy konstruktorius
-    : vardas_(other.vardas_),
-    pavarde_(other.pavarde_),
-    n_(other.n_),
-    egz_(other.egz_),
-    nd_(other.nd_),
-    vidurkis_(other.vidurkis_),
-    galutinis_(other.galutinis_),
-    mediana_(other.mediana_) {
+Studentas::Studentas(const Studentas& s) //copy konstruktorius
+    : Zmogus(s.getVardas(), s.getPavarde()),
+    n_(s.n_),
+    egz_(s.egz_),
+    nd_(s.nd_),
+    vidurkis_(s.vidurkis_),
+    galutinis_(s.galutinis_),
+    mediana_(s.mediana_) {
 
     cout << "Copy konstruktorius suveike" << endl;
 }
