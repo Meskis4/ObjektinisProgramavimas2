@@ -1,7 +1,5 @@
 #include "Studentai.h"
 
-
-
 using namespace std;
 
 int main()
