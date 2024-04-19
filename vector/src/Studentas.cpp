@@ -4,16 +4,15 @@ using namespace std;
 
 Studentas::Studentas() : n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
 
-Studentas::~Studentas() {
+Studentas::~Studentas() { //Destruktorius
     
-    vardas_ = "";
-    pavarde_ = "";
+    nd_.clear();
     n_ = 0;
     egz_ = 0;
-    nd_.clear();
     vidurkis_ = 0.0;
     galutinis_ = 0.0;
-    mediana_
+    mediana_ = 0.0;
+    cout << "Destruktorius suveike" << endl;
 }
 
 int Studentas::IntInput() {
