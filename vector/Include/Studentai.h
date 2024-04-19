@@ -26,6 +26,9 @@ private:
 public:
     Studentas(); 
     ~Studentas();
+    Studentas(const Studentas& other);             //copy konstruktorius
+    Studentas& operator=(const Studentas& s);     // copy priskyrimo operatorius
+
 
 //Get'eriai
     std::string getVardas()const { return vardas_; }
