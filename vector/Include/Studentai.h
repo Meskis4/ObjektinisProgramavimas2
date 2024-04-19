@@ -9,19 +9,18 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include "Zmogus.h"
 
 using namespace std;
-class Studentas {
+
+class Studentas : public Zmogus {
 private:
-    std::string vardas_;
-    std::string pavarde_;
     int n_;
     int egz_;
     std::vector<int> nd_;
     double vidurkis_;
     double galutinis_;
     double mediana_;
-
 
 public:
     Studentas(); 
