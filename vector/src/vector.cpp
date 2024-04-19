@@ -196,21 +196,20 @@ int main()
          cout << "---------------------------------------------------------------------------------------" << endl;
      }
  }
+  if (budas != 5) {
 
-    if (budas != 5) {
+       S.sortStudents(studentai, rusiavimas);
 
-        sortStudents(studentai, rusiavimas);
-
-        cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
-        cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
-        for (const auto& S : studentai) {
-            if (S.pasirinkimas == 1) {
-                cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << fixed << setprecision(2) << S.galut << endl;
-            }
-            else {
-                cout << left << setw(15) << S.pavarde << setw(15) << S.vardas << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.galut << endl;
-            }
-        }
-    }
+      cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
+      cout << setfill('-') << setw(68) << "" << setfill(' ') << endl;
+      for (const auto& S : studentai) {
+          if (pasirinkimas == 1) {
+              cout << left << setw(15) << S.getPavarde() << setw(15) << S.getVardas() << setw(20) << fixed << setprecision(2) << S.getGalutinis() << endl;
+          }
+          else {
+              cout << left << setw(15) << S.getPavarde() << setw(15) << S.getVardas() << setw(20) << " " << setw(20) << fixed << setprecision(2) << S.getGalutinis() << endl;
+          }
+      }
+  }
 
 }
