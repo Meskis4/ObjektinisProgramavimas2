@@ -33,15 +33,22 @@ Studentas::Studentas(const Studentas& s) //copy konstruktorius
 }
 
 Studentas::Studentas(Studentas&& s) //move konstruktorius
-    : Zmogus(std::move(s.getVardas()), std::move(s.getPavarde())), // Initialize base class
-    n_(std::move(s.n_)),
-    egz_(std::move(s.egz_)),
-    nd_(std::move(s.nd_)),
-    vidurkis_(std::move(s.vidurkis_)),
-    galutinis_(std::move(s.galutinis_)),
-    mediana_(std::move(s.mediana_)) {
+    : Zmogus(s.getVardas(), s.getPavarde()), 
+    n_(s.n_), 
+    egz_(s.egz_),
+    nd_(s.nd_), 
+    vidurkis_(s.vidurkis_),
+    galutinis_(s.galutinis_), 
+    mediana_(s.mediana_) { 
 
-    cout << "Move konstruktorius suveike" << endl;
+    s.vardas_.clear();
+    s.pavarde_.clear();
+    s.n_ = 0;
+    s.nd_.clear();
+    s.egz_ = 0;
+    s.vidurkis_ = 0;
+    s.mediana_ = 0;
+    s.galutinis_ = 0;
 }
 
 Studentas& Studentas::operator=(const Studentas& s) { //Copy priskyrimo operatorius
