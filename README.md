@@ -153,8 +153,9 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 
 ![Screenshot 2024-04-19 222840](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/10af124d-6b2c-44be-a825-2468091623cb)
 
+# v2.0
 
-
+Šioje versijoje pridėta "Doxygen" dokumentacija, klasėms "Studentas" bei "Zmogus". Dokumentacija yra pateikiama HTML bei TeX formatuose.
 
 
 
@@ -167,7 +168,7 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 6) Pasirinkite galutinio balo skaičiavimo metodą.
 7) Įveskite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
 8) Gausite rezultatus ( jei pasirinkote generuoti failus, jie bus sugeneruoti "Debug" aplanke )
-  
+
 
 
 
