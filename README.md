@@ -155,7 +155,7 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 
 # v2.0
 
-Šioje versijoje pridėta "Doxygen" dokumentacija, klasėms "Studentas" bei "Zmogus". Dokumentacija yra pateikiama HTML bei TeX formatuose.
+Šioje versijoje pridėta "Doxygen" dokumentacija, klasėms "Studentas" bei "Zmogus". Dokumentacija yra pateikiama HTML bei TeX kalbomis.
 
 
 
@@ -168,6 +168,13 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 6) Pasirinkite galutinio balo skaičiavimo metodą.
 7) Įveskite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
 8) Gausite rezultatus ( jei pasirinkote generuoti failus, jie bus sugeneruoti "Debug" aplanke )
+
+# Dokumentacijos atidarymas  
+HTML: 
+1) Atidarykite katalogą "Dokumentacija".
+2) Atidarykite katalogą "html"
+3) Atidarykite failą "index.html"
+
 
 
 
