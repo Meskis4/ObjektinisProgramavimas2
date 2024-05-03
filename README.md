@@ -170,11 +170,15 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 8) Gausite rezultatus ( jei pasirinkote generuoti failus, jie bus sugeneruoti "Debug" aplanke )
 
 # Dokumentacijos atidarymas  
-HTML: 
-1) Atidarykite katalogą "Dokumentacija".
-2) Atidarykite katalogą "html"
-3) Atidarykite failą "index.html"
+**HTML:** 
+1) Atidarykite katalogą **"Dokumentacija"**
+2) Atidarykite katalogą **"html"**
+3) Atidarykite failą **"index.html"**
 
+**TeX:**
+1) Atidarykite katalogą **"Dokumentacija"**
+2)  Atidarykite katalogą **"latex"**
+3)  Dokumentaciją galite atidaryti naudojant **TexLive** kompiliatorių arba naudojant **OverLeaf** naršyklėje.
 
 
 
