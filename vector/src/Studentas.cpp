@@ -4,17 +4,7 @@ using namespace std;
 
 Studentas::Studentas() : n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
 
-Studentas::~Studentas() {
-    
-    vardas_ = "";
-    pavarde_ = "";
-    n_ = 0;
-    egz_ = 0;
-    nd_.clear();
-    vidurkis_ = 0.0;
-    galutinis_ = 0.0;
-    mediana_
-}
+Studentas::~Studentas() {}
 
 int Studentas::IntInput() {
     int value;
@@ -123,50 +113,50 @@ double Studentas::Vidurkis() const {
 }
 
 void Studentas::ManualDataInput(int pasirinkimas) {
-    
-        std::cout << "Iveskite savo varda: ";
-        setVardas(StringInput());
 
-        std::cout << "Iveskite savo pavarde: ";
-        setPavarde(StringInput());
+    std::cout << "Iveskite savo varda: ";
+    setVardas(StringInput());
 
-        std::cout << "Iveskite egzamino bala [1 - 10]: ";
+    std::cout << "Iveskite savo pavarde: ";
+    setPavarde(StringInput());
+
+    std::cout << "Iveskite egzamino bala [1 - 10]: ";
+    while (true) {
+        setEgz(IntInput());
+        if (getEgz() < 1 || getEgz() > 10) {
+            cout << "Netinkamas pasirinkimas! " << endl;
+        }
+        else break;
+    }
+
+    std::cout << "Iveskite atliktu namu darbu skaiciu: ";
+    setN(IntInput());
+
+    std::cout << "Iveskite pazymius nuo [1 - 10]: ";
+    for (int i = 0; i < n_; i++) {
+        int sum = 0;
+        int nd;
         while (true) {
-            setEgz(IntInput());
-            if (getEgz() < 1 || getEgz() > 10) {
+            std::cout << "Pazymys " << i + 1 << ": ";
+            nd = IntInput();
+            if (nd < 1 || nd > 10) {
                 cout << "Netinkamas pasirinkimas! " << endl;
             }
             else break;
+
+            sum += nd;
+            nd_.push_back(nd);
         }
-
-        std::cout << "Iveskite atliktu namu darbu skaiciu: ";
-        setN(IntInput());
-
-        std::cout << "Iveskite pazymius nuo [1 - 10]: ";
-        for (int i = 0; i < n_; i++) {
-            int sum = 0;
-            int nd;
-            while (true) {
-                std::cout << "Pazymys " << i + 1 << ": ";
-                nd = IntInput();
-                if (nd < 1 || nd > 10) {
-                    cout << "Netinkamas pasirinkimas! " << endl;
-                }
-                else break;
-
-                sum += nd;
-                nd_.push_back(nd);
-            }
     }
 
-        if (pasirinkimas == 1) {
-            setVidurkis( Vidurkis());
-            setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
-        }
-        if (pasirinkimas == 2) {
-            setMediana(Mediana());
-            setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
-        }
+    if (pasirinkimas == 1) {
+        setVidurkis(Vidurkis());
+        setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
+    }
+    if (pasirinkimas == 2) {
+        setMediana(Mediana());
+        setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
+    }
 }
 
 int Studentas::generateGrade() {
@@ -176,33 +166,33 @@ int Studentas::generateGrade() {
     return distribution(rng);
 }
 
-void Studentas::ManualNameInput(int pasirinkimas)  {
+void Studentas::ManualNameInput(int pasirinkimas) {
 
-        std::cout << "Iveskite savo varda: ";
-        setVardas(StringInput());
+    std::cout << "Iveskite savo varda: ";
+    setVardas(StringInput());
 
-        std::cout << "Iveskite savo pavarde: ";
-        setPavarde(StringInput());
+    std::cout << "Iveskite savo pavarde: ";
+    setPavarde(StringInput());
 
 
-        std::cout << "Iveskite atliktu namu darbu skaiciu: ";
-        setN(IntInput());
+    std::cout << "Iveskite atliktu namu darbu skaiciu: ";
+    setN(IntInput());
 
-        setEgz(generateGrade());
-        
-        for (int i = 0; i < n_; i++) {
-            int nd = generateGrade();
-            nd_.push_back(nd);
-        }
+    setEgz(generateGrade());
 
-        if (pasirinkimas == 1) {
-            setVidurkis(Vidurkis());
-            setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
-        }
-        if (pasirinkimas == 2) {
-            setMediana(Mediana());
-            setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
-        }
+    for (int i = 0; i < n_; i++) {
+        int nd = generateGrade();
+        nd_.push_back(nd);
+    }
+
+    if (pasirinkimas == 1) {
+        setVidurkis(Vidurkis());
+        setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
+    }
+    if (pasirinkimas == 2) {
+        setMediana(Mediana());
+        setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
+    }
 }
 
 int Studentas::generateND() {
@@ -231,7 +221,7 @@ void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, con
     setEgz(distribution(gen));
 
     setN(generateND());
-    
+
     int sum = 0;
     for (int i = 0; i < getN(); i++) {
         int nd = generateGrade();
@@ -240,11 +230,11 @@ void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, con
     }
 
     if (pasirinkimas == 1) {
-        setVidurkis(Vidurkis()); 
+        setVidurkis(Vidurkis());
         setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
     }
     else {
-        setMediana(Mediana()); 
+        setMediana(Mediana());
         setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
     }
 }
@@ -313,7 +303,7 @@ void Studentas::readFile(const string& fileName, vector<Studentas>& studentai, i
         if (pasirinkimas == 1) {
 
             setVidurkis(Vidurkis());
-            setGalutinis( 0.4 * getVidurkis() + 0.6 * getEgz());
+            setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
         }
         else {
 
