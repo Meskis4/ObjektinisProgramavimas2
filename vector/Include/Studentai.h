@@ -24,10 +24,10 @@ private:
 
 
 public:
-    Studentas(); 
+    Studentas();
     ~Studentas();
 
-//Get'eriai
+    //Get'eriai
     std::string getVardas()const { return vardas_; }
     std::string getPavarde() const { return pavarde_; }
     int getN() const { return n_; }
@@ -37,7 +37,7 @@ public:
     double getGalutinis() const { return galutinis_; }
     double getMediana() const { return mediana_; }
 
-//Set'eriai
+    //Set'eriai
     void setVardas(const string& vardas) { vardas_ = vardas; }
     void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
     void setN(int n) { n_ = n; }
@@ -47,7 +47,7 @@ public:
     void setGalutinis(double galutinis) { galutinis_ = galutinis; }
     void setMediana(double mediana) { mediana_ = mediana; }
 
-//Metodai
+    //Metodai
 
     int IntInput();
     void sortStudents(vector<Studentas>& students, int rusiavimas);
@@ -64,7 +64,7 @@ public:
     void readFile(const string& fileName, vector<Studentas>& studentai, int pasirinkimas);
     string intToString(int value);
     void generateFile(const std::string& fileName, int studentAmount);
-    void separateStudents(std::vector<Studentas>& Blogi);
-    void generateSeperateFile(const std::vector<Studentas>& studentai, const std::string& fileName);
+    void separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi);
+    void generateSeperateFile(const vector<Studentas>& studentai, const string& fileName, int pasirinkimas);
     void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Blogi);
 };
