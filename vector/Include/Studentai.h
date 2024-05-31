@@ -25,6 +25,9 @@ private:
 
 public:
     Studentas();
+
+    Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const std::vector<int>& nd, double vidurkis, double galutinis, double mediana);
+
     ~Studentas();
 
     //Get'eriai
