@@ -2,7 +2,11 @@
 
 using namespace std;
 
-Studentas::Studentas() : n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
+Studentas::Studentas()
+    : vardas_(""), pavarde_(""), n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
+
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const std::vector<int>& nd, double vidurkis, double galutinis, double mediana)
+    : vardas_(vardas), pavarde_(pavarde), n_(n), egz_(egz), nd_(nd), vidurkis_(vidurkis), galutinis_(galutinis), mediana_(mediana) {}
 
 Studentas::~Studentas() {}
 
