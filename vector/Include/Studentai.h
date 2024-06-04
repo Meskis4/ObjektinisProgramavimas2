@@ -25,12 +25,15 @@ private:
 
 public:
     Studentas();
-    ~Studentas();
-    Studentas(const Studentas& other);             //copy konstruktorius
-    Studentas& operator=(const Studentas& s);     // copy priskyrimo operatorius
-    Studentas(Studentas&& s);                     // move konstruktorius 
-    Studentas& operator=(Studentas&& s);          // move priskyrimo operatorius
 
+    Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const std::vector<int>& nd, double vidurkis, double galutinis, double mediana);
+
+    ~Studentas();
+
+    Studentas(const Studentas& other);
+    Studentas& operator=(const Studentas& other); 
+    Studentas(Studentas&& other) noexcept; 
+    Studentas& operator=(Studentas&& other) noexcept; 
 
     //Get'eriai
     std::string getVardas()const { return vardas_; }
@@ -70,6 +73,6 @@ public:
     string intToString(int value);
     void generateFile(const std::string& fileName, int studentAmount);
     void separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi);
-    void generateSeperateFile(const std::vector<Studentas>& studentai, const std::string& fileName, int pasirinkimas);
+    void generateSeperateFile(const vector<Studentas>& studentai, const string& fileName, int pasirinkimas);
     void clearVectors(vector<Studentas>& studentai, vector<Studentas>& Blogi);
 };
