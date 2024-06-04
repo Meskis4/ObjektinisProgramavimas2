@@ -2,70 +2,60 @@
 
 using namespace std;
 
-Studentas::Studentas() : n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
+Studentas::Studentas()
+    : vardas_(""), pavarde_(""), n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
 
-Studentas::~Studentas() { //Destruktorius
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const std::vector<int>& nd, double vidurkis, double galutinis, double mediana)
+    : vardas_(vardas), pavarde_(pavarde), n_(n), egz_(egz), nd_(nd), vidurkis_(vidurkis), galutinis_(galutinis), mediana_(mediana) {}
 
-    nd_.clear();
-    n_ = 0;
-    egz_ = 0;
-    vidurkis_ = 0.0;
-    galutinis_ = 0.0;
-    mediana_ = 0.0;
-    cout << "Destruktorius suveike" << endl;
-}
+Studentas::~Studentas() {}
 
-Studentas::Studentas(const Studentas& other) //copy konstruktorius
-    : vardas_(other.vardas_),
-    pavarde_(other.pavarde_),
-    n_(other.n_),
-    egz_(other.egz_),
-    nd_(other.nd_),
-    vidurkis_(other.vidurkis_),
-    galutinis_(other.galutinis_),
-    mediana_(other.mediana_) {
+// Copy konstruktorius
+Studentas::Studentas(const Studentas& other)
+    : vardas_(other.vardas_), pavarde_(other.pavarde_), n_(other.n_), egz_(other.egz_), nd_(other.nd_), vidurkis_(other.vidurkis_), galutinis_(other.galutinis_), mediana_(other.mediana_) {}
 
-    cout << "Copy konstruktorius suveike" << endl;
-}
+// Copy priskyrimo operatorius
+Studentas& Studentas::operator=(const Studentas& other) {
+    if (this == &other) return *this; 
 
-Studentas& Studentas::operator=(const Studentas& s) { //Copy priskyrimo operatorius
-    if (this != &s) {
-        vardas_ = s.vardas_;
-        pavarde_ = s.pavarde_;
-        n_ = s.n_;
-        egz_ = s.egz_;
-        nd_ = s.nd_;
-        vidurkis_ = s.vidurkis_;
-        galutinis_ = s.galutinis_;
-        mediana_ = s.mediana_;
-    }
+    vardas_ = other.vardas_;
+    pavarde_ = other.pavarde_;
+    n_ = other.n_;
+    egz_ = other.egz_;
+    nd_ = other.nd_;
+    vidurkis_ = other.vidurkis_;
+    galutinis_ = other.galutinis_;
+    mediana_ = other.mediana_;
+
     return *this;
 }
 
-Studentas::Studentas(Studentas&& s) //move konstruktorius
-    : vardas_(std::move(s.vardas_)),
-    pavarde_(std::move(s.pavarde_)),
-    n_(std::move(s.n_)),
-    egz_(std::move(s.egz_)),
-    nd_(std::move(s.nd_)),
-    vidurkis_(std::move(s.vidurkis_)),
-    galutinis_(std::move(s.galutinis_)),
-    mediana_(std::move(s.mediana_)) {
-
-    cout << "Move konstruktorius suveike" << endl;
+// Move konstruktorius
+Studentas::Studentas(Studentas&& other) noexcept
+    : vardas_(""), pavarde_(""), n_(0), egz_(0), nd_(), vidurkis_(0), galutinis_(0), mediana_(0) {
+    swap(vardas_, other.vardas_);
+    swap(pavarde_, other.pavarde_);
+    swap(n_, other.n_);
+    swap(egz_, other.egz_);
+    swap(nd_, other.nd_);
+    swap(vidurkis_, other.vidurkis_);
+    swap(galutinis_, other.galutinis_);
+    swap(mediana_, other.mediana_);
 }
 
-Studentas& Studentas::operator=(Studentas&& s) { //Move priskyrimo operatorius
-    if (this != &s) {
-        vardas_ = std::move(s.vardas_);
-        pavarde_ = std::move(s.pavarde_);
-        n_ = s.n_;
-        egz_ = s.egz_;
-        nd_ = std::move(s.nd_);
-        vidurkis_ = s.vidurkis_;
-        galutinis_ = s.galutinis_;
-        mediana_ = s.mediana_;
-    }
+// Move priskyrimo operatorius
+Studentas& Studentas::operator=(Studentas&& other) noexcept {
+    if (this == &other) return *this; 
+
+    swap(vardas_, other.vardas_);
+    swap(pavarde_, other.pavarde_);
+    swap(n_, other.n_);
+    swap(egz_, other.egz_);
+    swap(nd_, other.nd_);
+    swap(vidurkis_, other.vidurkis_);
+    swap(galutinis_, other.galutinis_);
+    swap(mediana_, other.mediana_);
+
     return *this;
 }
 
@@ -442,3 +432,4 @@ void Studentas::clearVectors(vector<Studentas>& studentai, vector<Studentas>& Bl
     studentai.clear();
     Blogi.clear();
 }
+
