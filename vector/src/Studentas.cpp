@@ -1,75 +1,62 @@
 #include "Studentai.h"
-
 using namespace std;
 
+Studentas::Studentas()
+    : vardas_(""), pavarde_(""), n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
 
-Studentas::Studentas() : Zmogus("", ""), n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {
-    cout << "Konstruktorius suveike" << endl;
-}
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const std::vector<int>& nd, double vidurkis, double galutinis, double mediana)
+    : vardas_(vardas), pavarde_(pavarde), n_(n), egz_(egz), nd_(nd), vidurkis_(vidurkis), galutinis_(galutinis), mediana_(mediana) {}
 
+Studentas::~Studentas() {}
 
-Studentas::~Studentas() { //Destruktorius
-    
-    nd_.clear();
-    n_ = 0;
-    egz_ = 0;
-    vidurkis_ = 0.0;
-    galutinis_ = 0.0;
-    mediana_ = 0.0;
+// Copy konstruktorius
+Studentas::Studentas(const Studentas& other)
+    : vardas_(other.vardas_), pavarde_(other.pavarde_), n_(other.n_), egz_(other.egz_), nd_(other.nd_), vidurkis_(other.vidurkis_), galutinis_(other.galutinis_), mediana_(other.mediana_) {}
 
-    cout << "Destruktorius suveike" << endl;
-}
+// Copy priskyrimo operatorius
+Studentas& Studentas::operator=(const Studentas& other) {
+    if (this == &other) return *this;
 
-Studentas::Studentas(const Studentas& s) //copy konstruktorius
-    : Zmogus(s.getVardas(), s.getPavarde()), // Initialize base class
-    n_(s.n_),
-    egz_(s.egz_),
-    nd_(s.nd_),
-    vidurkis_(s.vidurkis_),
-    galutinis_(s.galutinis_),
-    mediana_(s.mediana_) {
+    vardas_ = other.vardas_;
+    pavarde_ = other.pavarde_;
+    n_ = other.n_;
+    egz_ = other.egz_;
+    nd_ = other.nd_;
+    vidurkis_ = other.vidurkis_;
+    galutinis_ = other.galutinis_;
+    mediana_ = other.mediana_;
 
-    cout << "Copy konstruktorius suveike" << endl;
-}
-
-Studentas::Studentas(Studentas&& s) //move konstruktorius
-    : Zmogus(std::move(s.getVardas()), std::move(s.getPavarde())), // Initialize base class
-    n_(std::move(s.n_)),
-    egz_(std::move(s.egz_)),
-    nd_(std::move(s.nd_)),
-    vidurkis_(std::move(s.vidurkis_)),
-    galutinis_(std::move(s.galutinis_)),
-    mediana_(std::move(s.mediana_)) {
-
-    cout << "Move konstruktorius suveike" << endl;
-}
-
-Studentas& Studentas::operator=(const Studentas& s) { //Copy priskyrimo operatorius
-    if (this != &s) {
-        Zmogus::operator=(s);
-        n_ = s.n_;
-        egz_ = s.egz_;
-        nd_ = s.nd_;
-        vidurkis_ = s.vidurkis_;
-        galutinis_ = s.galutinis_;
-        mediana_ = s.mediana_;
-    }
     return *this;
 }
 
-Studentas& Studentas::operator=(Studentas&& s) { //Move priskyrimo operatorius
-    if (this != &s) {
-        Zmogus::operator=(std::move(s)); // Move assign base class members
-        n_ = std::move(s.n_);
-        egz_ = std::move(s.egz_);
-        nd_ = std::move(s.nd_);
-        vidurkis_ = std::move(s.vidurkis_);
-        galutinis_ = std::move(s.galutinis_);
-        mediana_ = std::move(s.mediana_);
-    }
+// Move konstruktorius
+Studentas::Studentas(Studentas&& other) noexcept
+    : vardas_(""), pavarde_(""), n_(0), egz_(0), nd_(), vidurkis_(0), galutinis_(0), mediana_(0) {
+    swap(vardas_, other.vardas_);
+    swap(pavarde_, other.pavarde_);
+    swap(n_, other.n_);
+    swap(egz_, other.egz_);
+    swap(nd_, other.nd_);
+    swap(vidurkis_, other.vidurkis_);
+    swap(galutinis_, other.galutinis_);
+    swap(mediana_, other.mediana_);
+}
+
+// Move priskyrimo operatorius
+Studentas& Studentas::operator=(Studentas&& other) noexcept {
+    if (this == &other) return *this;
+
+    swap(vardas_, other.vardas_);
+    swap(pavarde_, other.pavarde_);
+    swap(n_, other.n_);
+    swap(egz_, other.egz_);
+    swap(nd_, other.nd_);
+    swap(vidurkis_, other.vidurkis_);
+    swap(galutinis_, other.galutinis_);
+    swap(mediana_, other.mediana_);
+
     return *this;
 }
-    
 
 int Studentas::IntInput() {
     int value;
@@ -91,40 +78,37 @@ int Studentas::IntInput() {
 }
 
 void Studentas::sortStudents(vector<Studentas>& students, int rusiavimas) {
-    if (rusiavimas == 1) {
+    switch (rusiavimas) {
+    case 1:
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getGalutinis() > b.getGalutinis();
             });
-    }
-
-    if (rusiavimas == 2) {
+        break;
+    case 2:
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getGalutinis() < b.getGalutinis();
             });
-    }
-
-    if (rusiavimas == 3) {
+        break;
+    case 3:
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getVardas() < b.getVardas();
             });
-    }
-
-    if (rusiavimas == 4) {
+        break;
+    case 4:
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getVardas() > b.getVardas();
             });
-    }
-
-    if (rusiavimas == 5) {
+        break;
+    case 5:
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getPavarde() < b.getPavarde();
             });
-    }
-
-    if (rusiavimas == 6) {
+        break;
+    case 6:
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
             return a.getPavarde() > b.getPavarde();
             });
+        break;
     }
 }
 
@@ -133,7 +117,7 @@ string Studentas::allLetters() {
     cin >> value;
     for (char c : value) {
         if (!isalpha(c)) {
-            throw runtime_error("Ivesties klaida! Iveskite tik raides. ");
+            throw runtime_error("Ivesties klaida! Iveskite tik raides.");
         }
     }
     return value;
@@ -155,7 +139,6 @@ string Studentas::StringInput() {
     return value;
 }
 
-
 double Studentas::Mediana() const {
     std::vector<int> sorted_nd = nd_;
     std::sort(sorted_nd.begin(), sorted_nd.end());
@@ -174,7 +157,53 @@ double Studentas::Vidurkis() const {
     for (int i : nd_) {
         suma += i;
     }
-    return static_cast<double>(suma) / n_;
+    return static_cast<double>(suma) / getND().size();
+}
+
+void Studentas::ManualDataInput(int pasirinkimas) {
+    std::cout << "Iveskite savo varda: ";
+    setVardas(StringInput());
+
+    std::cout << "Iveskite savo pavarde: ";
+    setPavarde(StringInput());
+
+    std::cout << "Iveskite egzamino bala [1 - 10]: ";
+    while (true) {
+        setEgz(IntInput());
+        if (getEgz() < 1 || getEgz() > 10) {
+            cout << "Netinkamas pasirinkimas!" << endl;
+        }
+        else break;
+    }
+
+    std::cout << "Iveskite atliktu namu darbu skaiciu: ";
+    setN(IntInput());
+
+    std::cout << "Iveskite pazymius nuo [1 - 10]: ";
+    for (int i = 0; i < n_; i++) {
+        int sum = 0;
+        int nd;
+        while (true) {
+            std::cout << "Pazymys " << i + 1 << ": ";
+            nd = IntInput();
+            if (nd < 1 || nd > 10) {
+                cout << "Netinkamas pasirinkimas!" << endl;
+            }
+            else break;
+
+            sum += nd;
+            nd_.push_back(nd);
+        }
+    }
+
+    if (pasirinkimas == 1) {
+        setVidurkis(Vidurkis());
+        setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
+    }
+    if (pasirinkimas == 2) {
+        setMediana(Mediana());
+        setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
+    }
 }
 
 int Studentas::generateGrade() {
@@ -184,87 +213,38 @@ int Studentas::generateGrade() {
     return distribution(rng);
 }
 
+void Studentas::ManualNameInput(int pasirinkimas) {
+    std::cout << "Iveskite savo varda: ";
+    setVardas(StringInput());
+
+    std::cout << "Iveskite savo pavarde: ";
+    setPavarde(StringInput());
+
+    std::cout << "Iveskite atliktu namu darbu skaiciu: ";
+    setN(IntInput());
+
+    setEgz(generateGrade());
+
+    for (int i = 0; i < n_; i++) {
+        int nd = generateGrade();
+        nd_.push_back(nd);
+    }
+
+    if (pasirinkimas == 1) {
+        setVidurkis(Vidurkis());
+        setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
+    }
+    if (pasirinkimas == 2) {
+        setMediana(Mediana());
+        setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
+    }
+}
+
 int Studentas::generateND() {
     std::random_device rd;
     std::mt19937 rng(rd());
     std::uniform_int_distribution<int> distribution(6, 6);
     return distribution(rng);
-}
-
-void Studentas::ManualDataInput(int pasirinkimas) {
-    
-        std::cout << "Iveskite savo varda: ";
-        setVardas(StringInput());
-
-        std::cout << "Iveskite savo pavarde: ";
-        setPavarde(StringInput());
-
-        std::cout << "Iveskite egzamino bala [1 - 10]: ";
-        while (true) {
-            setEgz(IntInput());
-            if (getEgz() < 1 || getEgz() > 10) {
-                cout << "Netinkamas pasirinkimas! " << endl;
-            }
-            else break;
-        }
-
-        std::cout << "Iveskite atliktu namu darbu skaiciu: ";
-        setN(IntInput());
-
-        std::cout << "Iveskite pazymius nuo [1 - 10]: ";
-        for (int i = 0; i < n_; i++) {
-            int sum = 0;
-            int nd;
-            while (true) {
-                std::cout << "Pazymys " << i + 1 << ": ";
-                nd = IntInput();
-                if (nd < 1 || nd > 10) {
-                    cout << "Netinkamas pasirinkimas! " << endl;
-                }
-                else break;
-
-                sum += nd;
-                nd_.push_back(nd);
-            }
-    }
-
-        if (pasirinkimas == 1) {
-            setVidurkis( Vidurkis());
-            setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
-        }
-        if (pasirinkimas == 2) {
-            setMediana(Mediana());
-            setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
-        }
-}
-
-void Studentas::ManualNameInput(int pasirinkimas)  {
-
-        std::cout << "Iveskite savo varda: ";
-        setVardas(StringInput());
-
-        std::cout << "Iveskite savo pavarde: ";
-        setPavarde(StringInput());
-
-
-        std::cout << "Iveskite atliktu namu darbu skaiciu: ";
-        setN(IntInput());
-
-        setEgz(generateGrade());
-        
-        for (int i = 0; i < n_; i++) {
-            int nd = generateGrade();
-            nd_.push_back(nd);
-        }
-
-        if (pasirinkimas == 1) {
-            setVidurkis(Vidurkis());
-            setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
-        }
-        if (pasirinkimas == 2) {
-            setMediana(Mediana());
-            setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
-        }
 }
 
 void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, const std::vector<std::string>& Vardai_m, const std::vector<std::string>& Pavardes_v, const std::vector<std::string>& Pavardes_m, int pasirinkimas) {
@@ -286,7 +266,7 @@ void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, con
     setEgz(distribution(gen));
 
     setN(generateND());
-    
+
     int sum = 0;
     for (int i = 0; i < getN(); i++) {
         int nd = generateGrade();
@@ -295,11 +275,11 @@ void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, con
     }
 
     if (pasirinkimas == 1) {
-        setVidurkis(Vidurkis()); 
+        setVidurkis(Vidurkis());
         setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
     }
     else {
-        setMediana(Mediana()); 
+        setMediana(Mediana());
         setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
     }
 }
@@ -366,12 +346,10 @@ void Studentas::readFile(const string& fileName, vector<Studentas>& studentai, i
         setN(nd_.size());
 
         if (pasirinkimas == 1) {
-
             setVidurkis(Vidurkis());
-            setGalutinis( 0.4 * getVidurkis() + 0.6 * getEgz());
+            setGalutinis(0.4 * getVidurkis() + 0.6 * getEgz());
         }
         else {
-
             setMediana(Mediana());
             setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
         }
@@ -391,7 +369,10 @@ void Studentas::generateFile(const string& fileName, int studentAmount) {
     mt19937 rng(rd());
 
     int ndCount = generateND();
-    if (!file.is_open()) { cerr << "Nepavyko atidaryti failo!" << endl; return; }
+    if (!file.is_open()) {
+        cerr << "Nepavyko atidaryti failo!" << endl;
+        return;
+    }
 
     file << setw(20) << "Vardas" << setw(20) << "Pavarde";
     for (int i = 1; i <= ndCount; ++i) {
@@ -413,14 +394,12 @@ void Studentas::generateFile(const string& fileName, int studentAmount) {
 }
 
 void Studentas::separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
-
-    auto it = find_if(studentai.begin(), studentai.end(), [](const Studentas& s) {
+    auto it = partition(studentai.begin(), studentai.end(), [](const Studentas& s) {
         return s.getGalutinis() >= 5;
         });
 
-    copy(studentai.begin(), it, inserter(Blogi, Blogi.end()));
-
-    studentai.erase(studentai.begin(), it);
+    Blogi.insert(Blogi.end(), make_move_iterator(it), make_move_iterator(studentai.end()));
+    studentai.erase(it, studentai.end());
 }
 
 void Studentas::generateSeperateFile(const vector<Studentas>& studentai, const string& fileName, int pasirinkimas) {
@@ -443,4 +422,18 @@ void Studentas::generateSeperateFile(const vector<Studentas>& studentai, const s
 void Studentas::clearVectors(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
     studentai.clear();
     Blogi.clear();
+}
+
+void Studentas::printInfo() {
+    std::cout << "Vardas: " << vardas_ << std::endl;
+    std::cout << "Pavarde: " << pavarde_ << std::endl;
+    std::cout << "Egzamino balas: " << egz_ << std::endl;
+    std::cout << "Namu darbu skaicius: " << n_ << std::endl;
+    std::cout << "Namu darbu pazymiai: ";
+    for (const auto& grade : nd_) {
+        std::cout << grade << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "Vidurkis: " << vidurkis_ << std::endl;
+    std::cout << "Mediana: " << mediana_ << std::endl;
 }
