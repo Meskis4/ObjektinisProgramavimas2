@@ -40,14 +40,14 @@ Tai patobulinta v0.3 versija.
 
 Buvo atlikti tyrimai, norint nustatyti failo generavimo, skaitymo, paskirstymo į grupes, rūšiavimo bei paskirstytų grupių surašymo į failus bendras laikas.
 
-# 1 Tyrimas (Failo generavimas)
+# 1 Tyrimas 
 ![Screenshot 2024-03-08 181802](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/b10fee62-70a7-448a-b8b2-e9b07fc53108)
 
-# 2 Tyrimas (Failo apdorojimas)
+# 2 Tyrimas
+![Tyrimas2EXC](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/6c67460a-a89f-409b-8758-48cdcc448495)
 
-![Screenshot 2024-03-08 192520](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/771d97bb-6104-438f-95cd-15fbc39244c0)
+![Screenshot 2024-05-21 211856](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/378b675e-64d3-46c8-9007-521e571ed89d)
 
-![Screenshot 2024-03-08 191511](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/0a8fb722-8b81-4f3e-bfb7-ab981e90d3ec)
 
 
 # v1.0
