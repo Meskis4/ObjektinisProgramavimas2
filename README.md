@@ -139,22 +139,21 @@ Ištestuota programų sparta (naudojant struktūrą bei klasę), naudojant skirt
 
 Šioje versijoje pridėjau copy bei move konstruktorius, taip pat jų priskyrimo operatorius. 
 
-![Copy_Const](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/42b88d0f-0a18-4dd0-bc18-4bbb69e7e3f2)
 
-![move_const](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/9e889d92-25f7-4181-944f-9f0c9d65d172)
+![Screenshot 2024-06-04 161533](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/9854fac6-7175-4ec5-a0ed-2170a25233bb)
+
+![Screenshot 2024-06-04 161605](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/fbf696ed-fc3a-46cc-ba76-c9bdfb673a6b)
+
+![Screenshot 2024-06-04 161642](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/ed1cdb05-b214-4bb4-aed2-074f0ad9229a)
+
+
 
 # v1.5
 
 Šioje versijoje pridėta bazinė klasė Žmogus. Naudojant ją nėra galimybės sukurti naujo objekto: 
 
-![Zmogus](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/00c5e7e0-3868-49eb-80c3-040a7d54aca5)
 
-Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridėjus bazinę klasę "Zmogus": 
-
-![Screenshot 2024-04-19 222840](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/10af124d-6b2c-44be-a825-2468091623cb)
-
-
-
+![Screenshot 2024-06-07 094530](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/d3ca6b2d-1ba1-4a2f-a891-aad9125f5776)
 
 
 
@@ -167,6 +166,8 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 6) Pasirinkite galutinio balo skaičiavimo metodą.
 7) Įveskite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
 8) Gausite rezultatus ( jei pasirinkote generuoti failus, jie bus sugeneruoti "Debug" aplanke )
+
+    ***(Tik programa naudojanti std::vector konteinerius yra atnaujinama)***
   
 
 
