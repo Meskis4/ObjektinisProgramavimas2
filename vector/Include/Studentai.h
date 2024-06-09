@@ -69,7 +69,7 @@ public:
     void generateSeperateFile(const std::vector<Studentas>& studentai, const std::string& fileName, int pasirinkimas);
     void clearVectors(std::vector<Studentas>& studentai, std::vector<Studentas>& Blogi);
     void printInfo();
-    std::string Studentas::output() const;
+    std::string output() const;
 };
 
 
