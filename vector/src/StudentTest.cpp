@@ -19,6 +19,16 @@ namespace StudentTest
 			Assert::AreEqual(expected, A.output());
 
 		}
+
+		TEST_METHOD(ParamtericConstructor) {
+			{
+				Studentas A("Jonas", "Jonaitis", 3, 9, { 1, 5, 4 }, 9.0, 9.4, 9.0);
+				std::string expected = "Jonas\tJonaitis\t3\t9\t1 5 4 \t9.0\t9.4\t9.0";
+
+				Assert::AreEqual(expected, A.output());
+			}
+
+		}
 		
 	};
 }
