@@ -45,9 +45,7 @@ Buvo atlikti tyrimai, norint nustatyti failo generavimo, skaitymo, paskirstymo Ä
 
 # 2 Tyrimas (Failo apdorojimas)
 
-![Screenshot 2024-03-08 192520](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/771d97bb-6104-438f-95cd-15fbc39244c0)
-
-![Screenshot 2024-03-08 191511](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/0a8fb722-8b81-4f3e-bfb7-ab981e90d3ec)
+![Tyrimas2EXC](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/6c67460a-a89f-409b-8758-48cdcc448495)
 
 
 # v1.0
