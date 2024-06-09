@@ -45,10 +45,7 @@ Buvo atlikti tyrimai, norint nustatyti failo generavimo, skaitymo, paskirstymo �
 
 # 2 Tyrimas (Failo apdorojimas)
 
-![Screenshot 2024-03-08 192520](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/771d97bb-6104-438f-95cd-15fbc39244c0)
-
-![Screenshot 2024-03-08 191511](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/0a8fb722-8b81-4f3e-bfb7-ab981e90d3ec)
-
+![Tyrimas2EXC](https://github.com/Meskis4/ObjektinisProgramavimas/assets/147125301/6c67460a-a89f-409b-8758-48cdcc448495)
 
 # v1.0
 
@@ -157,6 +154,15 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 
 Šioje versijoje pridėta "Doxygen" dokumentacija, klasėms "Studentas" bei "Zmogus". Dokumentacija yra pateikiama HTML bei TeX kalbomis.
 
+Taip pat, šioje versijoje yra pridėti **Unit testai**, skirti ištestuoti: 
+1) Default konstruktorių
+2) Parametrinį konstruktorių
+3) Copy konstruktorių
+4) Move konstruktorių
+
+   ![testai](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/0d460ca4-f6b9-4b69-bcc8-e668a868727e)
+
+
 
 
 # Naudojimo instrukcija
@@ -168,6 +174,8 @@ Taip pat perdaryti konstruktoriai bei priskyrimo operatoriai, kad veiktų pridė
 6) Pasirinkite galutinio balo skaičiavimo metodą.
 7) Įveskite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
 8) Gausite rezultatus ( jei pasirinkote generuoti failus, jie bus sugeneruoti "Debug" aplanke )
+   
+***Atnaujinama yra tik programos versija naudojanti std::vector konteinerius***
 
 # Dokumentacijos atidarymas  
 **HTML:** 
