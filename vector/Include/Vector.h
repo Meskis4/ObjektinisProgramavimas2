@@ -92,3 +92,79 @@ Vector<T>& Vector<T>::operator=(Vector&& other) noexcept {
     }
     return *this;
 }
+
+// Add element to the end
+template <typename T>
+void Vector<T>::push_back(const T& value) {
+    if (_size == _capacity) {
+        reserve(2 * _capacity);
+    }
+    _data[_size++] = value;
+}
+
+// Remove element from the end
+template <typename T>
+void Vector<T>::pop_back() {
+    if (_size > 0) {
+        _data[--_size].~T();
+    }
+    else {
+        throw std::out_of_range("pop_back() called on empty vector");
+    }
+}
+
+// Swap function
+template <typename T>
+void Vector<T>::swap(Vector& other) {
+    std::swap(_size, other._size);
+    std::swap(_capacity, other._capacity);
+    std::swap(_data, other._data);
+}
+
+// end() function
+template <typename T>
+T* Vector<T>::end() {
+    return _data + _size;
+}
+
+// Access element at index
+template <typename T>
+T& Vector<T>::operator[](size_t index) {
+    if (index >= _size) {
+        throw std::out_of_range("Index out of range");
+    }
+    return _data[index];
+}
+
+template <typename T>
+const T& Vector<T>::operator[](size_t index) const {
+    if (index >= _size) {
+        throw std::out_of_range("Index out of range");
+    }
+    return _data[index];
+}
+
+// Get size of the vector
+template <typename T>
+size_t Vector<T>::size() const {
+    return _size;
+}
+
+// Get capacity of the vector
+template <typename T>
+size_t Vector<T>::capacity() const {
+    return _capacity;
+}
+
+// Reserve more space
+template <typename T>
+void Vector<T>::reserve(size_t new_capacity) {
+    if (new_capacity > _capacity) {
+        T* new_data = new T[new_capacity];
+        std::copy(_data, _data + _size, new_data);
+        delete[] _data;
+        _data = new_data;
+        _capacity = new_capacity;
+    }
+}
+
