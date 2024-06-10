@@ -7,37 +7,24 @@
 template <typename T, typename Allocator = std::allocator<T>>
 class Vector {
 public:
-    // Member types
+     //  Member types
     using value_type = T;
-    using allocator_type = Allocator;
-    using size_type = std::size_t;
-    using difference_type = std::ptrdiff_t;
-    using reference = value_type&;
-    using const_reference = const value_type&;
-    using pointer = typename std::allocator_traits<Allocator>::pointer;
-    using const_pointer = typename std::allocator_traits<Allocator>::const_pointer;
+    using size_type = size_t;
+    using iterator = T*;
+    using const_iterator = const T*;
 
-    // Iterator types
-    using iterator = pointer;  
-    using const_iterator = const_pointer; 
-    using reverse_iterator = std::reverse_iterator<iterator>;
-    using const_reverse_iterator = std::reverse_iterator<const_iterator>;
-
-    //Constructors / Destructor
-    Vector() noexcept;
+// Constructors / destructor
+    Vector();
     Vector(const Vector& other);
-    Vector& operator=(const Vector& other);
+    Vector(Vector&& other) noexcept;
     ~Vector();
 
-    //Element access
-    reference at(size_type index);
-    const_reference at(size_type index) const;
-    reference front();
-    const_reference front() const;
-    reference back();
-    const_reference back() const;
-    pointer data() noexcept;
-    const_pointer data() const noexcept;
-
-
 };
+
+// Constructor
+template <typename T>
+Vector<T>::Vector() : _size(0), _capacity(1), _data(new T[_capacity]) {}
+
+// Destructor
+template <typename T>
+Vector<T>::~Vector() { delete[] _data; }
