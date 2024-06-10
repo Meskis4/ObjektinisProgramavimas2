@@ -29,4 +29,15 @@ public:
     Vector& operator=(const Vector& other);
     ~Vector();
 
+    //Element access
+    reference at(size_type index);
+    const_reference at(size_type index) const;
+    reference front();
+    const_reference front() const;
+    reference back();
+    const_reference back() const;
+    pointer data() noexcept;
+    const_pointer data() const noexcept;
+
+
 };
