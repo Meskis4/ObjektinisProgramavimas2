@@ -22,6 +22,25 @@ public:
   Vector& operator=(const Vector& other);
   Vector& operator=(Vector&& other) noexcept;
 
+//Member functions
+void push_back(const T& value);
+void pop_back();
+void swap(Vector& other);
+T* end();
+T& operator[](size_t index);
+const T& operator[](size_t index) const;
+size_t size() const;
+size_t capacity() const;
+
+private:
+    size_t _size;
+    size_t _capacity;
+    T* _data;
+
+    // Private member functions
+    void reserve(size_t new_capacity);
+};
+
 };
 
 // Constructor
