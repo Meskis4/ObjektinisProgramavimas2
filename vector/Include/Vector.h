@@ -177,3 +177,8 @@ void Vector<T>::clear() {
     _data = new T[_capacity];
     _size = 0;
 }
+
+template <typename T>
+Vector<T>::Vector(std::initializer_list<T> init) : _size(init.size()), _capacity(init.size()), _data(new T[init.size()]) {
+    std::copy(init.begin(), init.end(), _data);
+}
