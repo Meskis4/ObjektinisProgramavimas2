@@ -169,3 +169,10 @@ void Vector<T>::reserve(size_t new_capacity) {
     }
 }
 
+//Clear vector
+template <typename T>
+void Vector<T>::clear() {
+    delete[] _data;
+    _data = new T[_capacity];
+    _size = 0;
+}
