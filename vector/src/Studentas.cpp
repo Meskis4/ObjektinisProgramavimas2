@@ -4,7 +4,7 @@ using namespace std;
 Studentas::Studentas()
     : vardas_(""), pavarde_(""), n_(0), egz_(0), vidurkis_(0), galutinis_(0), mediana_(0) {}
 
-Studentas::Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const std::vector<int>& nd, double vidurkis, double galutinis, double mediana)
+Studentas::Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const Vector<int>& nd, double vidurkis, double galutinis, double mediana)
     : vardas_(vardas), pavarde_(pavarde), n_(n), egz_(egz), nd_(nd), vidurkis_(vidurkis), galutinis_(galutinis), mediana_(mediana) {}
 
 Studentas::~Studentas() {}
@@ -77,7 +77,7 @@ int Studentas::IntInput() {
     return value;
 }
 
-void Studentas::sortStudents(vector<Studentas>& students, int rusiavimas) {
+void Studentas::sortStudents(Vector<Studentas>& students, int rusiavimas) {
     switch (rusiavimas) {
     case 1:
         sort(students.begin(), students.end(), [](const Studentas& a, const Studentas& b) {
@@ -140,7 +140,7 @@ string Studentas::StringInput() {
 }
 
 double Studentas::Mediana() const {
-    std::vector<int> sorted_nd = nd_;
+    Vector<int> sorted_nd = nd_;
     std::sort(sorted_nd.begin(), sorted_nd.end());
     if (sorted_nd.size() % 2 == 0) {
         double vidur1 = sorted_nd[sorted_nd.size() / 2 - 1];
@@ -247,7 +247,7 @@ int Studentas::generateND() {
     return distribution(rng);
 }
 
-void Studentas::GenerateRandomData(const std::vector<std::string>& Vardai_v, const std::vector<std::string>& Vardai_m, const std::vector<std::string>& Pavardes_v, const std::vector<std::string>& Pavardes_m, int pasirinkimas) {
+void Studentas::GenerateRandomData(const Vector<std::string>& Vardai_v, const Vector<std::string>& Vardai_m, const Vector<std::string>& Pavardes_v, const Vector<std::string>& Pavardes_m, int pasirinkimas) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> distribution(1, 10);
@@ -306,7 +306,7 @@ string Studentas::FailoPatikrinimas() {
     return filename;
 }
 
-void Studentas::readFile(const string& fileName, vector<Studentas>& studentai, int pasirinkimas) {
+void Studentas::readFile(const string& fileName, Vector<Studentas>& studentai, int pasirinkimas) {
     ifstream df(fileName);
 
     if (!df.is_open()) {
@@ -393,16 +393,21 @@ void Studentas::generateFile(const string& fileName, int studentAmount) {
     file.close();
 }
 
-void Studentas::separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
-    auto it = partition(studentai.begin(), studentai.end(), [](const Studentas& s) {
-        return s.getGalutinis() >= 5;
-        });
-
-    Blogi.insert(Blogi.end(), make_move_iterator(it), make_move_iterator(studentai.end()));
-    studentai.erase(it, studentai.end());
+void Studentas::separateStudents(Vector<Studentas>& studentai, Vector<Studentas>& Blogi) {
+    Vector<Studentas> temp;
+    for (auto it = studentai.begin(); it != studentai.end(); ++it) {
+        if (it->getGalutinis() < 5) {
+            Blogi.push_back(std::move(*it));
+        }
+        else {
+            temp.push_back(std::move(*it));
+        }
+    }
+    studentai = std::move(temp);
 }
 
-void Studentas::generateSeperateFile(const vector<Studentas>& studentai, const string& fileName, int pasirinkimas) {
+
+void Studentas::generateSeperateFile(const Vector<Studentas>& studentai, const string& fileName, int pasirinkimas) {
     ofstream outFile(fileName);
     if (outFile.is_open()) {
         outFile << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
@@ -419,7 +424,7 @@ void Studentas::generateSeperateFile(const vector<Studentas>& studentai, const s
     }
 }
 
-void Studentas::clearVectors(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
+void Studentas::clearVectors(Vector<Studentas>& studentai, Vector<Studentas>& Blogi) {
     studentai.clear();
     Blogi.clear();
 }
