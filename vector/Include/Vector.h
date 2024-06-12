@@ -31,6 +31,7 @@ T& operator[](size_t index);
 const T& operator[](size_t index) const;
 size_t size() const;
 size_t capacity() const;
+void clear();
 
 private:
     size_t _size;
