@@ -140,6 +140,7 @@ string Studentas::StringInput() {
 }
 
 double Studentas::Mediana() const {
+   
     Vector<int> sorted_nd = nd_;
     std::sort(sorted_nd.begin(), sorted_nd.end());
     if (sorted_nd.size() % 2 == 0) {
@@ -153,11 +154,12 @@ double Studentas::Mediana() const {
 }
 
 double Studentas::Vidurkis() const {
+   
     int suma = 0;
     for (int i : nd_) {
         suma += i;
     }
-    return static_cast<double>(suma) / getND().size();
+    return static_cast<double>(suma) / nd_.size();
 }
 
 void Studentas::ManualDataInput(int pasirinkimas) {
@@ -181,7 +183,6 @@ void Studentas::ManualDataInput(int pasirinkimas) {
 
     std::cout << "Iveskite pazymius nuo [1 - 10]: ";
     for (int i = 0; i < n_; i++) {
-        int sum = 0;
         int nd;
         while (true) {
             std::cout << "Pazymys " << i + 1 << ": ";
@@ -190,10 +191,8 @@ void Studentas::ManualDataInput(int pasirinkimas) {
                 cout << "Netinkamas pasirinkimas!" << endl;
             }
             else break;
-
-            sum += nd;
-            nd_.push_back(nd);
         }
+        nd_.push_back(nd);
     }
 
     if (pasirinkimas == 1) {
