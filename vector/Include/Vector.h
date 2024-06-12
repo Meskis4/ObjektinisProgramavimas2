@@ -32,6 +32,7 @@ const T& operator[](size_t index) const;
 size_t size() const;
 size_t capacity() const;
 void clear();
+Vector(std::initializer_list<T> init);
 
 private:
     size_t _size;
