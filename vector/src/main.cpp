@@ -7,11 +7,12 @@ int main() {
     // Zmogaus objekto kurimo apribojimas:
     //Zmogus Stud;
 
-    vector<string> Vardai_v = { "Petras", "Jonas", "Paulius", "Saulius", "Martynas", "Kornelijus", "Adomas", "Lukas", "Marius", "Kazimieras", "Dovydas", "Mantas", "Arnas", "Dziugas" };
-    vector<string> Vardai_m = { "Eva", "Paulina", "Sofija", "Gintare", "Skaiste", "Marija", "Lukrecija", "Kornelija", "Egle", "Kamile", "Auguste", "Meda", "Ruta" };
-    vector<string> Pavardes_v = { "Kazlauskas", "Vasiliauskas", "Petrauskas", "Paulauskas", "Urbonas", "Adomaitis", "Sadauskas", "Vaitkus", "Jankauskas", "Rimkus" };
-    vector<string> Pavardes_m = { "Kazlauskaite", "Vasiliauskiene", "Paulauskyte", "Vaitkute", "Jankauskaite", "Rimkute", "Adomaitiene", "Petrauskyte" };
-    vector<Studentas> studentai;
+
+    Vector<string> Vardai_v = { "Petras", "Jonas", "Paulius", "Saulius", "Martynas", "Kornelijus", "Adomas", "Lukas", "Marius", "Kazimieras", "Dovydas", "Mantas", "Arnas", "Dziugas" };
+    Vector<string> Vardai_m = { "Eva", "Paulina", "Sofija", "Gintare", "Skaiste", "Marija", "Lukrecija", "Kornelija", "Egle", "Kamile", "Auguste", "Meda", "Ruta" };
+    Vector<string> Pavardes_v = { "Kazlauskas", "Vasiliauskas", "Petrauskas", "Paulauskas", "Urbonas", "Adomaitis", "Sadauskas", "Vaitkus", "Jankauskas", "Rimkus" };
+    Vector<string> Pavardes_m = { "Kazlauskaite", "Vasiliauskiene", "Paulauskyte", "Vaitkute", "Jankauskaite", "Rimkute", "Adomaitiene", "Petrauskyte" };
+    Vector<Studentas> studentai;
 
     int budas = 0;
     int pasirinkimas = 0;
@@ -138,7 +139,7 @@ int main() {
 
     // Failu generavimas
     if (budas == 5) {
-        vector<string> fileSizes = { "1000", "10000" };
+        Vector<string> fileSizes = { "1000", "10000" };
 
         for (const string& size : fileSizes) {
             auto startGenerate = chrono::high_resolution_clock::now();
@@ -153,9 +154,9 @@ int main() {
     }
 
     if (budas == 6) {
-        vector<Studentas> blogi;
+        Vector<Studentas> blogi;
 
-        vector<string> fileSizes = { "1000", "10000" };
+        Vector<string> fileSizes = { "1000", "10000" };
 
         for (const string& size : fileSizes) {
             auto startRead = chrono::high_resolution_clock::now();
@@ -204,7 +205,7 @@ int main() {
 
         cout << " " << endl;
         cout << "***PARAMETRINIS KONSTRUKTORIUS***" << endl;
-        vector<int> nd = { 8, 9, 10 };
+        Vector<int> nd = { 8, 9, 10 };
         Studentas paramStudent("Jonas", "Jonaitis", 3, 9, nd, 9.0, 9.4, 9.0);
         paramStudent.printInfo();
         cout << endl;
@@ -259,7 +260,7 @@ int main() {
         movedStudent.printInfo();
     }
 
-    if (budas != 5 && budas != 6 && budas != 7) {
+    if (budas != 5 && budas != 6 && budas != 7 ) {
         S.sortStudents(studentai, rusiavimas);
 
         cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
