@@ -162,6 +162,19 @@ Taip pat, šioje versijoje yra pridėti **Unit testai**, skirti ištestuoti:
 
    ![testai](https://github.com/Meskis4/ObjektinisProgramavimas2/assets/147125301/0d460ca4-f6b9-4b69-bcc8-e668a868727e)
 
+# v3.0
+
+Šioje versijoje sukurta klasė "Vector", kuri turi metodus, kurių reikia norint, kad veiktų v1.5.1 programos versija su šia klase vietoj std::vector konteinerių.
+
+Programoje pridėta funkcija, kuri išmatuoja std::vector bei Vector klasės užpildymo greitį:
+
+|    Size   | std::vector | Vector_class |
+|:---------:|:-----------:|:------------:|
+|   10000   |  0.0004959  |   0.0001121  |
+|   100000  |  0.0051786  |   0.0006238  |
+|  1000000  |   0.0473979 |  0.0055968   |
+|  10000000 |  0.458943   |   0.0595791  |
+| 100000000 |   4.56584   |   0.533198   |
 
 
 
