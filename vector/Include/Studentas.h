@@ -1,6 +1,5 @@
 #pragma once
 #include "Zmogus.h"
-#include <vector>
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -10,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include "Vector.h"
 
 class Studentas : public Zmogus {
 private:
@@ -17,14 +17,14 @@ private:
     std::string pavarde_;
     int n_;
     int egz_;
-    std::vector<int> nd_;
+    Vector<int> nd_;
     double vidurkis_;
     double galutinis_;
     double mediana_;
 
 public:
     Studentas();
-    Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const std::vector<int>& nd, double vidurkis, double galutinis, double mediana);
+    Studentas(const std::string& vardas, const std::string& pavarde, int n, int egz, const Vector<int>& nd, double vidurkis, double galutinis, double mediana);
     ~Studentas();
 
     Studentas(const Studentas& other);
@@ -36,7 +36,7 @@ public:
     std::string getPavarde() const override { return pavarde_; }
     int getN() const { return n_; }
     int getEgz() const { return egz_; }
-    std::vector<int> getND() const { return nd_; }
+    Vector<int> getND() const { return nd_; }
     double getVidurkis() const { return vidurkis_; }
     double getGalutinis() const { return galutinis_; }
     double getMediana() const { return mediana_; }
@@ -45,13 +45,13 @@ public:
     void setPavarde(const std::string& pavarde) override { pavarde_ = pavarde; }
     void setN(int n) { n_ = n; }
     void setEgz(int egz) { egz_ = egz; }
-    void setND(const std::vector<int>& nd) { nd_ = nd; }
+    void setND(const Vector<int>& nd) { nd_ = nd; }
     void setVidurkis(double vidurkis) { vidurkis_ = vidurkis; }
     void setGalutinis(double galutinis) { galutinis_ = galutinis; }
     void setMediana(double mediana) { mediana_ = mediana; }
 
     int IntInput();
-    void sortStudents(std::vector<Studentas>& students, int rusiavimas);
+    void sortStudents(Vector<Studentas>& students, int rusiavimas);
     std::string allLetters();
     std::string StringInput();
     double Mediana() const;
@@ -60,17 +60,14 @@ public:
     int generateGrade();
     void ManualNameInput(int pasirinkimas);
     int generateND();
-    void GenerateRandomData(const std::vector<std::string>& Vardai_v, const std::vector<std::string>& Vardai_m, const std::vector<std::string>& Pavardes_v, const std::vector<std::string>& Pavardes_m, int pasirinkimas);
+    void GenerateRandomData(const Vector<std::string>& Vardai_v, const Vector<std::string>& Vardai_m, const Vector<std::string>& Pavardes_v, const Vector<std::string>& Pavardes_m, int pasirinkimas);
     std::string FailoPatikrinimas();
-    void readFile(const std::string& fileName, std::vector<Studentas>& studentai, int pasirinkimas);
+    void readFile(const std::string& fileName, Vector<Studentas>& studentai, int pasirinkimas);
     std::string intToString(int value);
     void generateFile(const std::string& fileName, int studentAmount);
-    void separateStudents(std::vector<Studentas>& studentai, std::vector<Studentas>& Blogi);
-    void generateSeperateFile(const std::vector<Studentas>& studentai, const std::string& fileName, int pasirinkimas);
-    void clearVectors(std::vector<Studentas>& studentai, std::vector<Studentas>& Blogi);
+    void separateStudents(Vector<Studentas>& studentai, Vector<Studentas>& Blogi);
+    void generateSeperateFile(const Vector<Studentas>& studentai, const std::string& fileName, int pasirinkimas);
+    void clearVectors(Vector<Studentas>& studentai, Vector<Studentas>& Blogi);
     void printInfo();
     std::string output() const;
 };
-
-
-
