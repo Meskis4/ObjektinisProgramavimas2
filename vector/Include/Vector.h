@@ -3,6 +3,7 @@
 #include <memory>       
 #include <iterator>     
 #include <cstddef>      
+#include <algorithm>
 
 template <typename T, typename Allocator = std::allocator<T>>
 class Vector {
