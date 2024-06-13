@@ -182,19 +182,16 @@ Pridėta funkcija, kuri išmatuoja atminties persiskirstymų kiekį, užpildant 
 |:---------:|:-----------:|:------------:|
 | 100000000 |     46      |      27      |
 
+Taip pat, šioje programoje pridėtas Setup failas.
 
 
 # Naudojimo instrukcija
 1) Atsisiųskite .zip failą.
-2) Atsidarykite norimos versijos: std::vector, std::list, std::deque aplanką.
-3) Paleiskite run.bat failą (turite turėti savo sistemoje instaliuotą CMAKE).
-4) Paleidus programą būsite paprašyti pasirinkti duomenų užpildymo būdą.
-5) Pasirinkite kaip norite surūšiuoti rezultatus.
-6) Pasirinkite galutinio balo skaičiavimo metodą.
-7) Įveskite tai ko prašo programa (priklauso nuo pasirinkto duomenų užpildymo būdo)
-8) Gausite rezultatus ( jei pasirinkote generuoti failus, jie bus sugeneruoti "Debug" aplanke )
-   
-***Atnaujinama yra tik programos versija naudojanti std::vector konteinerius***
+2) Atsidarykite **'vector \ v3.0_Setup \ Release'** aplanką.
+3) Paleiskite **setup.exe** arba **v3.0_Setup.msi** failą.
+4) Atsidarius setup failui spauskite **next** ir sekite duotas instrukcijas.
+5) Darbalaukyje bus sugeneruota nuoroda **"v3.0"**, ją paspaudus programa pasileis.
+6) Parsisiųsta programa yra saugomas **Program files \ vu \ Vardenis - Pavardenis** aplanke
 
 # Dokumentacijos atidarymas  
 **HTML:** 
