@@ -32,7 +32,6 @@ public:
     iterator end();
     const_iterator begin() const;
     const_iterator end() const;
-    void insert(iterator pos, iterator first, iterator last);
     void erase(iterator first, iterator last);
     T& operator[](size_t index);
     const T& operator[](size_t index) const;
@@ -47,7 +46,7 @@ private:
     size_t _size;
     size_t _capacity;
     T* _data;
-  
+
 };
 
 // std::swap specialization for Vector
@@ -160,22 +159,7 @@ typename Vector<T>::const_iterator Vector<T>::end() const {
     return _data + _size;
 }
 
-// Insert range of elements
-template <typename T>
-void Vector<T>::insert(iterator pos, iterator first, iterator last) {
-    size_t insert_size = last - first;
-    size_t pos_index = pos - _data;
 
-    if (_size + insert_size > _capacity) {
-        reserve(_size + insert_size);
-    }
-
-    pos = _data + pos_index;
-
-    std::move_backward(pos, _data + _size, _data + _size + insert_size);
-    std::move(first, last, pos);
-    _size += insert_size;
-}
 
 // Erase range of elements
 template <typename T>
