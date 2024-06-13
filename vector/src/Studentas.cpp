@@ -140,7 +140,7 @@ string Studentas::StringInput() {
 }
 
 double Studentas::Mediana() const {
-   
+
     vector<int> sorted_nd = nd_;
     std::sort(sorted_nd.begin(), sorted_nd.end());
     if (sorted_nd.size() % 2 == 0) {
@@ -154,7 +154,7 @@ double Studentas::Mediana() const {
 }
 
 double Studentas::Vidurkis() const {
-   
+
     int suma = 0;
     for (int i : nd_) {
         suma += i;
@@ -204,6 +204,8 @@ void Studentas::ManualDataInput(int pasirinkimas) {
         setGalutinis(0.4 * getMediana() + 0.6 * getEgz());
     }
 }
+
+
 
 int Studentas::generateGrade() {
     std::random_device rd;
@@ -393,12 +395,16 @@ void Studentas::generateFile(const string& fileName, int studentAmount) {
 }
 
 void Studentas::separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
-    auto it = partition(studentai.begin(), studentai.end(), [](const Studentas& s) {
-        return s.getGalutinis() >= 5;
-        });
-
-    Blogi.insert(Blogi.end(), make_move_iterator(it), make_move_iterator(studentai.end()));
-    studentai.erase(it, studentai.end());
+    vector<Studentas> temp;
+    for (auto it = studentai.begin(); it != studentai.end(); ++it) {
+        if (it->getGalutinis() < 5) {
+            Blogi.push_back(std::move(*it));
+        }
+        else {
+            temp.push_back(std::move(*it));
+        }
+    }
+    studentai = std::move(temp);
 }
 
 void Studentas::generateSeperateFile(const vector<Studentas>& studentai, const string& fileName, int pasirinkimas) {
