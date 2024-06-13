@@ -140,7 +140,8 @@ string Studentas::StringInput() {
 }
 
 double Studentas::Mediana() const {
-    std::vector<int> sorted_nd = nd_;
+
+    vector<int> sorted_nd = nd_;
     std::sort(sorted_nd.begin(), sorted_nd.end());
     if (sorted_nd.size() % 2 == 0) {
         double vidur1 = sorted_nd[sorted_nd.size() / 2 - 1];
@@ -153,11 +154,12 @@ double Studentas::Mediana() const {
 }
 
 double Studentas::Vidurkis() const {
+
     int suma = 0;
     for (int i : nd_) {
         suma += i;
     }
-    return static_cast<double>(suma) / getND().size();
+    return static_cast<double>(suma) / nd_.size();
 }
 
 void Studentas::ManualDataInput(int pasirinkimas) {
@@ -181,7 +183,6 @@ void Studentas::ManualDataInput(int pasirinkimas) {
 
     std::cout << "Iveskite pazymius nuo [1 - 10]: ";
     for (int i = 0; i < n_; i++) {
-        int sum = 0;
         int nd;
         while (true) {
             std::cout << "Pazymys " << i + 1 << ": ";
@@ -190,10 +191,8 @@ void Studentas::ManualDataInput(int pasirinkimas) {
                 cout << "Netinkamas pasirinkimas!" << endl;
             }
             else break;
-
-            sum += nd;
-            nd_.push_back(nd);
         }
+        nd_.push_back(nd);
     }
 
     if (pasirinkimas == 1) {
@@ -394,13 +393,18 @@ void Studentas::generateFile(const string& fileName, int studentAmount) {
 }
 
 void Studentas::separateStudents(vector<Studentas>& studentai, vector<Studentas>& Blogi) {
-    auto it = partition(studentai.begin(), studentai.end(), [](const Studentas& s) {
-        return s.getGalutinis() >= 5;
-        });
-
-    Blogi.insert(Blogi.end(), make_move_iterator(it), make_move_iterator(studentai.end()));
-    studentai.erase(it, studentai.end());
+    vector<Studentas> temp;
+    for (auto it = studentai.begin(); it != studentai.end(); ++it) {
+        if (it->getGalutinis() < 5) {
+            Blogi.push_back(std::move(*it));
+        }
+        else {
+            temp.push_back(std::move(*it));
+        }
+    }
+    studentai = std::move(temp);
 }
+
 
 void Studentas::generateSeperateFile(const vector<Studentas>& studentai, const string& fileName, int pasirinkimas) {
     ofstream outFile(fileName);
