@@ -176,6 +176,12 @@ Programoje pridėta funkcija, kuri išmatuoja std::vector bei Vector klasės už
 |  10000000 |  0.458943   |   0.0595791  |
 | 100000000 |   4.56584   |   0.533198   |
 
+Pridėta funkcija, kuri išmatuoja atminties persiskirstymų kiekį, užpildant 100000000 elementų: 
+
+|    Size   | std::vector | Vector_class |
+|:---------:|:-----------:|:------------:|
+| 100000000 |     46      |      27      |
+
 
 
 # Naudojimo instrukcija
