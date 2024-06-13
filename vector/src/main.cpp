@@ -29,19 +29,20 @@ int main() {
     cout << "5. Generuoti failus" << endl;
     cout << "6. Atskirti studentus i atskirus failus" << endl;
     cout << "7. Istestuoti 'Rule of five'" << endl;
+    cout << "8. std::vector ir Vector klases spartos matavimas" << endl;
     cout << "*****************************************************" << endl;
 
     while (true) {
         cout << "Jusu pasirinkimas: ";
         budas = S.IntInput();
 
-        if (budas < 1 || budas > 7) {
+        if (budas < 1 || budas > 8) {
             cout << "Netinkamas pasirinkimas!" << endl;
         }
         else break;
     }
 
-    if (budas != 7) {
+    if (budas != 7 && budas != 8) {
         cout << "**************************************" << endl;
         cout << "Kaip norite surusiuoti rezultatus?" << endl;
         cout << "1. Pagal galutini pazymi (mazejanciai)" << endl;
@@ -260,7 +261,29 @@ int main() {
         movedStudent.printInfo();
     }
 
-    if (budas != 5 && budas != 6 && budas != 7 ) {
+       if (budas == 8) {
+       unsigned int sz = 100000000; 
+
+       std::vector<int> v1;
+       auto start1 = std::chrono::high_resolution_clock::now();
+       for (int i = 1; i <= sz; ++i) {
+           v1.push_back(i);
+       }
+       auto end1 = std::chrono::high_resolution_clock::now();
+       std::chrono::duration<double> duration1 = end1 - start1;
+       std::cout << "Uzpildyti std::vector: " << duration1.count() << " seconds" << std::endl;
+
+       Vector<int> v2;
+       auto start2 = std::chrono::high_resolution_clock::now();
+       for (int i = 1; i <= sz; ++i) {
+           v2.push_back(i);
+       }
+       auto end2 = std::chrono::high_resolution_clock::now();
+       std::chrono::duration<double> duration2 = end2 - start2;
+       std::cout << "Uzpildyti Vector: " << duration2.count() << " seconds" << std::endl;
+   }
+
+    if (budas < 5) {
         S.sortStudents(studentai, rusiavimas);
 
         cout << left << setw(15) << "Pavarde" << setw(15) << "Vardas" << setw(20) << "Galutinis (Vid.)  /" << setw(20) << "Galutinis (Med.)" << endl;
