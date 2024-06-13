@@ -2,5 +2,5 @@ cmake CMakeLists.txt
 cmake --install .
 cmake --build .
 cd Debug\
-v1.5.exe
+v3.0.exe
 pause
