@@ -336,4 +336,5 @@ int main() {
             }
         }
     }
+    system("pause");
 }
