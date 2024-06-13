@@ -1,50 +1,62 @@
 #pragma once
 
-#include <memory>       
-#include <iterator>     
-#include <cstddef>      
-#include <algorithm>
+#include <cstddef> 
+#include <stdexcept>
+#include <algorithm> 
+#include <iterator>  
 
-template <typename T, typename Allocator = std::allocator<T>>
+template <typename T>
 class Vector {
 public:
-     //  Member types
+    // Public member types
     using value_type = T;
     using size_type = size_t;
     using iterator = T*;
     using const_iterator = const T*;
 
-// Constructors / destructor
+    // Constructors and destructor
     Vector();
     Vector(const Vector& other);
     Vector(Vector&& other) noexcept;
     ~Vector();
 
-  Vector& operator=(const Vector& other);
-  Vector& operator=(Vector&& other) noexcept;
+    // Assignment operators
+    Vector& operator=(const Vector& other);
+    Vector& operator=(Vector&& other) noexcept;
 
-//Member functions
-void push_back(const T& value);
-void pop_back();
-void swap(Vector& other);
-T* end();
-T& operator[](size_t index);
-const T& operator[](size_t index) const;
-size_t size() const;
-size_t capacity() const;
-void clear();
-Vector(std::initializer_list<T> init);
+    // Public member functions
+    void push_back(const T& value);
+    void pop_back();
+    void swap(Vector& other);
+    iterator begin();
+    iterator end();
+    const_iterator begin() const;
+    const_iterator end() const;
+    void insert(iterator pos, iterator first, iterator last);
+    void erase(iterator first, iterator last);
+    T& operator[](size_t index);
+    const T& operator[](size_t index) const;
+    size_t size() const;
+    size_t capacity() const;
+    void clear();
+    Vector(std::initializer_list<T> init);
+    void reserve(size_t new_capacity);
 
 private:
+    // Private member variables
     size_t _size;
     size_t _capacity;
     T* _data;
-
-    // Private member functions
-    void reserve(size_t new_capacity);
+  
 };
 
-};
+// std::swap specialization for Vector
+template <typename T>
+void swap(Vector<T>& lhs, Vector<T>& rhs) {
+    lhs.swap(rhs);
+}
+
+// Implementation
 
 // Constructor
 template <typename T>
@@ -124,10 +136,62 @@ void Vector<T>::swap(Vector& other) {
     std::swap(_data, other._data);
 }
 
-// end() function
+// Begin iterator
 template <typename T>
-T* Vector<T>::end() {
+typename Vector<T>::iterator Vector<T>::begin() {
+    return _data;
+}
+
+// End iterator
+template <typename T>
+typename Vector<T>::iterator Vector<T>::end() {
     return _data + _size;
+}
+
+// Const begin iterator
+template <typename T>
+typename Vector<T>::const_iterator Vector<T>::begin() const {
+    return _data;
+}
+
+// Const end iterator
+template <typename T>
+typename Vector<T>::const_iterator Vector<T>::end() const {
+    return _data + _size;
+}
+
+// Insert range of elements
+template <typename T>
+void Vector<T>::insert(iterator pos, iterator first, iterator last) {
+    size_t insert_size = last - first;
+    size_t pos_index = pos - _data;
+
+    if (_size + insert_size > _capacity) {
+        reserve(_size + insert_size);
+    }
+
+    pos = _data + pos_index;
+
+    std::move_backward(pos, _data + _size, _data + _size + insert_size);
+    std::move(first, last, pos);
+    _size += insert_size;
+}
+
+// Erase range of elements
+template <typename T>
+void Vector<T>::erase(iterator first, iterator last) {
+    if (first < begin() || last > end() || first > last) {
+        throw std::out_of_range("Invalid iterator range");
+    }
+
+    iterator new_end = std::move(last, end(), first);
+    size_t num_erased = last - first;
+    _size -= num_erased;
+
+    // Destroy the moved-from elements at the end
+    for (iterator it = new_end; it != end(); ++it) {
+        it->~T();
+    }
 }
 
 // Access element at index
@@ -164,7 +228,7 @@ template <typename T>
 void Vector<T>::reserve(size_t new_capacity) {
     if (new_capacity > _capacity) {
         T* new_data = new T[new_capacity];
-        std::copy(_data, _data + _size, new_data);
+        std::move(_data, _data + _size, new_data);
         delete[] _data;
         _data = new_data;
         _capacity = new_capacity;
